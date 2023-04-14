@@ -1,0 +1,39 @@
+/* variables */
+
+:root {
+  /* fonts */
+  --main-font: 'Inter', sans-serif;
+  --secondary-font: 'Coolvetica', sans-serif;
+
+  /* text */
+  --title-text-main-color: #111111;
+  --secondary-text-color: #616161;
+  --accent-color: #3E85F3;
+  --active-selection: #E3F3FF;
+  --btn-text-color: #FFFFFF;
+  --inactive-btn-text-color: #84828A;
+  --calendar-date-color: #343434;
+
+  /* backgroung */
+  --main-background-color: #FFFFFF;
+  --auth-background-color: #DCEBF7;
+  --outlet-background-color: #F7F6F9;
+  --accent-background-color: #3E85F3;
+
+  /* tasks */
+  --task-high-color: #EA3D65;
+  --task-med-color: #F3B249;
+  --task-low-color: #72C2F8;
+  --task-card-color: #DCE3E5CC;
+  --task-field-color: #F6F6F6;
+  --task-cancel-color: #EFEFEF;
+  --task-field-text-color: #616161;
+
+  /* calendar */
+  --priority-high-color: #FFD2DD;
+  --priority-med-color: #FCF0D4;
+  --priority-low-color: #CEEEFD;
+
+  /* animation */
+  --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
