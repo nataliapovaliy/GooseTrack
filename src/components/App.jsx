@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import { refreshUser } from 'redux/auth/authOperations';
+import { refreshUser } from 'redux/auth/auth-operations';
 import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
 import { LoginPage } from 'pages/LoginPage/LoginPage';
 import { MainLayout } from 'pages/MainLayout/MainLayout';
@@ -13,9 +13,9 @@ import { ChoosedMonth } from 'components/ChoosedMonth/ChoosedMonth';
 const App = () => {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
     <Routes>
