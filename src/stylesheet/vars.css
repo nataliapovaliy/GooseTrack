@@ -37,3 +37,15 @@
   /* animation */
   --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+[dark] {
+    /* text */
+  --title-text-main-color: #FFFFFF;
+  --accent-color: #E3F3FF;
+  
+    /* backgroung */
+  --outlet-background-color: #171820;
+  --main-background-color: #21222C;
+  --sidebar-background-color: #13151A;
+}
+
