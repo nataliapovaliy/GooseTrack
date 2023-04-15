@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/auth-operations';
 import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
@@ -12,10 +12,15 @@ import { ChoosedMonth } from 'components/ChoosedMonth/ChoosedMonth';
 
 const App = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(refreshUser());
-  }, [dispatch]);
+    if (pathname === "/") {
+      navigate("/calendar/month/:currentDate");
+    }
+  }, [dispatch, pathname, navigate]);
 
   return (
     <Routes>
