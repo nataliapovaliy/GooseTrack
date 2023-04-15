@@ -1,5 +1,11 @@
 import { useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/auth-operations';
 import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
@@ -17,8 +23,8 @@ const App = () => {
 
   useEffect(() => {
     dispatch(refreshUser());
-    if (pathname === "/") {
-      navigate("/calendar/month/:currentDate");
+    if (pathname === '/') {
+      navigate('/calendar/month/:currentDate');
     }
   }, [dispatch, pathname, navigate]);
 
@@ -40,6 +46,6 @@ const App = () => {
 
 export { App };
 
-        // <Route path="/login" element={<PublicRoute component={<LoginPage />} />}/>
-        // <Route path="/register" element={<PublicRoute component={<RegisterPage />} />}/>
-        // <Route path="/" element={<PrivateRoute component={<MainLayout />} />}>
+// <Route path="/login" element={<PublicRoute component={<LoginPage />} />}/>
+// <Route path="/register" element={<PublicRoute component={<RegisterPage />} />}/>
+// <Route path="/" element={<PrivateRoute component={<MainLayout />} />}>
