@@ -1,6 +1,15 @@
 import { Formik, Form, ErrorMessage } from 'formik';
-import { Container, Wrapper, Input } from './UserForm.styled';
 import { object, string, number, date } from 'yup';
+import { useState } from 'react';
+
+import {
+  Container,
+  Wrapper,
+  Input,
+  DatePick,
+  Btn,
+  InputFile,
+} from './UserForm.styled';
 
 const userSchema = object({
   username: string().max(16).required(),
@@ -19,6 +28,8 @@ const initialValues = {
 };
 
 const UserForm = () => {
+  const [startDate, setStartDate] = useState(new Date());
+
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
     resetForm();
@@ -27,14 +38,19 @@ const UserForm = () => {
   return (
     <Container>
       <Wrapper>
-        <h1>User Name</h1>
-        <p>User</p>
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
           validationSchema={userSchema}
         >
           <Form autoComplete="off">
+            <label htmlFor="file">
+              <InputFile type="file" name="file"></InputFile>
+            </label>
+
+            <h1>User Name</h1>
+            <p>User</p>
+
             <label htmlFor="username">
               User Name
               <Input type="text" name="username"></Input>
@@ -43,7 +59,11 @@ const UserForm = () => {
 
             <label htmlFor="birthday">
               Birthday
-              <Input type="date" name="birthday"></Input>
+              <DatePick
+                selected={startDate}
+                onChange={date => setStartDate(date)}
+                dateFormat="dd/MM/yyyy"
+              />
               <ErrorMessage name="birthday" />
             </label>
 
@@ -65,7 +85,7 @@ const UserForm = () => {
               <ErrorMessage name="skype" />
             </label>
 
-            <button type="submit">Save changes</button>
+            <Btn type="submit">Save changes</Btn>
           </Form>
         </Formik>
       </Wrapper>
