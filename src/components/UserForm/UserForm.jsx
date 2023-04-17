@@ -38,19 +38,19 @@ const UserForm = () => {
   return (
     <Container>
       <Wrapper>
+        <label htmlFor="file">
+          <InputFile type="file" name="file"></InputFile>
+          <button>Отправить фото</button>
+        </label>
+
+        <h1>User Name</h1>
+        <p>User</p>
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
           validationSchema={userSchema}
         >
           <Form autoComplete="off">
-            <label htmlFor="file">
-              <InputFile type="file" name="file"></InputFile>
-            </label>
-
-            <h1>User Name</h1>
-            <p>User</p>
-
             <label htmlFor="username">
               User Name
               <Input type="text" name="username"></Input>
