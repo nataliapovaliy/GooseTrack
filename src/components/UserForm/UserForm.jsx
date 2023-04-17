@@ -7,7 +7,6 @@ import {
   Input,
   DatePick,
   Btn,
-  InputFile,
   BlockInput,
   Forms,
 } from './UserForm.styled';
@@ -31,29 +30,33 @@ const UserForm = () => {
     email: '',
     phone: '',
     skype: '',
+    file: '',
   };
 
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
+    console.log(values.file[0]);
     resetForm();
+  };
+
+  const handleChange = eve => {
+    console.log(111, eve.target.files[0]);
   };
 
   return (
     <Container>
       <Wrapper>
-        <label htmlFor="file">
-          <InputFile type="file" name="file"></InputFile>
-          <button>Отправить фото</button>
-        </label>
-
-        <h1>User Name</h1>
-        <p>User</p>
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
           validationSchema={userSchema}
         >
-          <Forms autoComplete="off">
+          <Forms autoComplete="off" encType="multipart/from-data">
+            <Input type="file" onChange={handleChange} name="file"></Input>
+
+            <h1>Nadiia Doe</h1>
+            <p>User</p>
+
             <BlockInput>
               <label htmlFor="username">
                 <span>User Name</span>

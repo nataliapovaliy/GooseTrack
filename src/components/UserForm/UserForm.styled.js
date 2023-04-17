@@ -23,6 +23,7 @@ export const Wrapper = styled.div`
 export const Forms = styled(Form)`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 export const Input = styled(Field)`
   width: 354px;
@@ -61,7 +62,12 @@ export const DatePick = styled(DatePicker)`
 `;
 
 export const InputFile = styled.input`
-  background-color: aqua;
+  width: 24px;
+  height: 24px;
+
+  border-radius: 50%;
+
+  background: #3e85f3;
 `;
 
 export const Container = styled.div`
@@ -78,6 +84,14 @@ export const Container = styled.div`
 
   h1 {
     margin-top: 59px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+
+    color: #343434;
   }
   p {
     margin-bottom: 40px;
@@ -116,6 +130,8 @@ export const Btn = styled.button`
 
   border-radius: 16px;
   border: none;
+
+  cursor: pointer;
 
   font-family: 'Inter';
   font-style: normal;
