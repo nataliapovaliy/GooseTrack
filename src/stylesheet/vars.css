@@ -13,6 +13,7 @@
   --btn-text-color: #FFFFFF;
   --inactive-btn-text-color: #84828A;
   --calendar-date-color: #343434;
+  --accent: #3E85F3;
 
   /* backgroung */
   --main-background-color: #FFFFFF;
@@ -41,7 +42,9 @@
 [dark] {
     /* text */
   --title-text-main-color: #FFFFFF;
-  --accent-color: #E3F3FF;
+  --accent-color: #FFFFFF;
+  --inactive-btn-text-color: #FFFFFF;
+  --active-selection: #3E85F3;
   
     /* backgroung */
   --outlet-background-color: #171820;
