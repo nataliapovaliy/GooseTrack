@@ -54,7 +54,7 @@ export const TaskColumnCard = ({ task }) => {
       <TaskCardWrapper>
         <TaskCardDescription>{truncatedString}</TaskCardDescription>
         <TaskDetailsWrapper>
-          <TaskCardAvatar src={avatar} alt="Avatar" />{' '}
+          <TaskCardAvatar src={avatar} alt="Avatar" />
           <TaskCardPriority style={{ backgroundColor: priorityColor }}>
             {task.priority}
           </TaskCardPriority>

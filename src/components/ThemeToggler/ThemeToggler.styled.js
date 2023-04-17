@@ -16,5 +16,5 @@ export const Svg = styled.svg`
   width: 32px;
   height: 32px;
   margin-right: 14px;
-  fill: var(--accent-color);
+  fill: red;
 `;

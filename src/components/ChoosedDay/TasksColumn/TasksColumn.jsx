@@ -12,7 +12,7 @@ import { ColumnWrapper } from './TasksColumn.styled';
 import { AddTaskBtn } from '../AddTaskBtn/AddTaskBtn';
 
 export const TasksColumn = ({ title, tasks }) => {
-    console.log('TASKCOLUMN',title)
+    
   return (
     <ColumnWrapper>
       <ColumnHeadBar title={title} />

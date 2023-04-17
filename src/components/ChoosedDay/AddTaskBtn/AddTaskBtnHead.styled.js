@@ -1,22 +1,19 @@
 import styled from 'styled-components';
 
 export const AddTaskBtnStyled = styled.button`
-  width: 20px;
-  height: 20px;
-  margin: 27px 22px 37px 0px;
- 
-  border-radius: 50%;
-  border: 2px solid #111111;
+  position: absolute;
+  top: 27px;
+  right: 25px;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  background: none;
   cursor: pointer;
-  &:hover {
-    background-color: #f5f5f5;
-  }
 `;
 
-export const AddTaskBtnIconStyled = styled.div``;
-
-export const AddTaskBtnTextStyled = styled.div`
-
- 
- 
+export const Svg = styled.svg`
+  width: 20px;
+  height: 20px;
+  /* margin-right: 14px; */
+  fill: #111111;
 `;

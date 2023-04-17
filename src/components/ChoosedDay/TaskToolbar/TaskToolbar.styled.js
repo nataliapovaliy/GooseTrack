@@ -1,24 +1,27 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const TaskToolbarStyled = styled.div`
-    display: flex;
-    flex-direction: row;
-   margin: 0 px 0px 0px 0px;
-    background-color: #fff;
-    border-bottom: 1px solid #e6e6e6;
+  display: flex;
+  position: absolute;
+  right: 15px;
+  top: 75px;
+  gap: 15px;
+  flex-direction: row;
+  margin: 0 px 0px 0px 0px;
+  background-color: none;
+  border-bottom: none;
 `;
 
 export const TaskToolbarBtn = styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    margin: 0px 20px 0px 15px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    &:hover {
-        background-color: #f5f5f5;
-    }
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  background: none;
+  cursor: pointer;
+`;
+export const Svg = styled.svg`
+  width: 16px;
+  height: 16px;
+  fill: transparent;
+  stroke: black;
 `;
