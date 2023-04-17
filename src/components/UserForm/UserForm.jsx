@@ -1,7 +1,6 @@
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import { object, string, number, date } from 'yup';
 import { useState } from 'react';
-
 import {
   Container,
   Wrapper,
@@ -9,6 +8,8 @@ import {
   DatePick,
   Btn,
   InputFile,
+  BlockInput,
+  Forms,
 } from './UserForm.styled';
 
 const userSchema = object({
@@ -19,16 +20,18 @@ const userSchema = object({
   skype: string().max(16),
 });
 
-const initialValues = {
-  username: '',
-  birthday: '',
-  email: '',
-  phone: '',
-  skype: '',
-};
-
 const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
+
+  // const bDate = startDate;
+
+  const initialValues = {
+    username: '',
+    birthday: '',
+    email: '',
+    phone: '',
+    skype: '',
+  };
 
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
@@ -50,43 +53,44 @@ const UserForm = () => {
           onSubmit={handleSubmit}
           validationSchema={userSchema}
         >
-          <Form autoComplete="off">
-            <label htmlFor="username">
-              User Name
-              <Input type="text" name="username"></Input>
-              <ErrorMessage name="username" />
-            </label>
+          <Forms autoComplete="off">
+            <BlockInput>
+              <label htmlFor="username">
+                <span>User Name</span>
+                <Input type="text" name="username"></Input>
+                <ErrorMessage name="username" />
+              </label>
 
-            <label htmlFor="birthday">
-              Birthday
-              <DatePick
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-                dateFormat="dd/MM/yyyy"
-              />
-              <ErrorMessage name="birthday" />
-            </label>
+              <label htmlFor="phone">
+                <span>Phone</span>
+                <Input type="tel" name="phone"></Input>
+                <ErrorMessage name="phone" />
+              </label>
 
-            <label htmlFor="email">
-              Email
-              <Input type="email" name="email"></Input>
-              <ErrorMessage name="email" />
-            </label>
+              <label htmlFor="birthday">
+                <span>Birthday</span>
+                <DatePick
+                  selected={startDate}
+                  onChange={date => setStartDate(date)}
+                  dateFormat="dd/MM/yyyy"
+                />
+                <ErrorMessage name="birthday" />
+              </label>
 
-            <label htmlFor="phone">
-              Phone
-              <Input type="tel" name="phone"></Input>
-              <ErrorMessage name="phone" />
-            </label>
+              <label htmlFor="skype">
+                <span>Skype</span>
+                <Input type="text" name="skype"></Input>
+                <ErrorMessage name="skype" />
+              </label>
 
-            <label htmlFor="skype">
-              Skype
-              <Input type="text" name="skype"></Input>
-              <ErrorMessage name="skype" />
-            </label>
-
+              <label htmlFor="email">
+                <span>Email</span>
+                <Input type="email" name="email"></Input>
+                <ErrorMessage name="email" />
+              </label>
+            </BlockInput>
             <Btn type="submit">Save changes</Btn>
-          </Form>
+          </Forms>
         </Formik>
       </Wrapper>
     </Container>
