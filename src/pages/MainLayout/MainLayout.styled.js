@@ -6,6 +6,7 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  max-width: 1151px;
   padding: 40px 32px;
   background-color: var(--outlet-background-color);
   flex-grow: 1;

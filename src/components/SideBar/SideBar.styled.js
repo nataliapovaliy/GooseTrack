@@ -8,6 +8,7 @@ export const Container = styled.div`
   background-color: var(--sidebar-background-color);
   padding-left: 24px;
   padding-top: 32px;
+  padding-bottom: 24px;
 `;
 
 export const InnerWrapper = styled.div`
@@ -41,23 +42,42 @@ export const H3 = styled.h3`
 `;
 
 export const Button = styled.button`
+  display:flex;
+  align-items:center;
+  justify-content: center;
   width: 141px;
   height: 56px;
   margin-top: auto;
   background: var(--accent-background-color);
-  box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
   border-radius: 16px;
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
   letter-spacing: -0.02em;
   color: var(--btn-text-color);
+  border: none;
 `;
 
 export const Item = styled.li`
   &:not(:last-child) {
     margin-bottom: 16px;
   }
+`;
+
+export const Svg = styled.svg`
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  stroke: var(--inactive-btn-text-color);
+  fill: none;
+`;
+
+export const SvgLogOut = styled.svg`
+  width: 20px;
+  height: 20px;
+  margin-left: 11px;
+  stroke: var(--btn-text-color);
+  fill: none;
 `;
 
 export const Link = styled(NavLink)`
@@ -75,5 +95,9 @@ export const Link = styled(NavLink)`
   &.active {
     background-color: var(--active-selection);
     color: var(--accent-color);
+    ${Svg} {
+      stroke: var(--accent-color);
+    }
   }
 `;
+
