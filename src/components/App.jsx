@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { refreshUser } from 'redux/auth/auth-operations';
+import { fetchingCurrentUser } from 'redux/auth/auth-operations';
 import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
 import { LoginPage } from 'pages/LoginPage/LoginPage';
 import { MainLayout } from 'pages/MainLayout/MainLayout';
@@ -16,7 +16,7 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(refreshUser());
+    dispatch(fetchingCurrentUser());
     if (pathname === "/") {
       navigate("/calendar/month/:currentDate");
     }
