@@ -22,11 +22,11 @@ const userSchema = object({
 const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
 
-  // const bDate = startDate;
+  const bDate = startDate;
+  console.log(bDate);
 
   const initialValues = {
     username: '',
-    birthday: '',
     email: '',
     phone: '',
     skype: '',
@@ -34,8 +34,9 @@ const UserForm = () => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    console.log(values.file[0]);
+    const newValues = { ...values, startDate };
+    console.log(newValues);
+
     resetForm();
   };
 
