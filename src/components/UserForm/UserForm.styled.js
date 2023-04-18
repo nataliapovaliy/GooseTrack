@@ -25,6 +25,7 @@ export const Forms = styled(Form)`
   flex-direction: column;
   align-items: center;
 `;
+
 export const Input = styled(Field)`
   width: 354px;
   height: 46px;
@@ -40,7 +41,7 @@ export const Input = styled(Field)`
   font-size: 16px;
   line-height: calc(18 / 16);
 
-  color: #111111;
+  color: #343434;
 `;
 
 export const DatePick = styled(DatePicker)`
@@ -58,32 +59,32 @@ export const DatePick = styled(DatePicker)`
   font-size: 14px;
   line-height: calc(18 / 14);
 
-  color: #111111;
+  color: #343434;
 `;
 
 export const InputFile = styled.input`
-  width: 24px;
-  height: 24px;
-
-  border-radius: 50%;
-
-  background: #3e85f3;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  line-height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
 `;
 
 export const Container = styled.div`
   img {
-    position: absolute;
-    width: 72px;
-    height: 72px;
-    left: 128px;
-    top: -35px;
+    margin-top: 60px;
 
-    border: 2px solid #3e85f3;
+    width: 124px;
+    height: 124px;
+
+    background-color: coral;
     border-radius: 50%;
   }
 
   h1 {
-    margin-top: 59px;
+    margin-top: 20px;
 
     font-family: 'Inter';
     font-style: normal;
@@ -93,8 +94,10 @@ export const Container = styled.div`
 
     color: #343434;
   }
+
   p {
     margin-bottom: 40px;
+    color: #343434;
   }
 
   label {
@@ -113,7 +116,7 @@ export const BlockInput = styled.div`
   width: 758px;
   height: 264px;
 
-  span {
+  p {
     margin-bottom: 8px;
   }
 `;
