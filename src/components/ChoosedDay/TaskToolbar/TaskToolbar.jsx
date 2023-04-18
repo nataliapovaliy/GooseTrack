@@ -22,6 +22,7 @@ export const TaskToolbar = ({ task }) => {
   const toggleModal = () => setIsModalOpen(prev => !prev);
 
   // const dispatch = useDispatch();
+  console.log('isModalOpen :>> ', isModalOpen);
 
   const handleDeleteTask = () => {
     console.log('delete task');
