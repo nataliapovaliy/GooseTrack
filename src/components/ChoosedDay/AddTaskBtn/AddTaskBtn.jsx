@@ -10,6 +10,8 @@ import { AddTaskBtnStyled, AddTaskBtnIconStyled, AddTaskBtnTextStyled } from './
 export const AddTaskBtn = ({ groupId }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const toggleModal = () => setIsModalOpen(prev => !prev);
+    console.log('AddTaskBtnIconStyled :>> ', AddTaskBtnIconStyled);
+    console.log('isModalOpen :>> ', isModalOpen);
 
     return (
         <>

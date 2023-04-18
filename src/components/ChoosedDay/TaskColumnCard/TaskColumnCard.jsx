@@ -24,6 +24,9 @@ export const TaskColumnCard = ({ task }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(prev => !prev);
 
+  console.log('isModalOpen :>> ', isModalOpen);
+    console.log('toggleModal :>> ', toggleModal);
+
   // const avatar = useSelector(getUserAvatar);
   const avatar = 'https://img.icons8.com/officel/32/null/avatar.png'; // временно для теста
 

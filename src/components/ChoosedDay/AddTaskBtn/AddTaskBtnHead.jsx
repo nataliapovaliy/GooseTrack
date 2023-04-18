@@ -6,8 +6,8 @@ import { useState } from 'react';
 import {
   AddTaskBtnStyled,
   Svg,
-  AddTaskBtnIconStyled,
-  AddTaskBtnTextStyled,
+  // AddTaskBtnIconStyled,
+  // AddTaskBtnTextStyled,
 } from './AddTaskBtnHead.styled';
 // import { TaskModal } from '../TaskModal/TaskModal';
 import icon from './icons.svg';
@@ -16,6 +16,8 @@ import icon from './icons.svg';
 export const AddTaskBtnHead = ({ groupId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(prev => !prev);
+
+  console.log('isModalOpen :>> ', isModalOpen);
 
   return (
     <>
