@@ -36,7 +36,7 @@ export const TaskColumnCard = ({ task }) => {
   };
 
   const originalString = task.description;
-  const maxLengthString = 28;
+  const maxLengthString = 31;
 
   const truncatedString = truncateString(originalString, maxLengthString);
 
