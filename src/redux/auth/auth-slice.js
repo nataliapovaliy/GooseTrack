@@ -27,15 +27,15 @@ const initialState = {
 const authController = createSlice({
   name: 'auth',
   initialState,
-  // reducers: {
-  //   openModalLogout(state) {
-  //     state.isModalLogoutOpen = true;
-  //     state.error = null;
-  //   },
-  //   closeModalLogout(state) {
-  //     state.isModalLogoutOpen = false;
-  //   },
-  // },
+  reducers: {
+    openModalLogout(state) {
+      state.isModalLogoutOpen = true;
+      state.error = null;
+    },
+    closeModalLogout(state) {
+      state.isModalLogoutOpen = false;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(register.pending, state => {
@@ -121,7 +121,7 @@ const authController = createSlice({
   },
 });
 
-export default authController.reducer;
+export const authReducer = authController.reducer;
 // export const { openModalLogout, closeModalLogout } = authController.actions;
 
 //-------------------------------------------------------------------
