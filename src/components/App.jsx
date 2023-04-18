@@ -1,13 +1,7 @@
 import { useEffect } from 'react';
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { refreshUser } from 'redux/auth/auth-operations';
+import { fetchingCurrentUser } from 'redux/auth/auth-operations';
 import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
 import { LoginPage } from 'pages/LoginPage/LoginPage';
 import { MainLayout } from 'pages/MainLayout/MainLayout';
@@ -22,9 +16,9 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(refreshUser());
-    if (pathname === '/') {
-      navigate('/calendar/month/:currentDate');
+    dispatch(fetchingCurrentUser());
+    if (pathname === "/") {
+      navigate("/calendar/month/:currentDate");
     }
   }, [dispatch, pathname, navigate]);
 
@@ -46,6 +40,6 @@ const App = () => {
 
 export { App };
 
-// <Route path="/login" element={<PublicRoute component={<LoginPage />} />}/>
-// <Route path="/register" element={<PublicRoute component={<RegisterPage />} />}/>
-// <Route path="/" element={<PrivateRoute component={<MainLayout />} />}>
+        // <Route path="/login" element={<PublicRoute component={<LoginPage />} />}/>
+        // <Route path="/register" element={<PublicRoute component={<RegisterPage />} />}/>
+        // <Route path="/" element={<PrivateRoute component={<MainLayout />} />}>
