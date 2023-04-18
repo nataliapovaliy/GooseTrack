@@ -36,7 +36,7 @@ const UserForm = () => {
   const handleSubmit = (values, { resetForm }) => {
     const newValues = { ...values, startDate };
     console.log(newValues);
-    // console.log(initialValues);
+
     resetForm();
   };
 
