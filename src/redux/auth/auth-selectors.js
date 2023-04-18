@@ -5,7 +5,7 @@ export const selectError = state => state.auth.error;
 export const selectIsFetchingCurrentUser = state =>
   state.auth.isFetchingCurrentUser;
 export const selectToken = state => state.auth.token;
-// export const selectIsModalLogoutOpen = state => state.auth.isModalLogoutOpen;
+export const selectIsModalLogoutOpen = state => state.auth.isModalLogoutOpen;
 
 //--------------------------------------------------------
 // export const getIsFetchingCurrentUser = state => state.auth.isRefreshing;
