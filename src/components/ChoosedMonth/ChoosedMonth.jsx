@@ -1,5 +1,5 @@
 import { CalendarGrid } from "./CalendarGrid"
-import { HeaderCalendar } from "./HeaderCalendar"
+import { HeaderCalendar } from "../CalendarToolbar/CalendarToolbar"
 import { Monitor } from "./Monitor"
 
 import moment from 'moment'
@@ -8,13 +8,14 @@ import { useState } from "react"
 // window.moment = moment;
 
 export const ChoosedMonth = () => {
+    const [displayMode, setDisplayMode] = useState('month')
     const [today, setToday] = useState(moment())
     moment.updateLocale( 'en', {week: {dow: 1}})
-    // const today = moment()
+   
     const startDay = today.clone().startOf('month').startOf('week');
 
     const prevHandler = () => {
-        console.log('prev')
+        // console.log('prev')
         setToday(prev => prev.clone().subtract(1, 'month'))
     }
     const nextHandler = () => {
@@ -22,9 +23,10 @@ export const ChoosedMonth = () => {
     }
     return(
         <>
-        <HeaderCalendar today={today} prevHandler={prevHandler} nextHandler={nextHandler}/>
+        <HeaderCalendar today={today} prevHandler={prevHandler} nextHandler={nextHandler} setDisplayMode={setDisplayMode}/>
         <Monitor />
-        <CalendarGrid startDay={startDay} today={today}/>
+        {displayMode === 'month' ? ( <CalendarGrid startDay={startDay} today={today}/> ) : null}
+        
         </>
     )
 }

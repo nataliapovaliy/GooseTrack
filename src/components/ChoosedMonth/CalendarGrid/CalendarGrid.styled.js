@@ -13,6 +13,7 @@ background-color: var(--main-background-color);
 export const CellWrapper = styled.div`
 min-width: 155px;
 min-height: 125px;
+padding: 14px;
 border: 1px solid #DCE3E5;
 color: ${props => props.isSelectedMonth ?  'var(--calendar-date-color)' : 'var(--btn-text-color)'}; 
 `
