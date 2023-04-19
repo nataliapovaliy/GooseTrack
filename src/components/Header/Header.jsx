@@ -1,19 +1,14 @@
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import goose from './goose.png';
+import { useState } from 'react';
+import { useMedia } from 'react-use';
 import { ThemeToggler } from 'components/ThemeToggler/ThemeToggler';
-import {
-  Image,
-  H2,
-  Wrapper,
-  InnerWrapper,
-  Motivation,
-  Accent,
-  Name,
-  Avatar,
-  AvatarLetter,
-  AvatarImg
-} from './Header.styled';
+import { Container, Image, H2, Wrapper, Motivation, Accent, Svg, Overlay, } from './Header.styled';
+import { UserInfo } from 'components/UserInfo/UserInfo';
+import { SideBar } from 'components/SideBar/SideBar';
+import goose from './goose.png';
+import icon from '../../images/icons.svg';
+
 // import { selectUser } from 'redux/auth/auth-selectors';
 
 export const Header = () => {
@@ -24,33 +19,40 @@ export const Header = () => {
   // const todoList = useSelector(getTodoList);
   const todoList = useSelector(state => state);
 
-  // TODO:
-  // const avatar = useSelector(getUserAvatar);
-  const avatar = 'https://img.icons8.com/officel/32/null/avatar.png'; // временно для теста
+  const isTabletOrMobile = useMedia('(max-width: 1439px)');
 
-  // TODO:
-  // const userName = useSelector(selectUser);
-  const userName = 'Tom'; // временно для теста
-  const firstLetter = userName.slice(0, 1).toUpperCase();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const handleSidebarOpen = () => {setIsSidebarOpen(true);};
+  const handleSidebarClose = () => {setIsSidebarOpen(false);};
 
   return (
-    <>
-      <Wrapper>
-        {todoList !== null && isActivePageCalendar ? (
-          <InnerWrapper>
-            <Image src={goose} alt="Goose"></Image>
-            <div>
-              <H2>Calendar</H2>
-              <Motivation><Accent>Let go </Accent>of the past and focus on the present!</Motivation>
-            </div>
-          </InnerWrapper>
-        ) : isActivePageCalendar ? (<H2>Calendar</H2>) : (<H2>User Profile</H2>)}
-        <InnerWrapper>
-          <ThemeToggler />
-          <Name>{userName}</Name>
-          <Avatar>{avatar === null ? (<AvatarLetter>{firstLetter}</AvatarLetter>) : (<AvatarImg src={avatar} alt="Avatar" />)}</Avatar>
-        </InnerWrapper>
-      </Wrapper>
-    </>
+      <Container>
+        {isTabletOrMobile ? (
+          <Wrapper>
+            <Svg onClick={handleSidebarOpen}> <use href={icon + '#icon-menu'}></use></Svg>
+            {isSidebarOpen && (<Overlay onClick={handleSidebarClose}> <SideBar/> </Overlay>)}
+            <Wrapper>
+              <ThemeToggler />
+              <UserInfo />
+            </Wrapper>
+          </Wrapper>
+        ) : (
+          <Wrapper>
+            {todoList !== null && isActivePageCalendar ? (
+              <Wrapper>
+                <Image src={goose} alt="Goose"></Image>
+                <div>
+                  <H2>Calendar</H2>
+                  <Motivation><Accent>Let go </Accent>of the past and focus on the present!</Motivation>
+                </div>
+              </Wrapper>
+            ) : isActivePageCalendar ? (<H2>Calendar</H2>) : (<H2>User Profile</H2>)}
+            <Wrapper>
+              <ThemeToggler />
+              <UserInfo />
+            </Wrapper>
+          </Wrapper>
+        )}
+      </Container>
   );
 };

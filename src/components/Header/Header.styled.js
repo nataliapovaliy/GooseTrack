@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
+export const Container = styled.div`
   margin-bottom: 32px;
 `;
 
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  &:not(:first-child) {
+    margin-left: auto;
+  }
+`;
+
 export const H2 = styled.h2`
-  margin-right: auto;
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
@@ -17,19 +23,10 @@ export const H2 = styled.h2`
 `;
 
 export const Motivation = styled.span`
-  margin-right: auto;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   color: var(--title-text-main-color);
-`;
-
-export const InnerWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-  &:not(:last-child) {
-    margin-right: auto;}
 `;
 
 export const Image = styled.img`
@@ -42,40 +39,35 @@ export const Accent = styled.span`
   color: var(--accent);
 `;
 
-export const Name = styled.span`
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 18px;
-  color: var(--calendar-date-color);
+export const Svg = styled.svg`
+  width: 34px;
+  height: 34px;
+  margin-right: 10px;
+  stroke: var(--calendar-date-color);
+  fill: none;
 `;
 
-export const Avatar = styled.div`
+export const FlexContainer = styled.div`
   display: flex;
-  align-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  margin-left: 14px;
-  border: 1.8px solid var(--accent);
-  background-color: var(--outlet-background-color);
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-start;
 `;
 
-export const AvatarLetter = styled.span`
-  display: flex;
-  align-items: center;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  color: var(--accent);
-  text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
-    0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
-`;
+export const Overlay = styled.div`
+  width: 289px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  background-color: white;
+  z-index: 2;
+  overflow: hidden;
 
-export const AvatarImg = styled.img`
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+  @media screen and (min-width: 768px) {
+    /* max-width: 100%;
+    width: 100vw;
+    background-color: white;
+    top: 0;
+    left: 0; */
+  }
 `;
