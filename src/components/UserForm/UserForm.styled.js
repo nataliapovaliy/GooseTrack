@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  position: relative;
   margin-left: auto;
   margin-right: auto;
 
@@ -21,6 +20,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Forms = styled(Form)`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,17 +72,21 @@ export const InputFile = styled.input`
   margin: 0;
 `;
 
+export const Avatar = styled.img`
+  margin-top: 60px;
+  width: 124px;
+  height: 124px;
+
+  background-color: coral;
+  border-radius: 50%;
+`;
+
+export const ImgBtn = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
 export const Container = styled.div`
-  img {
-    margin-top: 60px;
-
-    width: 124px;
-    height: 124px;
-
-    background-color: coral;
-    border-radius: 50%;
-  }
-
   h1 {
     margin-top: 20px;
 
@@ -99,13 +103,18 @@ export const Container = styled.div`
     margin-bottom: 40px;
     color: #343434;
   }
+`;
 
-  label {
-    display: flex;
-    flex-direction: column;
+export const LabelImg = styled.label`
+  position: absolute;
+  left: 400px;
+  top: 167px;
+`;
 
-    margin-bottom: 24px;
-  }
+export const LabelBtn = styled.label`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
 `;
 
 export const BlockInput = styled.div`
