@@ -12,7 +12,7 @@ import { useState } from "react"
 export const ChoosedMonth = () => {
     const [displayMode, setDisplayMode] = useState('month')
     const [today, setToday] = useState(moment())
-    const [tasks, setTasks] = useState([])
+    // const [tasks, setTasks] = useState([])
 
     const totalDays = 42;
 
@@ -56,7 +56,7 @@ export const ChoosedMonth = () => {
         <>
         <HeaderCalendar today={today} prevHandler={prevHandler} nextHandler={nextHandler} setDisplayMode={setDisplayMode}/>
         <Monitor />
-        {displayMode === 'month' ? ( <CalendarGrid startDay={startDay} today={today} totalDays={totalDays} tasks={tasks}/> ) : null}
+        {displayMode === 'month' ? ( <CalendarGrid startDay={startDay} today={today} totalDays={totalDays} /> ) : null}
         
         </>
     )

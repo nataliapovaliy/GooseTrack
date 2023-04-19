@@ -27,8 +27,3 @@ export const HeaderCalendar = ({today, prevHandler, nextHandler, setDisplayMode}
         </ToolbarContainer>
     )
 }
-
-{/* <Wrapper>
-            <Svg onClick={handleSidebarOpen}> <use href={icon + '#icon-menu'}></use></Svg>
-            {isSidebarOpen && (<Overlay onClick={handleSidebarClose}> <SideBar/> </Overlay>)}
-            <Wrapper></Wrapper> */}

@@ -9,7 +9,7 @@ import {
 } from './CalendarGrid.styled';
 import moment from 'moment';
 
-export const CalendarGrid = ({ startDay, today, totalDays, tasks }) => {
+export const CalendarGrid = ({ startDay, today, totalDays }) => {
   const day = startDay.clone().subtract(1, 'day');
   const daysArray = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
 
@@ -38,10 +38,10 @@ export const CalendarGrid = ({ startDay, today, totalDays, tasks }) => {
             </ShowDayWrapper>
             <TaskListWrapper>
                 {/* <div>fgrgrg</div> */}
-              {
+              {/* {
               tasks.filter(task => task.date >= dayItem.format('X') && task.date <= dayItem.clone().endOf('day').format('X'))
               .map(task => (<li>{task.date}</li>))
-              }
+              } */}
               
             </TaskListWrapper>
           </RowInCell>
