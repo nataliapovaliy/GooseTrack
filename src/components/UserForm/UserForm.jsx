@@ -9,7 +9,10 @@ import {
   Btn,
   BlockInput,
   Forms,
+  InputFile,
 } from './UserForm.styled';
+
+import goose from '../../components/Header/goose.png';
 
 const userSchema = object({
   username: string().max(16).required(),
@@ -20,28 +23,24 @@ const userSchema = object({
 });
 
 const UserForm = () => {
-  const [startDate, setStartDate] = useState(new Date());
-
-  const bDate = startDate;
-  console.log(bDate);
+  const [birthday, setBirthday] = useState(new Date());
+  const [file, setFile] = useState('');
 
   const initialValues = {
     username: '',
     email: '',
     phone: '',
     skype: '',
-    file: '',
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    const newValues = { ...values, startDate };
+    const newValues = { ...values, file, birthday };
     console.log(newValues);
-
     resetForm();
   };
 
   const handleChange = eve => {
-    console.log(111, eve.target.files[0]);
+    setFile(eve.target.files[0]);
   };
 
   return (
@@ -53,42 +52,52 @@ const UserForm = () => {
           validationSchema={userSchema}
         >
           <Forms autoComplete="off" encType="multipart/from-data">
-            <Input type="file" onChange={handleChange} name="file"></Input>
+            <label htmlFor="file">
+              <img src={goose} alt="goose" />
 
-            <h1>Nadiia Doe</h1>
+              <InputFile
+                id="file"
+                type="file"
+                onChange={handleChange}
+                accept="image/*,.png,.jpg,.gif,.web"
+                name="file"
+              ></InputFile>
+            </label>
+
+            <h1>Goose</h1>
             <p>User</p>
 
             <BlockInput>
               <label htmlFor="username">
-                <span>User Name</span>
+                <p>User Name</p>
                 <Input type="text" name="username"></Input>
                 <ErrorMessage name="username" />
               </label>
 
               <label htmlFor="phone">
-                <span>Phone</span>
+                <p>Phone</p>
                 <Input type="tel" name="phone"></Input>
                 <ErrorMessage name="phone" />
               </label>
 
               <label htmlFor="birthday">
-                <span>Birthday</span>
+                <p>Birthday</p>
                 <DatePick
-                  selected={startDate}
-                  onChange={date => setStartDate(date)}
+                  selected={birthday}
+                  onChange={date => setBirthday(date)}
                   dateFormat="dd/MM/yyyy"
                 />
                 <ErrorMessage name="birthday" />
               </label>
 
               <label htmlFor="skype">
-                <span>Skype</span>
+                <p>Skype</p>
                 <Input type="text" name="skype"></Input>
                 <ErrorMessage name="skype" />
               </label>
 
               <label htmlFor="email">
-                <span>Email</span>
+                <p>Email</p>
                 <Input type="email" name="email"></Input>
                 <ErrorMessage name="email" />
               </label>
