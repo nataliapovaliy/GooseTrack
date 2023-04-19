@@ -6,11 +6,7 @@ import { TaskForm } from './TaskForm/TaskForm';
 export const Modal = ({ closeModal }) => {
   return (
     <ModalBody>
-      <Cross
-        func={closeModal}
-        height={'14px'}
-        bcgCr={'--title-text-main-color'}
-      />
+      <Cross func={closeModal} height={'14px'} bcgCr={'#111111'} />
       <TaskForm />
     </ModalBody>
   );

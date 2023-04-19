@@ -48,5 +48,4 @@ export const StyledInput = styled.input`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.29;
-  border-radius: 8px;
 `;
