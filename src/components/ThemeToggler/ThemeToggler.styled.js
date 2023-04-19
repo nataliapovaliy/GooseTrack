@@ -13,8 +13,10 @@ export const Input = styled.input`
 `;
 
 export const Svg = styled.svg`
+  display:flex;
+  align-items:center;
   width: 32px;
   height: 32px;
   margin-right: 14px;
-  fill: red;
+  fill: var(--accent-color); ;
 `;

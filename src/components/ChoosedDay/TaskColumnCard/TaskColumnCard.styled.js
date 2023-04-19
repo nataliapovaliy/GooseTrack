@@ -28,7 +28,7 @@ export const TaskCardAvatar = styled.img`
   border-radius: 50%;
   
   margin: 0px 8px 20px 0px;
-  border: 1.8px solid #3E85F3;
+  border: 1.8px solid var(--accent);
 `;
 export const TaskCardPriority = styled.div`
   width: 63px;

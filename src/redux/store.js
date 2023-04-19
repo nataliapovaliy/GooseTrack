@@ -10,7 +10,8 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import authReducer from './auth/auth-slice';
+import { authReducer } from './auth/auth-slice';
+import { tasksReducer } from './tasks/tasks-slice';
 
 const persistConfig = {
   key: 'auth',
@@ -23,6 +24,7 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedReducer,
+    tasks: tasksReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

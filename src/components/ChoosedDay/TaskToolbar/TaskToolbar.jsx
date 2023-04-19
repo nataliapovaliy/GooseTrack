@@ -10,7 +10,7 @@
 
 import { useState } from 'react';
 import { TaskToolbarStyled, TaskToolbarBtn, Svg } from './TaskToolbar.styled';
-import { useDispatch } from 'react-redux';
+
 import iconTrash from './icons.svg';
 // import { deleteTask } from '../../redux/tasks/tasks-operations';
 // import { toast } from 'react-toastify';
@@ -22,6 +22,7 @@ export const TaskToolbar = ({ task }) => {
   const toggleModal = () => setIsModalOpen(prev => !prev);
 
   // const dispatch = useDispatch();
+  console.log('isModalOpen :>> ', isModalOpen);
 
   const handleDeleteTask = () => {
     console.log('delete task');

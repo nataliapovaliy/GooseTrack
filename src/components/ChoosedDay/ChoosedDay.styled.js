@@ -7,8 +7,6 @@ export const TasksColumnsListWrapper = styled.div`
   align-items: flex-start;
   width: 100%;
   height: 100%;
-  padding: 0 20px;
-border: 1px solid red;
-  
+  /* padding: 0 20px; */
  
 `;
