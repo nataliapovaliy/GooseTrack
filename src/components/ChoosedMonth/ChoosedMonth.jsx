@@ -11,23 +11,33 @@ import { useEffect } from "react"
 export const ChoosedMonth = () => {
     const [displayMode, setDisplayMode] = useState('month')
     const [today, setToday] = useState(moment())
-    const [task, setTask] = useState([])
+    const [tasks, setTasks] = useState([])
 
-
+    const totalDays = 42;
 
 
     moment.updateLocale( 'en', {week: {dow: 1}})
+    const startDay = today.clone().startOf('month').startOf('week');
+
+    const startDateQuery = startDay.clone().format('X')
+    const endDateQuery = startDay.clone().add(totalDays).format('X')
+
     const URL = 'url'
 
 
+
     useEffect(() => {
-        fetch(URL)
+        fetch(`${URL}/${startDateQuery}&${endDateQuery}`)
         .then(res => res.json())
-    })
+        .then(res => {
+            console.log(res);
+            setTasks(res);
+        });
+    }, [today])
 
     
    
-    const startDay = today.clone().startOf('month').startOf('week');
+   
 
     const prevHandler = () => {
         setToday(prev => prev.clone().subtract(1, 'month'))
@@ -45,7 +55,7 @@ export const ChoosedMonth = () => {
         <>
         <HeaderCalendar today={today} prevHandler={prevHandler} nextHandler={nextHandler} setDisplayMode={setDisplayMode}/>
         <Monitor />
-        {displayMode === 'month' ? ( <CalendarGrid startDay={startDay} today={today}/> ) : null}
+        {displayMode === 'month' ? ( <CalendarGrid startDay={startDay} today={today} totalDays={totalDays}/> ) : null}
         
         </>
     )
