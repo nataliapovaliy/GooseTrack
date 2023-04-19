@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 289px;
+  height: calc(100vh - 24px);
   background-color: var(--sidebar-background-color);
   padding-left: 24px;
   padding-top: 32px;
@@ -42,8 +43,8 @@ export const H3 = styled.h3`
 `;
 
 export const Button = styled.button`
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
   justify-content: center;
   width: 141px;
   height: 56px;
