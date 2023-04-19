@@ -31,6 +31,7 @@ margin-right: 8px;
 border: none;
 border-radius: 8px;
 background-color: var(--accent-background-color);
+cursor: pointer;
 `
 
 export const ToolbarSpan = styled.span`
