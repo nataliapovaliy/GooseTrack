@@ -3,24 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 const globalSlice = createSlice({
   name: 'global',
   initialState: {
-    isModalAddTransactionOpen: false,
-    isModalUpDateTransaction: false,
+    isModalAddTaskOpen: false,
+    isModalUpDateTask: false,
     isModalConfirmation: false,
     isModalLogOut: false,
   },
 
   reducers: {
-    openModalAddTransaction(state) {
-      state.isModalAddTransactionOpen = true;
+    openModalAddTask(state) {
+      state.isModalAddTaskOpen = true;
     },
-    closeModalAddTransaction(state) {
-      state.isModalAddTransactionOpen = false;
+    closeModalAddTask(state) {
+      state.isModalAddTaskOpen = false;
     },
-    openModalUpDateTransaction(state) {
-      state.isModalUpDateTransaction = true;
+    openModalUpDateTask(state) {
+      state.isModalUpDateTask = true;
     },
-    closeModalUpDateTransaction(state) {
-      state.isModalUpDateTransaction = false;
+    closeModalUpDateTask(state) {
+      state.isModalUpDateTask = false;
     },
     openModalConfirmation(state) {
       state.isModalConfirmation = true;
@@ -39,10 +39,10 @@ const globalSlice = createSlice({
 export const {
   openModalLogOut,
   closeModalLogOut,
-  openModalAddTransaction,
-  closeModalAddTransaction,
-  openModalUpDateTransaction,
-  closeModalUpDateTransaction,
+  openModalAddTask,
+  closeModalAddTask,
+  openModalUpDateTask,
+  closeModalUpDateTask,
   openModalConfirmation,
   closeModalConfirmation,
 } = globalSlice.actions;
