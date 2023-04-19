@@ -77,7 +77,7 @@ export const RegisterForm = () => {
       }) => (
         <Wrapper>
           <RegisterFormContainer>
-            <Form>
+            <Form autoComplete="off" onSubmit={handleSubmit}>
               <ToastContainer />
               <RegisterFormTitle>Sign Up</RegisterFormTitle>
               <RegisterLabel htmlFor={nameId}>
