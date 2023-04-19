@@ -72,6 +72,7 @@ const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(updateTask.fulfilled, (state, { payload }) => {
+        state.arrTasks = payload;
         state.isLoading = false;
         state.error = null;
       })
