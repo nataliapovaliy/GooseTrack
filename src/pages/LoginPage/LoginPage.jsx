@@ -1,5 +1,5 @@
 import { LoginForm } from 'components/LoginForm/LoginForm';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import { LoginFormLayout } from './LoginPage.styled';
 
 export const LoginPage = () => {
