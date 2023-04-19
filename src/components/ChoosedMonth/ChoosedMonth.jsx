@@ -4,8 +4,8 @@ import { Monitor } from "./Monitor"
 
 import moment from 'moment'
 import { useState } from "react"
-import { useEffect } from "react"
-import { tasksData } from "components/ChoosedDay/taskData"
+// import { useEffect } from "react"
+// import { tasksData } from "components/ChoosedDay/taskData"
 
 // window.moment = moment;
 
@@ -20,21 +20,21 @@ export const ChoosedMonth = () => {
     moment.updateLocale( 'en', {week: {dow: 1}})
     const startDay = today.clone().startOf('month').startOf('week');
 
-    const startDateQuery = startDay.clone().format('X')
-    const endDateQuery = startDay.clone().add(totalDays).format('X')
+    // const startDateQuery = startDay.clone().format('X')
+    // const endDateQuery = startDay.clone().add(totalDays).format('X')
 
-    const URL = tasksData
+    // const URL = tasksData
 
 
 
-    useEffect(() => {
-        fetch(`${URL}/${startDateQuery}&${endDateQuery}`)
-        .then(res => res.json())
-        .then(res => {
-            console.log(res);
-            setTasks(res);
-        });
-    }, [today])
+    // useEffect(() => {
+    //     fetch(`${URL}/${startDateQuery}&${endDateQuery}`)
+    //     .then(res => res.json())
+    //     .then(res => {
+    //         console.log(res);
+    //         setTasks(res);
+    //     });
+    // }, [today])
 
     
    

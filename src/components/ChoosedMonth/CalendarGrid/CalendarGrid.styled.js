@@ -44,16 +44,25 @@ display: flex;
 align-items: center;
 justify-content: center;
 margin: 2px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 1,2;
+/* color: #343434; */
 `
 
 export const CurrentDay = styled.div`
 height: 100%;
 width: 100%;
+padding: 4px 8px;
 display: flex;
 align-items: center;
 justify-content: center;
 background-color: #3E85F3;
 border-radius: 8px;
+color: #FFFFFF;
 `
 
 export const ContainerCalendar = styled.div`
