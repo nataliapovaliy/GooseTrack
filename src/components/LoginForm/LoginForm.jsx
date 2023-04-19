@@ -69,7 +69,7 @@ export const LoginForm = () => {
       }) => (
         <Wrapper>
           <LoginFormContainer>
-            <Form>
+            <Form autoComplete="off" onSubmit={handleSubmit}>
               <ToastContainer />
               <LoginFormTitle>Log in</LoginFormTitle>
               <LoginLabel htmlFor={emailId}>

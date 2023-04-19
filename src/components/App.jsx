@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsFetchingCurrentUser } from 'redux/auth/auth-selectors';
 import { fetchingCurrentUser } from 'redux/auth/auth-operations';
 import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
 import { LoginPage } from 'pages/LoginPage/LoginPage';
@@ -9,11 +10,13 @@ import { AccountPage } from 'pages/AccountPage/AccountPage';
 import { CalendarPage } from 'pages/CalendarPage/CalendarPage';
 import { ChoosedDay } from 'components/ChoosedDay/ChoosedDay';
 import { ChoosedMonth } from 'components/ChoosedMonth/ChoosedMonth';
+import { PrivateRoute, PublicRoute } from 'components/PrivatPublicRoutes/PrivatPublicRoutes';
 
 const App = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const isFetchingUser = useSelector(selectIsFetchingCurrentUser);
 
   useEffect(() => {
     dispatch(fetchingCurrentUser());
@@ -22,11 +25,11 @@ const App = () => {
     }
   }, [dispatch, pathname, navigate]);
 
-  return (
+  return isFetchingUser ? ( <div>Loading...</div>) : (
     <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/" element={<MainLayout />}>
+      <Route path="/login" element={<PublicRoute component={<LoginPage />} />}/>
+      <Route path="/register" element={<PublicRoute component={<RegisterPage />} />}/>
+      <Route path="/" element={<PrivateRoute component={<MainLayout />} />}>
         <Route path="/account" element={<AccountPage />} />
         <Route path="/calendar" element={<CalendarPage />}>
           <Route path="month/:currentDate" element={<ChoosedMonth />} />
@@ -39,7 +42,3 @@ const App = () => {
 };
 
 export { App };
-
-        // <Route path="/login" element={<PublicRoute component={<LoginPage />} />}/>
-        // <Route path="/register" element={<PublicRoute component={<RegisterPage />} />}/>
-        // <Route path="/" element={<PrivateRoute component={<MainLayout />} />}>
