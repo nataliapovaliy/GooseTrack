@@ -1,10 +1,11 @@
-import { CalendarGrid } from "./CalendarGrid"
+import { CalendarGrid } from "./CalendarGrid/CalendarGrid"
 import { HeaderCalendar } from "../CalendarToolbar/CalendarToolbar"
 import { Monitor } from "./Monitor"
 
 import moment from 'moment'
 import { useState } from "react"
 import { useEffect } from "react"
+import { tasksData } from "components/ChoosedDay/taskData"
 
 // window.moment = moment;
 
@@ -22,7 +23,7 @@ export const ChoosedMonth = () => {
     const startDateQuery = startDay.clone().format('X')
     const endDateQuery = startDay.clone().add(totalDays).format('X')
 
-    const URL = 'url'
+    const URL = tasksData
 
 
 
@@ -55,7 +56,7 @@ export const ChoosedMonth = () => {
         <>
         <HeaderCalendar today={today} prevHandler={prevHandler} nextHandler={nextHandler} setDisplayMode={setDisplayMode}/>
         <Monitor />
-        {displayMode === 'month' ? ( <CalendarGrid startDay={startDay} today={today} totalDays={totalDays}/> ) : null}
+        {displayMode === 'month' ? ( <CalendarGrid startDay={startDay} today={today} totalDays={totalDays} tasks={tasks}/> ) : null}
         
         </>
     )

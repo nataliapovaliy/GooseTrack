@@ -10,6 +10,7 @@ background-color: var(--main-background-color);
 /* grid-gap: 1px; */
 `
 
+
 export const CellWrapper = styled.div`
 min-width: 155px;
 min-height: 125px;
@@ -20,8 +21,21 @@ color: ${props => props.isSelectedMonth ?  'var(--calendar-date-color)' : 'var(-
 
 export const RowInCell = styled.div`
 display: flex; 
+flex-direction: column;
 justify-content: ${props => props.justifyContent ?  props.justifyContent : 'flex-start'};
 `
+
+export const ShowDayWrapper = styled.div`
+display: flex;
+justify-content: flex-end;
+`
+
+export const TaskListWrapper = styled.ul`
+margin: unset;
+list-style-position: inside;
+padding-left: 4px;
+`
+
 
 export const DayWrapper = styled.div`
 height: 26px;
