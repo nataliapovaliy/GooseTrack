@@ -10,7 +10,7 @@ import {
   // AddTaskBtnTextStyled,
 } from './AddTaskBtnHead.styled';
 // import { TaskModal } from '../TaskModal/TaskModal';
-import icon from './icons.svg';
+import icon from '../../../images/icons.svg';
 
 
 export const AddTaskBtnHead = ({ groupId }) => {

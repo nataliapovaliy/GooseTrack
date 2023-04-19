@@ -11,7 +11,7 @@
 import { useState } from 'react';
 import { TaskToolbarStyled, TaskToolbarBtn, Svg } from './TaskToolbar.styled';
 
-import iconTrash from './icons.svg';
+import iconTrash from '../../../images/icons.svg';
 // import { deleteTask } from '../../redux/tasks/tasks-operations';
 // import { toast } from 'react-toastify';
 // import { TaskModal } from '../TaskModal/TaskModal';
