@@ -4,12 +4,13 @@ export const TasksListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 18px;
-  width: 100%;
+  width: 315px;
   height: 100%;
   margin-left: 21px;
   max-height: 376px;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: var(--main-background-color);
   scrollbar-color: #f2f2f2;
   ::-webkit-scrollbar-corner {
     /* background: #f2f2f2; */

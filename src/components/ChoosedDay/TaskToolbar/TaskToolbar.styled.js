@@ -23,5 +23,8 @@ export const Svg = styled.svg`
   width: 16px;
   height: 16px;
   fill: transparent;
-  stroke: black;
+  stroke: var(--title-text-main-color);
+  &:hover {
+    stroke: var(--accent);
+  }
 `;
