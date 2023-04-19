@@ -17,7 +17,7 @@ export const TasksColumnsList = () => {
 const filterTodo = tasks.filter(task => task.status === 'todo');
 const filterInProgress = tasks.filter(task => task.status === 'In progress');
 const filterDone = tasks.filter(task => task.status === 'done');
-console.log('FILTERDONE>>>',filterDone);
+
     return (
       <TasksColumnsListWrapper>
         <TasksColumn title={'To do'} tasks={filterTodo} />

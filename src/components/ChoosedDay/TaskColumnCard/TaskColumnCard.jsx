@@ -14,6 +14,7 @@ import {
   TaskCardAvatar,
   TaskCardPriority,
   TaskDetailsWrapper,
+  TaskAvatarPriorityWrapper,
 } from './TaskColumnCard.styled';
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
 // import { TaskModal } from '../TaskModal/TaskModal';
@@ -25,7 +26,7 @@ export const TaskColumnCard = ({ task }) => {
   const toggleModal = () => setIsModalOpen(prev => !prev);
 
   console.log('isModalOpen :>> ', isModalOpen);
-    console.log('toggleModal :>> ', toggleModal);
+  console.log('toggleModal :>> ', toggleModal);
 
   // const avatar = useSelector(getUserAvatar);
   const avatar = 'https://img.icons8.com/officel/32/null/avatar.png'; // временно для теста
@@ -45,11 +46,11 @@ export const TaskColumnCard = ({ task }) => {
 
   let priorityColor = '';
   if (task.priority === 'Low') {
-    priorityColor = '#72C2F8';
+    priorityColor = 'var(--task-low-color)';
   } else if (task.priority === 'Medium') {
-    priorityColor = '#F3B249';
+    priorityColor = 'var(--task-med-color)';
   } else if (task.priority === 'High') {
-    priorityColor = '#EA3D65';
+    priorityColor = 'var(--task-high-color)';
   }
 
   return (
@@ -57,10 +58,12 @@ export const TaskColumnCard = ({ task }) => {
       <TaskCardWrapper>
         <TaskCardDescription>{truncatedString}</TaskCardDescription>
         <TaskDetailsWrapper>
-          <TaskCardAvatar src={avatar} alt="Avatar" />
-          <TaskCardPriority style={{ backgroundColor: priorityColor }}>
-            {task.priority}
-          </TaskCardPriority>
+          <TaskAvatarPriorityWrapper>
+            <TaskCardAvatar src={avatar} alt="Avatar" />
+            <TaskCardPriority style={{ backgroundColor: priorityColor }}>
+              {task.priority}
+            </TaskCardPriority>
+          </TaskAvatarPriorityWrapper>
           <TaskToolbar />
         </TaskDetailsWrapper>
       </TaskCardWrapper>

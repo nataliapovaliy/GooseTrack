@@ -14,6 +14,9 @@ export const AddTaskBtnStyled = styled.button`
 export const Svg = styled.svg`
   width: 20px;
   height: 20px;
-  /* margin-right: 14px; */
-  fill: #111111;
+  stroke: var(--title-text-main-color);
+  /* fill: #111111; */
+  &:hover {
+    stroke: var(--accent);
+  }
 `;
