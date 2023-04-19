@@ -28,7 +28,7 @@ export const PriorityCircle = styled.div`
       ? '#EA3D65'
       : 'white'};
   border: 4px;
-  border: solid white 1px;
+  border: solid var(--outlet-background-color) 1px;
 `;
 export const ActiveCircle = styled.div`
   position: absolute;

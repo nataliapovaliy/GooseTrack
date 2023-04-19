@@ -4,7 +4,7 @@ export const ModalBody = styled.div`
   width: 396px;
   height: 352px;
   position: absolute;
-  background-color: #ffffff;
+  background-color: var(--main-background-color);
   z-index: 1;
   top: 40%;
   left: 50%;

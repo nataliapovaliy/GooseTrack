@@ -11,6 +11,7 @@ export const CloseLeft = styled.div`
   position: absolute;
   width: 2px;
   height: ${props => props.height};
+  background-color: var(${props => props.bcgCr});
   background-color: ${props => props.bcgCr};
   right: 4px;
   top: -2px;
@@ -22,6 +23,7 @@ export const CloseRight = styled.div`
   position: absolute;
   width: 2px;
   height: ${props => props.height};
+  background-color: var(${props => props.bcgCr});
   background-color: ${props => props.bcgCr};
   right: 4px;
   top: -2px;
