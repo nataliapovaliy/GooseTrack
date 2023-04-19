@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   WeekInfoWrapper,
@@ -8,7 +8,7 @@ import {
 } from './DayCalendarHead.styled';
 
 export const DayCalendarHead = () => {
-  const currentDate = new Date();
+  const [currentDate, setCurrentDate] = useState(new Date());
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
   return (
