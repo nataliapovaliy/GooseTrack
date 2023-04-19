@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { Name, Avatar, AvatarLetter, AvatarImg } from './UserInfo.styled';
 // import { selectUser } from 'redux/auth/auth-selectors';
 

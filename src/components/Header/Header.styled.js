@@ -55,12 +55,13 @@ export const FlexContainer = styled.div`
 
 export const Overlay = styled.div`
   width: 289px;
-  position: absolute;
-  top: -40px;
-  left: -32px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
   height: 100vh;
   background-color: white;
   z-index: 2;
+  overflow: hidden;
 
   @media screen and (min-width: 768px) {
     /* max-width: 100%;
