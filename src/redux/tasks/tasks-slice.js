@@ -7,7 +7,15 @@ import {
 } from './tasks-operations';
 
 const initialState = {
-  items: [],
+  arrTasks: [{
+    taskId: null,
+    title: '',
+    start: '',
+    end: '',
+    createAt: '',
+    owner: {},
+    priority: '',
+    status: ''}],
   isLoading: false,
   error: null,
 };
@@ -24,12 +32,13 @@ const tasksSlice = createSlice({
       .addCase(fetchTasks.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.items = payload;
+        state.arrTasks = payload;
       })
       .addCase(fetchTasks.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
+
       .addCase(addTask.pending, state => {
         state.isLoading = true;
         state.error = null;
@@ -37,12 +46,13 @@ const tasksSlice = createSlice({
       .addCase(addTask.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.items.push(payload);
+        state.arrTasks.push(payload);
       })
       .addCase(addTask.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
+
       .addCase(deleteTask.pending, state => {
         state.isLoading = true;
         state.error = null;
@@ -50,13 +60,13 @@ const tasksSlice = createSlice({
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.items.findIndex(task => task.id === payload);
-        state.items.splice(index, 1);
+        state.arrTasks = state.arrTasks.filter((task => task.taskId !== payload._id))
       })
       .addCase(deleteTask.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
+
       .addCase(updateTask.pending, state => {
         state.isLoading = true;
         state.error = null;
