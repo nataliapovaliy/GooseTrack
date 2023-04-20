@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { TasksColumnsList } from './TasksColumnsList/TasksColumnsList';
 import { TasksColumnsListWrapper } from './ChoosedDay.styled';
 import { DayCalendarHead } from './DayCalendarHead/DayCalendarHead';
