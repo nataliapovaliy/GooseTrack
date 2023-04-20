@@ -7,7 +7,7 @@ import {
   DateContainer,
 } from './DayCalendarHead.styled';
 
-export const DayCalendarHead = ({ chooseDay }) => {
+export const DayCalendarHead = ({ clickChooseDay }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
   // console.log(setCurrentDate);
@@ -15,12 +15,12 @@ export const DayCalendarHead = ({ chooseDay }) => {
   const handleClickDay = (day, dayValue, monthValue, yearValue) => {
     const dateClickObject = {
       weekDay: day,
-      date: dayValue,
+      day: dayValue,
       month: monthValue,
       year: yearValue,
     };
-    console.log(dateClickObject);
-    chooseDay(dateClickObject)
+
+    clickChooseDay(dateClickObject);
   };
 
   return (
@@ -47,7 +47,7 @@ export const DayCalendarHead = ({ chooseDay }) => {
             <DateContainer
               key={dateKey}
               onClick={() => {
-               handleClickDay(day, dayValue, monthValue, yearValue);
+                handleClickDay(day, dayValue, monthValue, yearValue);
               }}
             >
               <p>{dayValue}</p>

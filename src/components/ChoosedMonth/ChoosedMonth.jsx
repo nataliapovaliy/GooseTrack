@@ -1,9 +1,11 @@
 import { CalendarGrid } from "./CalendarGrid/CalendarGrid"
 import { HeaderCalendar } from "../CalendarToolbar/CalendarToolbar"
 import { Monitor } from "./Monitor"
+import { useDispatch } from 'react-redux';
+import { fetchTasks } from 'redux/tasks/tasks-operations';
 
 import moment from 'moment'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 // import { useEffect } from "react"
 // import { tasksData } from "components/ChoosedDay/taskData"
 
@@ -49,7 +51,17 @@ export const ChoosedMonth = () => {
 
 
 
+  const dispatch = useDispatch()   ;
 
+  useEffect(() => {
+    const currentDate = new Date();
+    const year = String(currentDate.getFullYear());
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+
+    dispatch(fetchTasks({ month, year }));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
 
     return(
