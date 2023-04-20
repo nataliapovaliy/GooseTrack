@@ -5,6 +5,7 @@ import { MonthCalendarHead } from './MonthCalendarHead/MonthCalendarHead';
 import moment from 'moment';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { selectArrTasks } from 'redux/tasks/tasks-selectors';
 
 // import { useEffect } from "react"
 // import { tasksData } from "components/ChoosedDay/taskData"
@@ -15,8 +16,9 @@ export const ChoosedMonth = () => {
   const [displayMode, setDisplayMode] = useState('month');
   const [today, setToday] = useState(moment());
   // const [tasks, setTasks] = useState([])
-  const tasks = useSelector(state => state.tasks.arrTasks);
+  const tasks = useSelector(selectArrTasks);
   console.log(tasks);
+
   const totalDays = 42;
 
   moment.updateLocale('en', { week: { dow: 1 } });
