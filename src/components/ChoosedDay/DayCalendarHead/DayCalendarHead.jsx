@@ -9,6 +9,8 @@ import {
 
 export const DayCalendarHead = ({ clickChooseDay }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [choosedDay, setChoosedDay] = useState(new Date());
+
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
   // console.log(setCurrentDate);
 
@@ -43,12 +45,18 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
           const yearValue = String(date.getFullYear());
           const dateKey = `${day}-${dayValue}-${monthValue}-${yearValue}`;
 
+          const isCurrentDay =
+            date.toDateString() === choosedDay;
+
+          // console.log(date.toDateString(), choosedDay);
           return (
             <DateContainer
               key={dateKey}
               onClick={() => {
                 handleClickDay(day, dayValue, monthValue, yearValue);
+                
               }}
+              style={{ backgroundColor: isCurrentDay ? 'blue' : 'inherit' }}
             >
               <p>{dayValue}</p>
             </DateContainer>

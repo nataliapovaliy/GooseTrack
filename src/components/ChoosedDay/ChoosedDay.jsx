@@ -19,7 +19,6 @@ import {
 } from 'redux/modal/globalSlice';
 
 const ChoosedDay = () => {
-
   const [tasksFilter, setTasksFilter] = useState([]);
 
   const tasksMonth = useSelector(selectArrTasks);
@@ -28,8 +27,6 @@ const ChoosedDay = () => {
   const modalConfirmationState = useSelector(selectModalConfirmation);
 
   const dispatch = useDispatch();
-
-
 
   const closeModal = () => {
     dispatch(closeModalAddTask());
@@ -42,21 +39,33 @@ const ChoosedDay = () => {
     closeDeleteModal();
   };
 
-  const chooseDay = date => {
-    const { day, month, year } = date;
-  
-      const filteredTasks = tasksMonth.filter(({start, end}) => {
-      
-        const chosenDate = `${year}/${month}/${day}`;
+  useEffect(() => {
+    const currentDayFilter = tasksMonth.filter(({ start, end }) => {
+      const currentDate = new Date();
+      const currentDay = currentDate
+        .toISOString()
+        .split('T')[0]
+        .replace(/-/g, '/');
 
-        return start <= chosenDate && end >= chosenDate;
-      });
-    
-      setTasksFilter(filteredTasks);
-      
-    };
-    console.log('ChoosenDay tasks', tasksFilter);
-  
+      return start <= currentDay && end >= currentDay;
+    });
+
+    setTasksFilter(currentDayFilter);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tasksMonth]);
+
+  const chooseDay = ({ day, month, year }) => {
+    const filteredTasks = tasksMonth.filter(({ start, end }) => {
+      const chosenDate = `${year}/${month}/${day}` || '2023/04/21';
+
+      console.log(chosenDate);
+
+      return start <= chosenDate && end >= chosenDate;
+    });
+
+    setTasksFilter(filteredTasks);
+  };
 
   return (
     <TasksColumnsListWrapper>
