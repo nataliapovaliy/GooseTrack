@@ -60,6 +60,7 @@ export const RegisterForm = () => {
           })
         );
         if (error) {
+          console.log(`redister form error: ${error}`);
           toast.error('Oops...something is wrong, try again!');
         }
         resetForm();
