@@ -38,7 +38,7 @@ export const Header = () => {
           </Wrapper>
         ) : (
           <Wrapper>
-            {todoList !== null && isActivePageCalendar ? (
+            {todoList.length > 0 && isActivePageCalendar ? (
               <Wrapper>
                 <Image src={goose} alt="Goose"></Image>
                 <div>
