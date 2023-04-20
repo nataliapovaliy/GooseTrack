@@ -18,22 +18,28 @@ import {
   RegisterParaghraph,
   LinkToLogin,
   ErrorMessage,
+  Svg,
+  ButtonText,
+  RegisterGooseImage,
 } from './RegisterForm.styled';
+import icons from 'images/icons.svg';
+import GooseRegister from 'images/goose-register.png';
+import GooseRegister2x from 'images/goose-register@2x.png';
 
 const validationSchema = yup.object().shape({
   name: yup
     .string()
-    .min(1)
-    .max(12, 'First name must be at most 12 characters')
+    .min(3)
+    .max(30, 'Name must be at most 30 characters')
     .required('Please enter your name'),
   email: yup
     .string()
-    .email('E-mail must be valid email')
-    .required('E-mail is a required field'),
+    .email('Email must be valid email')
+    .required('Email is a required field'),
   password: yup
     .string()
-    .min(6, 'Password must be at least 6 characters')
-    .max(12, 'Password must be at most 12 characters')
+    .min(8, 'Password must be at least 8 characters')
+    .max(16, 'Password must be at most 16 characters')
     .required('Password is a required field'),
 });
 
@@ -60,6 +66,7 @@ export const RegisterForm = () => {
           })
         );
         if (error) {
+          console.log(`redister form error: ${error}`);
           toast.error('Oops...something is wrong, try again!');
         }
         resetForm();
@@ -92,7 +99,9 @@ export const RegisterForm = () => {
                   placeholder="Enter your name"
                 />
               </RegisterLabel>
-              <ErrorMessage>{errors.name && touched.name && errors.name}</ErrorMessage>
+              <ErrorMessage>
+                {errors.name && touched.name && errors.name}
+              </ErrorMessage>
               <RegisterLabel htmlFor={emailId}>
                 <RegisterParaghraph>Email</RegisterParaghraph>
                 <RegisterInput
@@ -105,7 +114,9 @@ export const RegisterForm = () => {
                   placeholder="Enter email"
                 />
               </RegisterLabel>
-              <ErrorMessage>{errors.email && touched.email && errors.email}</ErrorMessage>
+              <ErrorMessage>
+                {errors.email && touched.email && errors.email}
+              </ErrorMessage>
               <RegisterLabel htmlFor={passwordId}>
                 <RegisterParaghraph>Password</RegisterParaghraph>
                 <RegisterInput
@@ -122,12 +133,20 @@ export const RegisterForm = () => {
                 {errors.password && touched.password && errors.password}
               </ErrorMessage>
               <RegisterButton type="submit" disabled={isSubmitting}>
-                Sign Up
+                <ButtonText>Sign Up</ButtonText>{' '}
+                <Svg>
+                  <use href={`${icons}#icon-log-in`} />
+                </Svg>
               </RegisterButton>
             </Form>
             <Link to="/login">
               <LinkToLogin>Log in</LinkToLogin>
             </Link>
+            <RegisterGooseImage
+              srcset={`${GooseRegister} 1x, ${GooseRegister2x} 2x`}
+              src={`${GooseRegister}`}
+              alt="goose"
+            />
           </RegisterFormContainer>
         </Wrapper>
       )}
