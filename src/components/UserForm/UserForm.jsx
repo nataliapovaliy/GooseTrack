@@ -1,6 +1,9 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import { Formik, ErrorMessage } from 'formik';
 import { object, string, number, date } from 'yup';
-import { useState } from 'react';
+
 import {
   Container,
   Wrapper,
@@ -10,11 +13,16 @@ import {
   BlockInput,
   Forms,
   InputFile,
+  ImgBtn,
+  Avatar,
+  LabelBtn,
+  LabelImg,
 } from './UserForm.styled';
 
-import goose from '../../components/Header/goose.png';
+import plus from '../../images/plus.png';
+import { selectUser } from 'redux/auth/auth-selectors';
 
-const userSchema = object({
+const validationFormikSchema = object({
   username: string().max(16).required(),
   birthday: date().default(() => new Date()),
   email: string().email().required(),
@@ -24,7 +32,9 @@ const userSchema = object({
 
 const UserForm = () => {
   const [birthday, setBirthday] = useState(new Date());
-  const [file, setFile] = useState('');
+  const [avatarURL, setAvatarURL] = useState('');
+
+  const selector = useSelector(selectUser);
 
   const initialValues = {
     username: '',
@@ -34,13 +44,13 @@ const UserForm = () => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    const newValues = { ...values, file, birthday };
+    const newValues = { ...values, avatarURL, birthday };
     console.log(newValues);
     resetForm();
   };
 
   const handleChange = eve => {
-    setFile(eve.target.files[0]);
+    setAvatarURL(eve.target.files[0]);
   };
 
   return (
@@ -49,12 +59,12 @@ const UserForm = () => {
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
-          validationSchema={userSchema}
+          validationSchema={validationFormikSchema}
         >
           <Forms autoComplete="off" encType="multipart/from-data">
-            <label htmlFor="file">
-              <img src={goose} alt="goose" />
-
+            <Avatar src={selector.user?.avatarURL} alt="" />
+            <LabelImg htmlFor="file">
+              <ImgBtn src={plus} alt="user" />
               <InputFile
                 id="file"
                 type="file"
@@ -62,25 +72,33 @@ const UserForm = () => {
                 accept="image/*,.png,.jpg,.gif,.web"
                 name="file"
               ></InputFile>
-            </label>
+            </LabelImg>
 
-            <h1>Goose</h1>
+            <h1>{selector.user?.name}</h1>
             <p>User</p>
 
             <BlockInput>
-              <label htmlFor="username">
+              <LabelBtn htmlFor="username">
                 <p>User Name</p>
-                <Input type="text" name="username"></Input>
+                <Input
+                  type="text"
+                  placeholder={selector.user?.name}
+                  name="username"
+                ></Input>
                 <ErrorMessage name="username" />
-              </label>
+              </LabelBtn>
 
-              <label htmlFor="phone">
+              <LabelBtn htmlFor="phone">
                 <p>Phone</p>
-                <Input type="tel" name="phone"></Input>
+                <Input
+                  type="tel"
+                  name="phone"
+                  placeholder={selector.user?.phone}
+                ></Input>
                 <ErrorMessage name="phone" />
-              </label>
+              </LabelBtn>
 
-              <label htmlFor="birthday">
+              <LabelBtn htmlFor="birthday">
                 <p>Birthday</p>
                 <DatePick
                   selected={birthday}
@@ -88,19 +106,27 @@ const UserForm = () => {
                   dateFormat="dd/MM/yyyy"
                 />
                 <ErrorMessage name="birthday" />
-              </label>
+              </LabelBtn>
 
-              <label htmlFor="skype">
+              <LabelBtn htmlFor="skype">
                 <p>Skype</p>
-                <Input type="text" name="skype"></Input>
+                <Input
+                  type="text"
+                  name="skype"
+                  placeholder={selector.user?.skype}
+                ></Input>
                 <ErrorMessage name="skype" />
-              </label>
+              </LabelBtn>
 
-              <label htmlFor="email">
+              <LabelBtn htmlFor="email">
                 <p>Email</p>
-                <Input type="email" name="email"></Input>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder={selector.user?.email}
+                ></Input>
                 <ErrorMessage name="email" />
-              </label>
+              </LabelBtn>
             </BlockInput>
             <Btn type="submit">Save changes</Btn>
           </Forms>

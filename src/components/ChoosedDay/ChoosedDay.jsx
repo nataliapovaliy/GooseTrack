@@ -7,29 +7,45 @@
 // На мобільній та планшетній версії має горизонтальний скрол, якщо колонок більше ніж вміщає ширина екрану пристрою юзера."
 
 import React from 'react';
-import { useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { getTasks } from '../../redux/tasks/tasks-selectors';
 import { TasksColumnsList } from './TasksColumnsList/TasksColumnsList';
 import { TasksColumnsListWrapper } from './ChoosedDay.styled';
 import { DayCalendarHead } from './DayCalendarHead/DayCalendarHead';
 import { tasksData } from './taskData';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  selectAddTaskOpen,
+  selectUpDateTaskModal,
+} from 'redux/modal/globalSelectors';
 import { Modal } from 'components/Modal/Modal';
+import {
+  closeModalAddTask,
+  closeModalUpDateTask,
+} from 'redux/modal/globalSlice';
 
 const ChoosedDay = () => {
   const tasks = tasksData;
-  console.log(tasks);
 
-  const [modalOpen, setModalOpen] = useState(true);
-  const closeModal = event => {
-    setModalOpen(false);
+  const modalAddState = useSelector(selectAddTaskOpen);
+  const modalEditState = useSelector(selectUpDateTaskModal);
+
+  const dispatch = useDispatch();
+
+  const closeModal = () => {
+    dispatch(closeModalAddTask());
   };
+
+  const closeEditModal = () => dispatch(closeModalUpDateTask());
 
   return (
     <TasksColumnsListWrapper>
       <DayCalendarHead />
       <TasksColumnsList tasks={tasks} />
-      {modalOpen && <Modal closeModal={closeModal}></Modal>}
+      {modalAddState && <Modal closeModal={closeModal} typeOfModal={'add'} />}
+      {modalEditState && (
+        <Modal closeModal={closeEditModal} typeOfModal={'edit'} />
+      )}
     </TasksColumnsListWrapper>
   );
 };
