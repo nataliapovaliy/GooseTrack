@@ -8,12 +8,13 @@ import {
   TaskListWrapper,
 } from './CalendarGrid.styled';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 
 export const CalendarGrid = ({ startDay, today, totalDays }) => {
   const day = startDay.clone().subtract(1, 'day');
   const daysArray = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
-
-  // console.log(daysArray);
+  const tasks = useSelector(state => state.tasks.arrTasks);
+  console.log(tasks);
 
   const isCurrentDay = day => moment().isSame(day, 'day');
   const isSelectedMonth = day => today.isSame(day, 'month');
