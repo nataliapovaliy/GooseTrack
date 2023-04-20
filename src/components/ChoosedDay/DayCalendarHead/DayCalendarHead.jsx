@@ -8,7 +8,7 @@ import {
 } from './DayCalendarHead.styled';
 
 export const DayCalendarHead = ({ clickChooseDay }) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate] = useState(new Date());
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
   // console.log(setCurrentDate);
 
