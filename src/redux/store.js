@@ -12,6 +12,7 @@ import {
 } from 'redux-persist';
 import { authReducer } from './auth/auth-slice';
 import { tasksReducer } from './tasks/tasks-slice';
+import globalReducer from './modal/globalSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -25,6 +26,7 @@ export const store = configureStore({
   reducer: {
     auth: persistedReducer,
     tasks: tasksReducer,
+    modal: globalReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

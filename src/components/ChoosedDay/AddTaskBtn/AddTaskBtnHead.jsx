@@ -2,31 +2,26 @@
 // 2. Компонент рендерить блок розмітки кнопки.
 // 3. Клік по кнопці відкриває модалку TaskModal для створення нового завдання в поточній колонці"
 
-import { useState } from 'react';
-import {
-  AddTaskBtnStyled,
-  Svg,
-  // AddTaskBtnIconStyled,
-  // AddTaskBtnTextStyled,
-} from './AddTaskBtnHead.styled';
-// import { TaskModal } from '../TaskModal/TaskModal';
-import icon from '../../../images/icons.svg';
+import { AddTaskBtnStyled, Svg } from './AddTaskBtnHead.styled';
 
+import icon from '../../../images/icons.svg';
+import { useDispatch } from 'react-redux';
+import { openModalAddTask } from 'redux/modal/globalSlice';
 
 export const AddTaskBtnHead = ({ groupId }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const toggleModal = () => setIsModalOpen(prev => !prev);
+  const dispatch = useDispatch();
 
-  console.log('isModalOpen :>> ', isModalOpen);
+  const openModal = () => {
+    dispatch(openModalAddTask());
+  };
 
   return (
     <>
-      <AddTaskBtnStyled onClick={toggleModal}>
+      <AddTaskBtnStyled onClick={openModal}>
         <Svg>
           <use xlinkHref={icon + '#icon-add-button-round'}></use>
         </Svg>
       </AddTaskBtnStyled>
-      {/* {isModalOpen && <TaskModal groupId={groupId} toggleModal={toggleModal} />} */}
     </>
   );
 };

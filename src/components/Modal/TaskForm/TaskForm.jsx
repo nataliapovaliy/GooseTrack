@@ -3,28 +3,16 @@ import { Priority } from '../Priority/Priority';
 import { Buttons } from '../Buttons/Buttons';
 import { Form } from '../Form/Form';
 
-export const TaskForm = () => {
+export const TaskForm = ({ typeOfModal, closeModal }) => {
   const [enterText, setEnterText] = useState('');
   const [hours, setHours] = useState('');
   const [minutes, setMinutes] = useState('');
-  const [priority, setPriority] = useState([
+
+  const priority = [
     { status: true, key: 'Low', color: 'blue' },
     { status: false, key: 'Medium', color: 'orange' },
     { status: false, key: 'Heigh', color: 'red' },
-  ]);
-
-  console.log(setPriority);
-  // const priorityChanger = event => {
-  //   const some = priority.map(item => {
-  //     item.status = false;
-  //     if (item.key === event.target.id) {
-  //       item.status = true;
-  //     }
-  //     console.log(some);
-
-  //     setPriority([]);
-  //   });
-  // };
+  ];
 
   const inputHendler = event => {
     const { value, name } = event.target;
@@ -53,7 +41,7 @@ export const TaskForm = () => {
         minutes={minutes}
       />
       <Priority priority={priority} />
-      <Buttons typeOfButton={'add'} />
+      <Buttons typeOfButton={typeOfModal} closeModal={closeModal} />
     </>
   );
 };
