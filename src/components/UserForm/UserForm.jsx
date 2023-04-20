@@ -1,8 +1,17 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUser } from 'redux/auth/auth-operations';
 
 import { Formik, ErrorMessage } from 'formik';
 import { object, string, number, date } from 'yup';
+
+import { selectUser } from 'redux/auth/auth-selectors';
+
+// import moment from 'moment';
+
+import { nanoid } from 'nanoid';
+
+import plus from '../../images/plus.png';
 
 import {
   Container,
@@ -19,9 +28,6 @@ import {
   LabelImg,
 } from './UserForm.styled';
 
-import plus from '../../images/plus.png';
-import { selectUser } from 'redux/auth/auth-selectors';
-
 const validationFormikSchema = object({
   username: string().max(16).required(),
   birthday: date().default(() => new Date()),
@@ -31,105 +37,131 @@ const validationFormikSchema = object({
 });
 
 const UserForm = () => {
-  const [birthday, setBirthday] = useState(new Date());
+  const [birthday, setBirthday] = useState('');
   const [avatarURL, setAvatarURL] = useState('');
 
-  const selector = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const dataId = nanoid();
+  const dataUser = useSelector(selectUser);
+  console.log(dataUser);
 
-  const initialValues = {
-    username: '',
-    email: '',
-    phone: '',
-    skype: '',
-  };
+  // const handleSubmit = (values, { resetForm }) => {
+  //   const newValues = { ...values, avatarURL, birthday };
+  //   console.log(newValues);
+  //   resetForm();
+  // };
 
-  const handleSubmit = (values, { resetForm }) => {
-    const newValues = { ...values, avatarURL, birthday };
-    console.log(newValues);
-    resetForm();
-  };
-
-  const handleChange = eve => {
-    setAvatarURL(eve.target.files[0]);
-  };
+  // const handleChange = eve => {
+  //   setAvatarURL(eve.target.files[0]);
+  // };
 
   return (
     <Container>
       <Wrapper>
         <Formik
-          initialValues={initialValues}
-          onSubmit={handleSubmit}
+          initialValues={{ username: '', email: '', phone: '', skype: '' }}
+          onSubmit={(values, { resetForm }) => {
+            // const newValues = { ...values, avatarURL, birthday };
+            dispatch(
+              updateUser({
+                birthday,
+                avatarURL,
+                email: values.email,
+                password: values.password,
+                username: values.username,
+                phone: values.phone,
+              })
+            );
+            resetForm();
+          }}
           validationSchema={validationFormikSchema}
         >
-          <Forms autoComplete="off" encType="multipart/from-data">
-            <Avatar src={selector.user?.avatarURL} alt="" />
-            <LabelImg htmlFor="file">
-              <ImgBtn src={plus} alt="user" />
-              <InputFile
-                id="file"
-                type="file"
-                onChange={handleChange}
-                accept="image/*,.png,.jpg,.gif,.web"
-                name="file"
-              ></InputFile>
-            </LabelImg>
+          {({ values, handleSubmit, handleBlur, handleChange }) => (
+            <Forms autoComplete="off" onSubmit={handleSubmit}>
+              <Avatar src={dataUser.user?.avatarURL} alt="" />
+              <LabelImg htmlFor="file">
+                <ImgBtn src={plus} alt="user" />
+                <InputFile
+                  id={dataId}
+                  type="file"
+                  onChange={data => setBirthday(data)}
+                  accept="image/*,.png,.jpg,.gif,.web"
+                  name="file"
+                ></InputFile>
+              </LabelImg>
 
-            <h1>{selector.user?.name}</h1>
-            <p>User</p>
+              <h1>{dataUser.user?.name}</h1>
+              <p>User</p>
 
-            <BlockInput>
-              <LabelBtn htmlFor="username">
-                <p>User Name</p>
-                <Input
-                  type="text"
-                  placeholder={selector.user?.name}
-                  name="username"
-                ></Input>
-                <ErrorMessage name="username" />
-              </LabelBtn>
+              <BlockInput>
+                <LabelBtn htmlFor="username">
+                  <p>User Name</p>
+                  <Input
+                    type="text"
+                    value={values.name}
+                    placeholder={dataUser.user?.name}
+                    name="username"
+                    id={dataId}
+                  ></Input>
+                  <ErrorMessage name="username" />
+                </LabelBtn>
 
-              <LabelBtn htmlFor="phone">
-                <p>Phone</p>
-                <Input
-                  type="tel"
-                  name="phone"
-                  placeholder={selector.user?.phone}
-                ></Input>
-                <ErrorMessage name="phone" />
-              </LabelBtn>
+                <LabelBtn htmlFor="phone">
+                  <p>Phone</p>
+                  <Input
+                    type="tel"
+                    name="phone"
+                    id={dataId}
+                    value={values.phone}
+                  ></Input>
+                  <ErrorMessage name="phone" />
+                </LabelBtn>
 
-              <LabelBtn htmlFor="birthday">
-                <p>Birthday</p>
-                <DatePick
-                  selected={birthday}
-                  onChange={date => setBirthday(date)}
-                  dateFormat="dd/MM/yyyy"
-                />
-                <ErrorMessage name="birthday" />
-              </LabelBtn>
+                <LabelBtn htmlFor="birthday">
+                  <p>Birthday</p>
+                  <DatePick
+                    name={birthday}
+                    value={birthday}
+                    id={dataId}
+                    type="date"
+                    input={true}
+                    maxDate={new Date()}
+                    selected={birthday}
+                    onChange={data => setBirthday(data)}
+                    // placeholderText={new Date()}
+                    dateFormat="dd/MM/yyyy"
+                  />
+                  <ErrorMessage name="birthday" />
+                </LabelBtn>
 
-              <LabelBtn htmlFor="skype">
-                <p>Skype</p>
-                <Input
-                  type="text"
-                  name="skype"
-                  placeholder={selector.user?.skype}
-                ></Input>
-                <ErrorMessage name="skype" />
-              </LabelBtn>
+                <LabelBtn htmlFor="skype">
+                  <p>Skype</p>
+                  <Input
+                    type="text"
+                    name="skype"
+                    id={dataId}
+                    value={values.skype}
+                    placeholder={dataUser.user?.skype}
+                  ></Input>
+                  <ErrorMessage name="skype" />
+                </LabelBtn>
 
-              <LabelBtn htmlFor="email">
-                <p>Email</p>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder={selector.user?.email}
-                ></Input>
-                <ErrorMessage name="email" />
-              </LabelBtn>
-            </BlockInput>
-            <Btn type="submit">Save changes</Btn>
-          </Forms>
+                <LabelBtn htmlFor="email">
+                  <p>Email</p>
+                  <Input
+                    type="email"
+                    name="email"
+                    id={dataId}
+                    onChange={handleChange}
+                    placeholder={dataUser.user?.email}
+                    value={values.email}
+                  ></Input>
+                  <ErrorMessage name="email" />
+                </LabelBtn>
+              </BlockInput>
+              <Btn type="submit">Save changes</Btn>
+            </Forms>
+          )}
         </Formik>
       </Wrapper>
     </Container>
