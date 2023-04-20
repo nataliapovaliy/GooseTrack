@@ -10,6 +10,8 @@ import {
   ToolbarWrapper,
 } from './CalendatToolbar.styled';
 import icon from '../../images/icons.svg';
+import { MyApp } from './ReactLightCalendar';
+
 
 export const HeaderCalendar = ({
   today,
@@ -17,6 +19,8 @@ export const HeaderCalendar = ({
   nextHandler,
   setDisplayMode,
 }) => {
+
+
   return (
     <ToolbarContainer>
       <ToolbarWrapper>
@@ -47,6 +51,8 @@ export const HeaderCalendar = ({
           Day
         </ToolbarButtonDay>
       </div>
+
+      <MyApp />
     </ToolbarContainer>
   );
 };
