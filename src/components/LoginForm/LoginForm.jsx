@@ -58,6 +58,7 @@ export const LoginForm = () => {
           })
         );
         if (error) {
+          console.log(error)
           toast.error('Oops...something is wrong, try again!');
         }
         resetForm();
