@@ -42,6 +42,7 @@ const ChoosedDay = () => {
   const deleteTask = () => {
     closeDeleteModal();
   };
+  //
 
   return (
     <TasksColumnsListWrapper>
