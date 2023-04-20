@@ -1,11 +1,13 @@
+
 import { CalendarTable } from './CalendarTable/CalendarTable';
 import { HeaderCalendar } from '../CalendarToolbar/CalendarToolbar';
 import { MonthCalendarHead } from './MonthCalendarHead/MonthCalendarHead';
 
 import moment from 'moment';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectArrTasks } from 'redux/tasks/tasks-selectors';
+import { fetchTasks } from 'redux/tasks/tasks-operations';
 
 // import { useEffect } from "react"
 // import { tasksData } from "components/ChoosedDay/taskData"
@@ -45,6 +47,22 @@ export const ChoosedMonth = () => {
     setToday(next => next.clone().add(1, 'month'));
   };
 
+  
+  const dispatch = useDispatch()   ;
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const year = String(currentDate.getFullYear());
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+
+    dispatch(fetchTasks({ month, year }));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
+
+
   return (
     <>
       <HeaderCalendar
@@ -64,3 +82,7 @@ export const ChoosedMonth = () => {
     </>
   );
 };
+
+
+
+  

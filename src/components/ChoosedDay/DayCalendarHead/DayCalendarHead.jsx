@@ -7,10 +7,22 @@ import {
   DateContainer,
 } from './DayCalendarHead.styled';
 
-export const DayCalendarHead = () => {
+export const DayCalendarHead = ({ clickChooseDay }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-  console.log(setCurrentDate);
+  // console.log(setCurrentDate);
+
+  const handleClickDay = (day, dayValue, monthValue, yearValue) => {
+    const dateClickObject = {
+      weekDay: day,
+      day: dayValue,
+      month: monthValue,
+      year: yearValue,
+    };
+
+    clickChooseDay(dateClickObject);
+  };
+
   return (
     <Container>
       <WeekInfoWrapper>
@@ -28,10 +40,16 @@ export const DayCalendarHead = () => {
 
           const dayValue = String(date.getDate() - 1).padStart(2, '0');
           const monthValue = String(date.getMonth() + 1).padStart(2, '0');
-          const dateKey = `${day}-${dayValue}-${monthValue}`;
+          const yearValue = String(date.getFullYear());
+          const dateKey = `${day}-${dayValue}-${monthValue}-${yearValue}`;
 
           return (
-            <DateContainer key={dateKey} onClick={() => {console.log('DATE CLICK')}}>
+            <DateContainer
+              key={dateKey}
+              onClick={() => {
+                handleClickDay(day, dayValue, monthValue, yearValue);
+              }}
+            >
               <p>{dayValue}</p>
             </DateContainer>
           );
