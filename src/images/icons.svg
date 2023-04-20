@@ -76,5 +76,11 @@
 <symbol id="icon-plus-add-button" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 5V19M5 12H19" />
   </symbol>
+  <symbol id="icon-chevron-left-new" viewBox="0 0 16 32">
+<path fill="none"   stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="4" d="M2 28l12-12-12-12"></path>
+</symbol>
+<symbol id="icon-chevron-right-new" viewBox="0 0 16 32">
+<path fill="none"  stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="4" d="M14 4l-12 12 12 12"></path>
+</symbol>
 </defs>
 </svg>
