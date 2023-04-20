@@ -1,18 +1,11 @@
-//     "1. Компонент рендериться на розширеному маршруті сторінки /calendar/day/:currentDay
-// 2. Компонент підписаний на колекцію завдань з глобального стейту
-// 3. Компонент визначає завдання для обраного дня, фільтрує за ступенем віиконання To do | In progress | Done та показує і відповідних колонках.
-// 5. Компонент рендерить:
-//  - DayCalendarHead - дні тижня з датами, клік по дню з датою показує колинки з задачами за обраний день.
-//  - TasksColumnsList - блок з трьома колонками списків завданнь - TasksColumn (To do | In progress | Done).
-// На мобільній та планшетній версії має горизонтальний скрол, якщо колонок більше ніж вміщає ширина екрану пристрою юзера."
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TasksColumnsList } from './TasksColumnsList/TasksColumnsList';
 import { TasksColumnsListWrapper } from './ChoosedDay.styled';
 import { DayCalendarHead } from './DayCalendarHead/DayCalendarHead';
-import { tasksData } from './taskData';
-
 import { useDispatch, useSelector } from 'react-redux';
+
+import { selectArrTasks } from 'redux/tasks/tasks-selectors';
+import { fetchTasks } from 'redux/tasks/tasks-operations';
 
 import {
   selectAddTaskOpen,
@@ -25,12 +18,21 @@ import {
 } from 'redux/modal/globalSlice';
 
 const ChoosedDay = () => {
-  const tasks = tasksData;
-
+  const tasksMonth = useSelector(selectArrTasks);
   const modalAddState = useSelector(selectAddTaskOpen);
   const modalEditState = useSelector(selectUpDateTaskModal);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const year = String(currentDate.getFullYear());
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+
+    dispatch(fetchTasks({ month, year }));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const closeModal = () => {
     dispatch(closeModalAddTask());
@@ -41,7 +43,7 @@ const ChoosedDay = () => {
   return (
     <TasksColumnsListWrapper>
       <DayCalendarHead />
-      <TasksColumnsList tasks={tasks} />
+      <TasksColumnsList tasks={tasksMonth} />
       {modalAddState && <Modal closeModal={closeModal} typeOfModal={'add'} />}
       {modalEditState && (
         <Modal closeModal={closeEditModal} typeOfModal={'edit'} />

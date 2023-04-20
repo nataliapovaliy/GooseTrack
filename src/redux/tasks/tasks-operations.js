@@ -1,23 +1,22 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-
 axios.defaults.baseURL = 'https://goosetrackapi.onrender.com/';
 
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchTasks',
-  async ({ year, month }, thunkAPI) => {
+  async ({ month, year }, thunkAPI) => {
     try {
       const { data } = await axios.get('/tasks', {
         params: {
+          m: month,
           y: year,
-          m: month
         },
-      })
+      });
       console.log('!!!!!!!! tasks/fetchTasks >>>>>>', data);
       return data;
-    } catch (error) { 
-        return thunkAPI.rejectWithValue(error.message);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -58,7 +57,6 @@ export const updateTask = createAsyncThunk(
     }
   }
 );
-
 
 // export const fetchTasks = createAsyncThunk(
 //   'tasks/fetchTasks',

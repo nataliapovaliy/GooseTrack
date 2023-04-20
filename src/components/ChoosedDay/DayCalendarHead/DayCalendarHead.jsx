@@ -10,7 +10,7 @@ import {
 export const DayCalendarHead = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-  console.log(setCurrentDate);
+  // console.log(setCurrentDate);
   return (
     <Container>
       <WeekInfoWrapper>
