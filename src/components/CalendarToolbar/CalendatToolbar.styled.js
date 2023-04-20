@@ -26,7 +26,7 @@ width: 170px;
 gap: 8px;
 align-items: center;
 justify-content: center;
-padding: 12px 8px;
+padding: 8px 12px;
 margin-right: 8px;
 border: none;
 border-radius: 8px;
@@ -65,8 +65,6 @@ border: 1px solid rgba(220, 227, 229, 0.8);
 border-radius: 0px 8px 8px 0px;
 background-color: var(--main-background-color);
 cursor: pointer;
-
-  
 `
 
 export const ToolbarButtonMonth = styled.button`
@@ -125,11 +123,15 @@ export const Icon = styled.svg`
   width: 18px;
   height: 18px;
   fill: #DCE3E5;
+  stroke: #DCE3E5;
   :active {
   fill: #616161;
   }
   :hover {
   fill: #616161;
+  stroke: #616161;
+
+  
   }
   :focus {
   fill: #616161;
