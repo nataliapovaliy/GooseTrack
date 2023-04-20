@@ -1,42 +1,23 @@
 import {
-  Icon,
   ToolbarButtonDay,
-  ToolbarButtonLeft,
   ToolbarButtonMonth,
-  ToolbarButtonRight,
   ToolbarContainer,
-  ToolbarSpan,
-  ToolbarWrap,
-  ToolbarWrapper,
 } from './CalendatToolbar.styled';
-import icon from '../../images/icons.svg';
+import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
+import Icon from '../../images/icons.svg';
 
-export const HeaderCalendar = ({
-  today,
-  prevHandler,
-  nextHandler,
-  setDisplayMode,
-}) => {
+export const HeaderCalendar = ({  today,  prevHandler,  nextHandler,  setDisplayMode,}) => {
+  
   return (
     <ToolbarContainer>
-      <ToolbarWrapper>
-        <ToolbarWrap type="button">
-          <ToolbarSpan>{today.format('MMMM')}</ToolbarSpan>
-          <ToolbarSpan>{today.format('Y')}</ToolbarSpan>
-        </ToolbarWrap>
-        <ToolbarButtonLeft type="button" onClick={prevHandler}>
-          <Icon>
-            <use href={`${icon}#icon-chevron-right-new`} />
-          </Icon>
-        </ToolbarButtonLeft>
-        <ToolbarButtonRight type="button" onClick={nextHandler}>
-          <Icon>
-            {' '}
-            <use href={`${icon}#icon-chevron-left-new`} />
-          </Icon>
-        </ToolbarButtonRight>
-      </ToolbarWrapper>
+      
+<PeriodPaginator  today={today}
+        prevHandler={prevHandler}
+        nextHandler={nextHandler}  Icon={Icon}/>
+
       <div>
+
+
         <ToolbarButtonMonth
           type="button"
           onClick={() => setDisplayMode('month')}
