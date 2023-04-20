@@ -9,10 +9,11 @@ import {
 
 export const DayCalendarHead = ({ clickChooseDay }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [choosedDay, setChoosedDay] = useState(new Date());
+  const [choosedDay, setChoosedDay] = useState(
+    new Date().toString().slice(8, 10)
+  );
 
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-  // console.log(setCurrentDate);
 
   const handleClickDay = (day, dayValue, monthValue, yearValue) => {
     const dateClickObject = {
@@ -21,8 +22,9 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
       month: monthValue,
       year: yearValue,
     };
-
+    setChoosedDay(dayValue);
     clickChooseDay(dateClickObject);
+    console.log(dateClickObject);
   };
 
   return (
@@ -38,25 +40,26 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
       <DateWrapper>
         {daysOfWeek.map((day, index) => {
           const date = new Date(currentDate);
-          date.setDate(currentDate.getDate() + index);
+          const currentDay = (index) % 7; // добавляем 1 и берем остаток от деления на 7
+          const daysToAdd = currentDay - currentDate.getDay();
+          date.setDate(currentDate.getDate() + daysToAdd);
 
-          const dayValue = String(date.getDate() - 1).padStart(2, '0');
+          const dayValue = String(date.getDate()).padStart(2, '0');
           const monthValue = String(date.getMonth() + 1).padStart(2, '0');
           const yearValue = String(date.getFullYear());
           const dateKey = `${day}-${dayValue}-${monthValue}-${yearValue}`;
 
-          const isCurrentDay =
-            date.toDateString() === choosedDay;
+          const isCurrentDay = date.toDateString().slice(8, 10) === choosedDay;
 
-          // console.log(date.toDateString(), choosedDay);
           return (
             <DateContainer
               key={dateKey}
               onClick={() => {
                 handleClickDay(day, dayValue, monthValue, yearValue);
-                
               }}
-              style={{ backgroundColor: isCurrentDay ? 'blue' : 'inherit' }}
+              style={{
+                backgroundColor: isCurrentDay ? 'var(--accent)' : 'inherit',
+              }}
             >
               <p>{dayValue}</p>
             </DateContainer>

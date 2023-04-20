@@ -51,19 +51,20 @@ const ChoosedDay = () => {
     });
 
     setTasksFilter(currentDayFilter);
+    console.log('Page loDED', currentDayFilter)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasksMonth]);
 
   const chooseDay = ({ day, month, year }) => {
     const filteredTasks = tasksMonth.filter(({ start, end }) => {
-      const chosenDate = `${year}/${month}/${day}` || '2023/04/21';
+      const chosenDate = `${year}/${month}/${day}` ;
 
-      console.log(chosenDate);
+      console.log('cLICK on week day', chosenDate);
 
       return start <= chosenDate && end >= chosenDate;
     });
-
+console.log(filteredTasks);
     setTasksFilter(filteredTasks);
   };
 
