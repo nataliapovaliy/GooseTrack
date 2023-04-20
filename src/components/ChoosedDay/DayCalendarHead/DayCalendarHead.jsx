@@ -8,6 +8,7 @@ import {
 } from './DayCalendarHead.styled';
 
 export const DayCalendarHead = ({ clickChooseDay }) => {
+  // eslint-disable-next-line no-unused-vars
   const [currentDate, setCurrentDate] = useState(new Date());
   const [choosedDay, setChoosedDay] = useState(
     new Date().toString().slice(8, 10)
