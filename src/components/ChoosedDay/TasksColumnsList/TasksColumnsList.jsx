@@ -1,11 +1,9 @@
 // import { useSelector } from 'react-redux';
 import { TasksColumn } from '../TasksColumn/TasksColumn';
 import { TasksColumnsListWrapper } from './TasksColumnsList.styled';
-
 // import { getTasks } from '../../redux/tasks/tasks-selectors';
 
-
-export const TasksColumnsList = ({tasks}) => {
+export const TasksColumnsList = ({ tasks }) => {
 
 const filterTodo = tasks.filter(task => task.status === 'To do');
 const filterInProgress = tasks.filter(task => task.status === 'In progress');

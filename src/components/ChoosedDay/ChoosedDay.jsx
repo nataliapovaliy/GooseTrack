@@ -37,6 +37,7 @@ const ChoosedDay = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+ 
   const closeModal = () => {
     dispatch(closeModalAddTask());
   };
@@ -47,11 +48,14 @@ const ChoosedDay = () => {
   const deleteTask = () => {
     closeDeleteModal();
   };
-  //
+ 
+  const chooseDay = (date) => {
+    console.log(date);
+  };
 
   return (
     <TasksColumnsListWrapper>
-      <DayCalendarHead />
+      <DayCalendarHead clickChooseDay={chooseDay} />
       <TasksColumnsList tasks={tasksMonth} />
       {modalAddState && <Modal closeModal={closeModal} typeOfModal={'add'} />}
       {modalEditState && (
