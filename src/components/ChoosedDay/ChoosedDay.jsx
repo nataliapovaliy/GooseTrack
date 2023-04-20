@@ -10,17 +10,20 @@ import { fetchTasks } from 'redux/tasks/tasks-operations';
 import {
   selectAddTaskOpen,
   selectUpDateTaskModal,
+  selectModalConfirmation,
 } from 'redux/modal/globalSelectors';
 import { Modal } from 'components/Modal/Modal';
 import {
   closeModalAddTask,
   closeModalUpDateTask,
+  closeModalConfirmation,
 } from 'redux/modal/globalSlice';
 
 const ChoosedDay = () => {
   const tasksMonth = useSelector(selectArrTasks);
   const modalAddState = useSelector(selectAddTaskOpen);
   const modalEditState = useSelector(selectUpDateTaskModal);
+  const modalConfirmationState = useSelector(selectModalConfirmation);
 
   const dispatch = useDispatch();
 
@@ -39,6 +42,12 @@ const ChoosedDay = () => {
   };
 
   const closeEditModal = () => dispatch(closeModalUpDateTask());
+  const closeDeleteModal = () => dispatch(closeModalConfirmation());
+
+  const deleteTask = () => {
+    closeDeleteModal();
+  };
+  //
 
   return (
     <TasksColumnsListWrapper>
@@ -47,6 +56,13 @@ const ChoosedDay = () => {
       {modalAddState && <Modal closeModal={closeModal} typeOfModal={'add'} />}
       {modalEditState && (
         <Modal closeModal={closeEditModal} typeOfModal={'edit'} />
+      )}
+      {modalConfirmationState && (
+        <Modal
+          closeModal={closeDeleteModal}
+          actionFu={deleteTask}
+          typeOfModal={'deleteTask'}
+        />
       )}
     </TasksColumnsListWrapper>
   );

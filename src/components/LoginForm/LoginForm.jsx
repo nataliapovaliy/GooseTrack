@@ -18,7 +18,13 @@ import {
   LoginParaghraph,
   ErrorMessage,
   LinkToRegister,
+  ButtonText,
+  Svg,
+  LoginGooseImage,
 } from './LoginForm.styled';
+import icons from 'images/icons.svg';
+import GooseLogIn from 'images/goose-login.png';
+import GooseLogIn2x from 'images/goose-login@2x.png';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -27,8 +33,8 @@ const validationSchema = yup.object().shape({
     .required('Email is a required field'),
   password: yup
     .string()
-    .min(6, 'Password must be at least 6 characters')
-    .max(12, 'Password must be at most 12 characters')
+    .min(8, 'Password must be at least 8 characters')
+    .max(16, 'Password must be at most 16 characters')
     .required('Password is a required field'),
 });
 
@@ -52,6 +58,7 @@ export const LoginForm = () => {
           })
         );
         if (error) {
+          console.log(error)
           toast.error('Oops...something is wrong, try again!');
         }
         resetForm();
@@ -103,13 +110,21 @@ export const LoginForm = () => {
                 {errors.password && touched.password && errors.password}
               </ErrorMessage>
               <LoginButton type="submit" disabled={isSubmitting}>
-                Log in
+                <ButtonText>Log in</ButtonText>{' '}
+                <Svg>
+                  <use href={`${icons}#icon-log-in`} />
+                </Svg>
               </LoginButton>
             </Form>
+            <Link to="/register">
+              <LinkToRegister>Sign up</LinkToRegister>
+            </Link>
+            <LoginGooseImage
+              srcset={`${GooseLogIn} 1x, ${GooseLogIn2x} 2x`}
+              src={`${GooseLogIn}`}
+              alt="goose"
+            />
           </LoginFormContainer>
-          <Link to="/register">
-            <LinkToRegister>Sign up</LinkToRegister>
-          </Link>
         </Wrapper>
       )}
     </Formik>

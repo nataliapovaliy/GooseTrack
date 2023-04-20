@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const ModalBody = styled.div`
-  width: 396px;
-  height: 352px;
   position: absolute;
   background-color: #ffffff;
   z-index: 1;

@@ -3,30 +3,37 @@ import { TaskToolbarStyled, TaskToolbarBtn, Svg } from './TaskToolbar.styled';
 
 import iconTrash from '../../../images/icons.svg';
 import { useDispatch } from 'react-redux';
-import { openModalUpDateTask } from 'redux/modal/globalSlice';
+import {
+  openModalUpDateTask,
+  openModalConfirmation,
+} from 'redux/modal/globalSlice';
 // import { deleteTask } from '../../redux/tasks/tasks-operations';
 // import { toast } from 'react-toastify';
 // import { TaskModal } from '../TaskModal/TaskModal';
 // import { TaskModalContext } from '../../context/TaskModalContext';
 
 export const TaskToolbar = ({ task }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(prev => !prev);
 
   // const dispatch = useDispatch();
   // console.log('isModalOpen :>> ', isModalOpen);
 
-  const handleDeleteTask = () => {
-    console.log('delete task');
-    // dispatch(deleteTask(task.id))
-    //     .then(() => toast.success('taskDeleted'))
-    //     .catch(() => toast.error('taskDeleteError'));
-  };
+  // const handleDeleteTask = () => {
+  //   console.log('delete task');
+  //   // dispatch(deleteTask(task.id))
+  //   //     .then(() => toast.success('taskDeleted'))
+  //   //     .catch(() => toast.error('taskDeleteError'));
+  // };
 
   const dispatch = useDispatch();
 
   const openModal = () => {
     dispatch(openModalUpDateTask());
+  };
+
+  const confirmationOpen = () => {
+    dispatch(openModalConfirmation());
   };
 
   return (
@@ -43,7 +50,7 @@ export const TaskToolbar = ({ task }) => {
           </Svg>
         </TaskToolbarBtn>
 
-        <TaskToolbarBtn onClick={handleDeleteTask}>
+        <TaskToolbarBtn onClick={confirmationOpen}>
           <Svg>
             <use xlinkHref={iconTrash + '#icon-trash'}></use>
           </Svg>
