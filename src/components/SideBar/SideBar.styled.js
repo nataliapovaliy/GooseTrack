@@ -1,104 +1,144 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 289px;
+  width: 225px;
   height: calc(100vh - 24px);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 24px;
   background-color: var(--sidebar-background-color);
-  padding-left: 24px;
-  padding-top: 32px;
   padding-bottom: 24px;
+
+  @media screen and (min-width: 768px) {
+    width: 289px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 24px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 289px;
+    padding-left: 24px;
+    padding-top: 32px;
+  }
 `;
 
 export const InnerWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: 64px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 50px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 32px;
+  }
 `;
 
 export const H2 = styled.h2`
   text-align: center;
+  font-family: 'Coolvetica';
+  font-style: normal;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 22px;
   color: var(--accent);
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 24px;
+    line-height: 24px;
+  }
 `;
 
 export const Image = styled.img`
-  width: 64px;
-  height: 60px;
-  margin-right: 10px;
-`;
-
-export const H3 = styled.h3`
-  margin-bottom: 32px;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-  color: #7e7d82;
+  width: 36px;
+  height: 35px;
+  margin-right: 6px;
+  @media screen and (min-width: 768px) {
+    width: 60px;
+    height: 58px;
+    margin-right: 6px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 64px;
+    height: 60px;
+    margin-right: 10px;
+  }
 `;
 
 export const Button = styled.button`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  width: 131px;
+  height: 46px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 141px;
-  height: 56px;
   margin-top: auto;
   background: var(--accent-background-color);
   border-radius: 16px;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 24px;
-  letter-spacing: -0.02em;
   color: var(--btn-text-color);
   border: none;
-`;
 
-export const Item = styled.li`
-  &:not(:last-child) {
-    margin-bottom: 16px;
+  @media screen and (min-width: 768px) {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    width: 141px;
+    height: 56px;
   }
-`;
-
-export const Svg = styled.svg`
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-  stroke: var(--inactive-btn-text-color);
-  fill: none;
+  @media screen and (min-width: 1440px) {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    width: 141px;
+    height: 56px;
+  }
 `;
 
 export const SvgLogOut = styled.svg`
-  width: 20px;
-  height: 20px;
-  margin-left: 11px;
+  width: 18px;
+  height: 18px;
+  margin-left: 6px;
   stroke: var(--btn-text-color);
   fill: none;
-`;
-
-export const Link = styled(NavLink)`
-  width: 241px;
-  height: 56px;
-  padding-left: 20px;
-  display: flex;
-  align-items: center;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 19px;
-  color: var(--inactive-btn-text-color);
-  text-decoration: none;
-  &.active {
-    background-color: var(--active-selection);
-    color: var(--accent-color);
-    ${Svg} {
-      stroke: var(--accent-color);
-    }
+  @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+    margin-left: 11px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 20px;
+    height: 20px;
+    margin-left: 11px;
   }
 `;
 
+export const SvgClose = styled.svg`
+  width: 12px;
+  height: 12px;
+  margin-left: auto;
+  stroke: var(--title-text-main-color);
+  fill: none;
+  @media screen and (min-width: 768px) {
+    width: 16px;
+    height: 16px;
+  }
+  @media screen and (min-width: 1440px) {
+  }
+`;

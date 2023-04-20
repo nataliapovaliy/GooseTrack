@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-bottom: 32px;
+  margin-bottom: 64px;
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 32px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -40,11 +43,14 @@ export const Accent = styled.span`
 `;
 
 export const Svg = styled.svg`
-  width: 34px;
-  height: 34px;
-  margin-right: 10px;
+  width: 24px;
+  height: 24px;
   stroke: var(--calendar-date-color);
   fill: none;
+  @media screen and (min-width: 768px) {
+    width: 34px;
+    height: 34px;
+  }
 `;
 
 export const FlexContainer = styled.div`
@@ -54,20 +60,12 @@ export const FlexContainer = styled.div`
 `;
 
 export const Overlay = styled.div`
-  width: 289px;
+  width: 100%;
   position: fixed;
   top: 0px;
   left: 0px;
   height: 100vh;
-  background-color: white;
+  background-color: rgba(47, 48, 58, 0.4);
   z-index: 2;
   overflow: hidden;
-
-  @media screen and (min-width: 768px) {
-    /* max-width: 100%;
-    width: 100vw;
-    background-color: white;
-    top: 0;
-    left: 0; */
-  }
 `;
