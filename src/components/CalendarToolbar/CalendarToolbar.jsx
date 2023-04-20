@@ -1,33 +1,23 @@
-import {
-  ToolbarButtonDay,
-  ToolbarButtonMonth,
-  ToolbarContainer,
-} from './CalendatToolbar.styled';
+import { ToolbarContainer } from './CalendatToolbar.styled';
 import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
 import Icon from '../../images/icons.svg';
+import { PeriodTypeSelect } from './PeriodTypeSelect/PeriodTypeSelect';
 
-export const HeaderCalendar = ({  today,  prevHandler,  nextHandler,  setDisplayMode,}) => {
-  
+export const HeaderCalendar = ({
+  today,
+  prevHandler,
+  nextHandler,
+  setDisplayMode,
+}) => {
   return (
     <ToolbarContainer>
-      
-<PeriodPaginator  today={today}
+      <PeriodPaginator
+        today={today}
         prevHandler={prevHandler}
-        nextHandler={nextHandler}  Icon={Icon}/>
-
-      <div>
-
-
-        <ToolbarButtonMonth
-          type="button"
-          onClick={() => setDisplayMode('month')}
-        >
-          Month
-        </ToolbarButtonMonth>
-        <ToolbarButtonDay type="button" onClick={() => setDisplayMode('day')}>
-          Day
-        </ToolbarButtonDay>
-      </div>
+        nextHandler={nextHandler}
+        Icon={Icon}
+      />
+      <PeriodTypeSelect setDisplayMode={setDisplayMode} />
     </ToolbarContainer>
   );
 };
