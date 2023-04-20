@@ -6,6 +6,7 @@ export const Buttons = ({ closeModal, typeOfButton }) => {
   return (
     <ButtonsWrapper>
       {typeOfButton === 'add' && <AddButtons closeModal={closeModal} />}
+
       {typeOfButton === 'edit' && (
         <EditButtons text={'Edit'} closeModal={closeModal} />
       )}
