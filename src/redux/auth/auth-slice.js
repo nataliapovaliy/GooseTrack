@@ -48,6 +48,7 @@ const authController = createSlice({
         state.user = payload.user;
         state.isLoggedIn = true;
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(register.rejected, (state, { payload }) => {
         console.log(`register rejected payload: ${payload}`);
@@ -64,6 +65,7 @@ const authController = createSlice({
         state.user = payload.user;
         state.isLoggedIn = true;
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(login.rejected, (state, { payload }) => {
         state.isLoggedIn = false;
