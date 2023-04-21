@@ -6,8 +6,9 @@ import { MonthCalendarHead } from './MonthCalendarHead/MonthCalendarHead';
 import moment from 'moment';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectArrTasks } from 'redux/tasks/tasks-selectors';
+
 import { fetchTasks } from 'redux/tasks/tasks-operations';
+import { selectArrTasks } from 'redux/tasks/tasks-selectors';
 
 // import { useEffect } from "react"
 // import { tasksData } from "components/ChoosedDay/taskData"
@@ -18,8 +19,7 @@ export const ChoosedMonth = () => {
   const [displayMode, setDisplayMode] = useState('month');
   const [today, setToday] = useState(moment());
   // const [tasks, setTasks] = useState([])
-  const tasks = useSelector(selectArrTasks);
-  console.log(tasks);
+ 
 
   const totalDays = 42;
 
@@ -47,16 +47,26 @@ export const ChoosedMonth = () => {
     setToday(next => next.clone().add(1, 'month'));
   };
 
-  
-  const dispatch = useDispatch()   ;
 
-  useEffect(() => {
-    const currentDate = new Date();
+
+
+  const tasks = useSelector(selectArrTasks);
+  console.log(tasks);
+
+  
+ 
+
+  const dispatch = useDispatch();
+
+  const currentDate = new Date();
     const year = String(currentDate.getFullYear());
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+const day = String(currentDate.getDate());
 
+console.log('!!!!!!!!!!!!!!!!!!!!!!!!!', day);
+
+  useEffect(() => {
     dispatch(fetchTasks({ month, year }));
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -72,7 +82,9 @@ export const ChoosedMonth = () => {
         setDisplayMode={setDisplayMode}
       />
       <MonthCalendarHead />
+
       {displayMode === 'month' ? (
+        
         <CalendarTable
           startDay={startDay}
           today={today}
