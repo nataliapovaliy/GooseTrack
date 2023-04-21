@@ -40,31 +40,36 @@ const ChoosedDay = () => {
   };
 
   useEffect(() => {
-    const currentDayFilter = tasksMonth.filter(({ start, end }) => {
+    const currentDayFilter = tasksMonth.filter(({ createAt }) => {
       const currentDate = new Date();
       const currentDay = currentDate
         .toISOString()
         .split('T')[0]
         .replace(/-/g, '/');
+      // console.log('currentDay', currentDay);
+      const start = createAt.split('T')[0].replace(/-/g, '/');
+      const end = createAt.split('T')[0].replace(/-/g, '/');
 
       return start <= currentDay && end >= currentDay;
     });
 
     setTasksFilter(currentDayFilter);
-    console.log('Page loDED', currentDayFilter)
+    console.log('Page loaded', currentDayFilter);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasksMonth]);
 
   const chooseDay = ({ day, month, year }) => {
-    const filteredTasks = tasksMonth.filter(({ start, end }) => {
-      const chosenDate = `${year}/${month}/${day}` ;
+    const filteredTasks = tasksMonth.filter(({ createAt }) => {
+      const start = createAt.split('T')[0].replace(/-/g, '/');
+      const end = createAt.split('T')[0].replace(/-/g, '/');
+      const chosenDate = `${year}/${month}/${day}`;
 
-      console.log('cLICK on week day', chosenDate);
+      // console.log('Click on week day:', chosenDate);
 
       return start <= chosenDate && end >= chosenDate;
     });
-console.log(filteredTasks);
+    // console.log('Task of the choosed day>>>',filteredTasks);
     setTasksFilter(filteredTasks);
   };
 

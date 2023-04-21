@@ -3,12 +3,7 @@ import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
 import Icon from '../../images/icons.svg';
 import { PeriodTypeSelect } from './PeriodTypeSelect/PeriodTypeSelect';
 
-export const HeaderCalendar = ({
-  today,
-  prevHandler,
-  nextHandler,
-  setDisplayMode,
-}) => {
+export const HeaderCalendar = ({ today, prevHandler, nextHandler }) => {
   return (
     <ToolbarContainer>
       <PeriodPaginator
@@ -17,7 +12,7 @@ export const HeaderCalendar = ({
         nextHandler={nextHandler}
         Icon={Icon}
       />
-      <PeriodTypeSelect setDisplayMode={setDisplayMode} />
+      <PeriodTypeSelect />
     </ToolbarContainer>
   );
 };

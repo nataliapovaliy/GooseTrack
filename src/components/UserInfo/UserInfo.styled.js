@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Name = styled.span`
+  margin-right: 14px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
@@ -17,7 +18,6 @@ export const Name = styled.span`
 export const Avatar = styled.div`
   width: 32px;
   height: 32px;
-  margin-left: 14px;
   display: flex;
   align-items: center;
   border-radius: 50%;

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const PeriodPaginatorWrapper = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   border-radius: 8px;
   margin-bottom: 14px;
@@ -11,6 +12,7 @@ export const PeriodPaginatorWrapper = styled.div`
 export const PeriodPaginatorButton = styled.button`
   display: flex;
   width: 170px;
+  height: 34px;
   gap: 8px;
   align-items: center;
   justify-content: center;
@@ -35,9 +37,9 @@ export const PeriodPaginatorSpan = styled.span`
 
 export const PeriodPaginatorLeft = styled.button`
   padding: 8px 10px;
-
+  height: 34px;
   border: 1px solid rgba(220, 227, 229, 0.8);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
   border-radius: 8px 0px 0px 8px;
   background-color: var(--main-background-color);
   cursor: pointer;
@@ -45,9 +47,10 @@ export const PeriodPaginatorLeft = styled.button`
 
 export const PeriodPaginatorRight = styled.button`
   padding: 8px 10px;
+  height: 34px;
   border: 1px solid rgba(220, 227, 229, 0.8);
   border: 1px solid rgba(220, 227, 229, 0.8);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
   border-radius: 0px 8px 8px 0px;
   background-color: var(--main-background-color);
   cursor: pointer;
