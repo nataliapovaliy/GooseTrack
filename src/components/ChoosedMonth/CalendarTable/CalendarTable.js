@@ -5,18 +5,31 @@ import {
   GridWrapper,
   RowInCell,
   ShowDayWrapper,
+  TaskItem,
   TaskListWrapper,
 } from './CalendarTable.styled';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
+import { selectArrTasks } from 'redux/tasks/tasks-selectors';
 
 export const CalendarTable = ({ startDay, today, totalDays }) => {
   const day = startDay.clone().subtract(1, 'day');
   const daysArray = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
- 
-
-
   const isCurrentDay = day => moment().isSame(day, 'day');
   const isSelectedMonth = day => today.isSame(day, 'month');
+
+  const tasks = useSelector(selectArrTasks);
+  console.log("++++", tasks);
+
+
+  // let priorityColor = '';
+  // if (task.priority === 'Low') {
+  //   priorityColor = 'var(--task-low-color)';
+  // } else if (task.priority === 'Medium') {
+  //   priorityColor = 'var(--task-med-color)';
+  // } else if (task.priority === 'High') {
+  //   priorityColor = 'var(--task-high-color)';
+  // }
 
   return (
     // <ContainerCalendar>
@@ -37,12 +50,12 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
               </DayWrapper>
             </ShowDayWrapper>
             <TaskListWrapper>
-                {/* <div>fgrgrg</div> */}
-              {/* {
-              tasks.filter(task => task.date >= dayItem.format('X') && task.date <= dayItem.clone().endOf('day').format('X'))
-              .map(task => (<li>{task.date}</li>))
-              } */}
-              
+              {tasks.map(
+                task =>
+                  task.createAt === dayItem.format('YYYY-MM-DD') && (
+                    <TaskItem key={task._id} priority={task.priority}>{task.title}</TaskItem>
+                  )
+              )}
             </TaskListWrapper>
           </RowInCell>
         </CellWrapper>
