@@ -6,7 +6,7 @@ export const UserInfo = () => {
   const selector = useSelector(selectUser);
   const name = selector.user?.name || 'Name';
   const avatar = selector.user?.avatarURL;
-  const firstLetter = name.slice(0, 1).toUpperCase();
+  const firstLetter = name.trim().slice(0, 1).toUpperCase();
 
   return (
     <>

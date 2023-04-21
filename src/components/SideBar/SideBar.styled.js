@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 225px;
-  height: calc(100vh - 24px);
+  height: 100vh;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 24px;
@@ -21,6 +21,7 @@ export const Container = styled.div`
     width: 289px;
     padding-left: 24px;
     padding-top: 32px;
+    border-right: solid 1px var(--frame-border-color);
   }
 `;
 

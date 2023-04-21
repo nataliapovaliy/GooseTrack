@@ -13,10 +13,14 @@ export const Input = styled.input`
 `;
 
 export const Svg = styled.svg`
-  display:flex;
-  align-items:center;
-  width: 32px;
-  height: 32px;
+  display: flex;
+  align-items: center;
+  width: 19px;
+  height: 19px;
   margin-right: 14px;
-  fill: var(--accent-color); ;
+  fill: var(--accent-color);
+  @media screen and (min-width: 768px) {
+    width: 26px;
+    height: 26px;
+  }
 `;
