@@ -37,13 +37,15 @@ const validationFormikSchema = object({
 });
 
 const UserForm = () => {
-  const [birthday, setBirthday] = useState('');
-  const [avatarURL, setAvatarURL] = useState('');
+  const [birthday, setBirthday] = useState(new Date());
+  const [avatar, setAvatarURL] = useState('');
+  console.log('avatar', avatar);
 
   const dispatch = useDispatch();
   const dataId = nanoid();
   const dataUser = useSelector(selectUser);
-  console.log(dataUser);
+
+  console.log('dataUser', dataUser);
 
   // const handleSubmit = (values, { resetForm }) => {
   //   const newValues = { ...values, avatarURL, birthday };
@@ -51,40 +53,43 @@ const UserForm = () => {
   //   resetForm();
   // };
 
-  // const handleChange = eve => {
-  //   setAvatarURL(eve.target.files[0]);
-  // };
+  const handleChange = eve => {
+    setAvatarURL(eve.target.files[0]);
+    console.log('avatar', eve.target.files[0]);
+  };
 
   return (
     <Container>
       <Wrapper>
         <Formik
-          initialValues={{ username: '', email: '', phone: '', skype: '' }}
+          initialValues={{
+            username: '',
+            email: '',
+            phone: '',
+            skype: '',
+            avatar: '',
+          }}
           onSubmit={(values, { resetForm }) => {
-            // const newValues = { ...values, avatarURL, birthday };
+            const newValues = { ...values, avatar, birthday };
             dispatch(
               updateUser({
-                birthday,
-                avatarURL,
-                email: values.email,
-                password: values.password,
-                username: values.username,
-                phone: values.phone,
+                newValues,
               })
             );
             resetForm();
           }}
           validationSchema={validationFormikSchema}
         >
-          {({ values, handleSubmit, handleBlur, handleChange }) => (
+          {({ values, handleSubmit, handleBlur }) => (
             <Forms autoComplete="off" onSubmit={handleSubmit}>
-              <Avatar src={dataUser.user?.avatarURL} alt="" />
+              <Avatar src={avatar} alt="avatar" />
               <LabelImg htmlFor="file">
                 <ImgBtn src={plus} alt="user" />
+
                 <InputFile
-                  id={dataId}
+                  id="file"
                   type="file"
-                  onChange={data => setBirthday(data)}
+                  onChange={handleChange}
                   accept="image/*,.png,.jpg,.gif,.web"
                   name="file"
                 ></InputFile>
@@ -113,6 +118,7 @@ const UserForm = () => {
                     name="phone"
                     id={dataId}
                     value={values.phone}
+                    placeholder={dataUser.user?.phone}
                   ></Input>
                   <ErrorMessage name="phone" />
                 </LabelBtn>
@@ -121,14 +127,13 @@ const UserForm = () => {
                   <p>Birthday</p>
                   <DatePick
                     name={birthday}
-                    value={birthday}
                     id={dataId}
                     type="date"
                     input={true}
                     maxDate={new Date()}
                     selected={birthday}
+                    placeholder={dataUser.user?.birthday}
                     onChange={data => setBirthday(data)}
-                    // placeholderText={new Date()}
                     dateFormat="dd/MM/yyyy"
                   />
                   <ErrorMessage name="birthday" />
@@ -151,10 +156,11 @@ const UserForm = () => {
                   <Input
                     type="email"
                     name="email"
-                    id={dataId}
-                    onChange={handleChange}
+                    id="email"
+                    // onChange={handleChange}
                     placeholder={dataUser.user?.email}
                     value={values.email}
+                    onBlur={handleBlur}
                   ></Input>
                   <ErrorMessage name="email" />
                 </LabelBtn>
