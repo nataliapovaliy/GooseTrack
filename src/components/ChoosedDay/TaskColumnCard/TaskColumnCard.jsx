@@ -1,12 +1,3 @@
-// "1. Компонент отримує в пропсах дані необхідні для створення картки.
-// 2. Компонент підписаний на url аватару юзера
-// 3. Компонент рендерить блоки:
-//  - розмітку з описом завдання, який має фіксовану висоту і текст з описом, якщо той не вміщається, обрізається та показуються три крапки.
-//  - аватар юзера.
-//  - пріоритет завдання, з фоном відповідного кольору.
-//  - TaskToolbar - інетрфейс для роботи з карткою
-//  - TaskModal - модалка з формою для редагування завдання."
-
 import { useState } from 'react';
 import {
   TaskCardWrapper,
@@ -39,7 +30,7 @@ export const TaskColumnCard = ({ task }) => {
     }
   };
 
-  const originalString = task.description;
+  const originalString = task.title;
   const maxLengthString = 31;
 
   const truncatedString = truncateString(originalString, maxLengthString);

@@ -1,20 +1,16 @@
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/auth-selectors';
 import { Name, Avatar, AvatarLetter, AvatarImg } from './UserInfo.styled';
-// import { selectUser } from 'redux/auth/auth-selectors';
 
 export const UserInfo = () => {
-  // TODO:
-  // const avatar = useSelector(getUserAvatar);
-  const avatar = 'https://img.icons8.com/officel/32/null/avatar.png'; // временно для теста
-
-  // TODO:
-  // const userName = useSelector(selectUser);
-  const userName = 'Tom'; // временно для теста
-  const firstLetter = userName.slice(0, 1).toUpperCase();
+  const selector = useSelector(selectUser);
+  const name = selector.user?.name || 'Name';
+  const avatar = selector.user?.avatarURL;
+  const firstLetter = name.slice(0, 1).toUpperCase();
 
   return (
     <>
-          <Name>{userName}</Name>
+          <Name>{name}</Name>
           <Avatar>{avatar === null ? (<AvatarLetter>{firstLetter}</AvatarLetter>) : (<AvatarImg src={avatar} alt="Avatar" />)}</Avatar>
     </>
   );
