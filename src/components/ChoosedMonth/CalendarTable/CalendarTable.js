@@ -13,7 +13,7 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
   const day = startDay.clone().subtract(1, 'day');
   const daysArray = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
  
-
+  console.log(daysArray)
 
   const isCurrentDay = day => moment().isSame(day, 'day');
   const isSelectedMonth = day => today.isSame(day, 'month');
@@ -23,6 +23,7 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
     <GridWrapper>
       {daysArray.map(dayItem => (
         <CellWrapper
+        
           key={dayItem.unix()}
           isSelectedMonth={isSelectedMonth(dayItem)}
         >
