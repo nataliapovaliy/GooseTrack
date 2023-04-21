@@ -13,7 +13,7 @@ export const fetchTasks = createAsyncThunk(
           y: year,
         },
       });
-      console.log('!!!!!!!! tasks/fetchTasks >>>>>>', data);
+      // console.log('!!!!!!!! tasks/fetchTasks >>>>>>', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

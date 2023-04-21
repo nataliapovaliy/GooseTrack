@@ -1,4 +1,3 @@
-
 import { CalendarTable } from './CalendarTable/CalendarTable';
 import { HeaderCalendar } from '../CalendarToolbar/CalendarToolbar';
 import { MonthCalendarHead } from './MonthCalendarHead/MonthCalendarHead';
@@ -18,8 +17,8 @@ export const ChoosedMonth = () => {
   const [displayMode, setDisplayMode] = useState('month');
   const [today, setToday] = useState(moment());
   // const [tasks, setTasks] = useState([])
-  const tasks = useSelector(selectArrTasks);
-  console.log(tasks);
+  // const tasks = useSelector(selectArrTasks);
+  // console.log(tasks);
 
   const totalDays = 42;
 
@@ -47,8 +46,7 @@ export const ChoosedMonth = () => {
     setToday(next => next.clone().add(1, 'month'));
   };
 
-  
-  const dispatch = useDispatch()   ;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const currentDate = new Date();
@@ -59,9 +57,6 @@ export const ChoosedMonth = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-
-
 
   return (
     <>
@@ -82,7 +77,3 @@ export const ChoosedMonth = () => {
     </>
   );
 };
-
-
-
-  

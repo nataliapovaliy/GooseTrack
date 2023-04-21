@@ -3,7 +3,6 @@ import { Cross } from './Cross/Cross';
 import { TaskForm } from './TaskForm/TaskForm';
 import { LogoutForm } from './LogoutForm/LogoutForm';
 import { DeleteForm } from './DeleteForm/DeleteForm';
-// import { Buttons } from './Buttons/Buttons';
 
 export const Modal = ({ typeOfModal, closeModal, actionFu }) => {
   return (
