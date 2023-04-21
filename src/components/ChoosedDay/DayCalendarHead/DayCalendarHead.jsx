@@ -25,7 +25,7 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
     };
     setChoosedDay(dayValue);
     clickChooseDay(dateClickObject);
-    console.log(dateClickObject);
+    // console.log('Date click props',dateClickObject);
   };
 
   return (
