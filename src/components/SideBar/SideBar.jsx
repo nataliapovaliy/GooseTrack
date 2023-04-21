@@ -52,7 +52,7 @@ export const SideBar = () => {
             </Link>
           </Item>
           <Item>
-            <Link to="/calendar">
+            <Link to="/calendar/month/:currentDate">
               <Svg>
                 <use href={icon + '#icon-calendar'}></use>
               </Svg>
