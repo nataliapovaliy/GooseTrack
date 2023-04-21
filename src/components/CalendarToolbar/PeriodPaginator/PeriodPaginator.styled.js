@@ -39,7 +39,7 @@ export const PeriodPaginatorLeft = styled.button`
   padding: 8px 10px;
   height: 34px;
   border: 1px solid rgba(220, 227, 229, 0.8);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
   border-radius: 8px 0px 0px 8px;
   background-color: var(--main-background-color);
   cursor: pointer;
@@ -50,7 +50,7 @@ export const PeriodPaginatorRight = styled.button`
   height: 34px;
   border: 1px solid rgba(220, 227, 229, 0.8);
   border: 1px solid rgba(220, 227, 229, 0.8);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
   border-radius: 0px 8px 8px 0px;
   background-color: var(--main-background-color);
   cursor: pointer;
