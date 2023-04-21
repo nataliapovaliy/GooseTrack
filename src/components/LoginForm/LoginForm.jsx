@@ -1,12 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/auth-operations';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { nanoid } from 'nanoid';
 import { Link } from 'react-router-dom';
-import { selectError } from 'redux/auth/auth-selectors';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import {
   LoginFormContainer,
   Wrapper,
@@ -42,7 +39,6 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
   const emailId = nanoid();
   const passwordId = nanoid();
-  const error = useSelector(selectError);
 
   return (
     <Formik
@@ -57,10 +53,6 @@ export const LoginForm = () => {
             password: values.password,
           })
         );
-        if (error) {
-          console.log(error)
-          toast.error('Oops...something is wrong, try again!');
-        }
         resetForm();
       }}
       validationSchema={validationSchema}
@@ -77,7 +69,6 @@ export const LoginForm = () => {
         <Wrapper>
           <LoginFormContainer>
             <Form autoComplete="off" onSubmit={handleSubmit}>
-              <ToastContainer />
               <LoginFormTitle>Log in</LoginFormTitle>
               <LoginLabel htmlFor={emailId}>
                 <LoginParaghraph>Email</LoginParaghraph>
