@@ -11,7 +11,8 @@ import {
 } from './CalendatToolbar.styled';
 import icon from '../../images/icons.svg';
 import { MyApp } from './ReactLightCalendar';
-
+import DatePicker from 'sassy-datepicker';
+import './fgf.css';
 
 export const HeaderCalendar = ({
   today,
@@ -20,10 +21,20 @@ export const HeaderCalendar = ({
   setDisplayMode,
 }) => {
 
+  // const locale = 'uk'
+
+  const onChange = (date) => {
+    console.log(date.toString());
+  };
 
   return (
     <>
     <MyApp />
+
+    <div>
+    <DatePicker onChange={onChange} locale = "uk" />
+    </div>
+
     <ToolbarContainer>
       <ToolbarWrapper>
         <ToolbarWrap type="button">
