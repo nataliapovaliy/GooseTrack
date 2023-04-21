@@ -77,7 +77,9 @@ export const Avatar = styled.img`
   width: 124px;
   height: 124px;
 
-  background-color: coral;
+  text-align: center;
+
+  border: 2px solid #3e85f3;
   border-radius: 50%;
 `;
 

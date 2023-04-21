@@ -54,8 +54,9 @@ const UserForm = () => {
   // };
 
   const handleChange = eve => {
-    setAvatarURL(eve.target.files[0]);
-    console.log('avatar', eve.target.files[0]);
+    // setAvatarURL(eve.target.files[0]);
+    // console.log('avatar', eve.target.files[0]);
+    console.log(eve);
   };
 
   return (
@@ -64,16 +65,24 @@ const UserForm = () => {
         <Formik
           initialValues={{
             username: '',
-            email: '',
+            email: {dataUser.user?.email},
             phone: '',
             skype: '',
             avatar: '',
+            birthday: '',
           }}
           onSubmit={(values, { resetForm }) => {
-            const newValues = { ...values, avatar, birthday };
+            console.log('values', values);
+            // const newValues = { ...values, avatar, birthday };
+            // console.log('dispatch', newValues);
             dispatch(
               updateUser({
-                newValues,
+                username: values.name,
+                email: values.email,
+                phone: values.phone,
+                skype: values.skype,
+                avatar: '',
+                birthday,
               })
             );
             resetForm();
@@ -83,14 +92,14 @@ const UserForm = () => {
           {({ values, handleSubmit, handleBlur }) => (
             <Forms autoComplete="off" onSubmit={handleSubmit}>
               <Avatar src={avatar} alt="avatar" />
-              <LabelImg htmlFor="file">
+              <LabelImg htmlFor="avatar">
                 <ImgBtn src={plus} alt="user" />
 
                 <InputFile
-                  id="file"
+                  id="avatar"
                   type="file"
                   onChange={handleChange}
-                  accept="image/*,.png,.jpg,.gif,.web"
+                  // accept="image/*,.png,.jpg,.gif,.web"
                   name="file"
                 ></InputFile>
               </LabelImg>
@@ -104,7 +113,7 @@ const UserForm = () => {
                   <Input
                     type="text"
                     value={values.name}
-                    placeholder={dataUser.user?.name}
+                    placeholder={dataUser.user?.phone}
                     name="username"
                     id={dataId}
                   ></Input>
@@ -156,9 +165,9 @@ const UserForm = () => {
                   <Input
                     type="email"
                     name="email"
-                    id="email"
+                    id="dataId"
                     // onChange={handleChange}
-                    placeholder={dataUser.user?.email}
+                    // placeholder={dataUser.user?.email}
                     value={values.email}
                     onBlur={handleBlur}
                   ></Input>
