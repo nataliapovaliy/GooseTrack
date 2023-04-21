@@ -63,9 +63,12 @@ export const Overlay = styled.div`
   width: 100%;
   position: fixed;
   top: 0px;
-  left: 0px;
+  left: ${({ isVisible }) => (isVisible ? '0' : '-100%')};
   height: 100vh;
   background-color: rgba(47, 48, 58, 0.4);
   z-index: 2;
   overflow: hidden;
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)}; 
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, left 0.3s ease-in-out;
 `;
