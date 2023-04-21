@@ -93,6 +93,10 @@ body {
   /* background-color: var(--main-background-color); */
 }
 
+body.lock-scroll {
+  overflow: hidden;
+}
+
 /* .container {
   max-width: 480px;
   padding: 0 20px;
