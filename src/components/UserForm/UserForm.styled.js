@@ -72,7 +72,7 @@ export const InputFile = styled.input`
   margin: 0;
 `;
 
-export const Avatar = styled.img`
+export const ImgAvatar = styled.img`
   margin-top: 60px;
   width: 124px;
   height: 124px;

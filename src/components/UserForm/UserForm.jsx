@@ -23,14 +23,14 @@ import {
   Forms,
   InputFile,
   ImgBtn,
-  Avatar,
+  ImgAvatar,
   LabelBtn,
   LabelImg,
 } from './UserForm.styled';
 
 const validationFormikSchema = object({
   username: string().max(16).required(),
-  birthday: date().default(() => new Date()),
+  birthday: date() /*.default(() => new Date()),*/,
   email: string().email().required(),
   phone: number(),
   skype: string().max(16),
@@ -54,8 +54,8 @@ const UserForm = () => {
   // };
 
   const handleChange = eve => {
-    // setAvatarURL(eve.target.files[0]);
-    // console.log('avatar', eve.target.files[0]);
+    setAvatarURL(eve.target.files[0]);
+    console.log('avatar', eve.target.files[0]);
     console.log(eve);
   };
 
@@ -65,11 +65,11 @@ const UserForm = () => {
         <Formik
           initialValues={{
             username: '',
-            email: {dataUser.user?.email},
+            email: '',
             phone: '',
             skype: '',
-            avatar: '',
-            birthday: '',
+            avatar,
+            birthday,
           }}
           onSubmit={(values, { resetForm }) => {
             console.log('values', values);
@@ -81,7 +81,7 @@ const UserForm = () => {
                 email: values.email,
                 phone: values.phone,
                 skype: values.skype,
-                avatar: '',
+                avatar,
                 birthday,
               })
             );
@@ -91,16 +91,17 @@ const UserForm = () => {
         >
           {({ values, handleSubmit, handleBlur }) => (
             <Forms autoComplete="off" onSubmit={handleSubmit}>
-              <Avatar src={avatar} alt="avatar" />
+              <ImgAvatar src={avatar} alt="avatar" />
+
               <LabelImg htmlFor="avatar">
                 <ImgBtn src={plus} alt="user" />
 
                 <InputFile
-                  id="avatar"
+                  id="file"
                   type="file"
                   onChange={handleChange}
-                  // accept="image/*,.png,.jpg,.gif,.web"
-                  name="file"
+                  accept="image/*,.png,.jpg,.gif,.web"
+                  name="avatar"
                 ></InputFile>
               </LabelImg>
 
@@ -113,9 +114,9 @@ const UserForm = () => {
                   <Input
                     type="text"
                     value={values.name}
-                    placeholder={dataUser.user?.phone}
+                    placeholder={dataUser.user?.name}
                     name="username"
-                    id={dataId}
+                    id="username"
                   ></Input>
                   <ErrorMessage name="username" />
                 </LabelBtn>
@@ -125,7 +126,7 @@ const UserForm = () => {
                   <Input
                     type="tel"
                     name="phone"
-                    id={dataId}
+                    id="phone"
                     value={values.phone}
                     placeholder={dataUser.user?.phone}
                   ></Input>
@@ -135,13 +136,12 @@ const UserForm = () => {
                 <LabelBtn htmlFor="birthday">
                   <p>Birthday</p>
                   <DatePick
-                    name={birthday}
-                    id={dataId}
+                    name="birthday"
+                    id="date"
                     type="date"
                     input={true}
                     maxDate={new Date()}
                     selected={birthday}
-                    placeholder={dataUser.user?.birthday}
                     onChange={data => setBirthday(data)}
                     dateFormat="dd/MM/yyyy"
                   />
@@ -165,7 +165,7 @@ const UserForm = () => {
                   <Input
                     type="email"
                     name="email"
-                    id="dataId"
+                    id="email"
                     // onChange={handleChange}
                     // placeholder={dataUser.user?.email}
                     value={values.email}
