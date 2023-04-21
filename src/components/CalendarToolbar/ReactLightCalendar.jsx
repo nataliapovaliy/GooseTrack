@@ -9,7 +9,12 @@ export function MyApp() {
 
   return (
     <div>
-      <Calendar onChange={onChange} value={value} />
+      <Calendar 
+      onChange={onChange} 
+      value={value} 
+      // nextLabel='month >'
+      
+      />
     </div>
   );
 }

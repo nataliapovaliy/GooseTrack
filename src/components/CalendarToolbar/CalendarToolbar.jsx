@@ -22,6 +22,8 @@ export const HeaderCalendar = ({
 
 
   return (
+    <>
+    <MyApp />
     <ToolbarContainer>
       <ToolbarWrapper>
         <ToolbarWrap type="button">
@@ -52,7 +54,9 @@ export const HeaderCalendar = ({
         </ToolbarButtonDay>
       </div>
 
-      <MyApp />
+      
     </ToolbarContainer>
+    </>
+    
   );
 };
