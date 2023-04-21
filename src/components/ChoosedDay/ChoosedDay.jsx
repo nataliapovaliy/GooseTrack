@@ -20,6 +20,7 @@ import {
 
 const ChoosedDay = () => {
   const [tasksFilter, setTasksFilter] = useState([]);
+  const [typeOfColumn, settypeOfColumn] = useState(null);
 
   const tasksMonth = useSelector(selectArrTasks);
   const modalAddState = useSelector(selectAddTaskOpen);
@@ -38,6 +39,14 @@ const ChoosedDay = () => {
   const deleteTask = () => {
     closeDeleteModal();
   };
+
+  // functions for add task =============================>
+
+  const taskObjectFormation = data => {
+    settypeOfColumn(prevState => (prevState = data));
+  };
+
+  // functions for add task =============================>
 
   useEffect(() => {
     const currentDayFilter = tasksMonth.filter(({ start, end }) => {
@@ -71,8 +80,17 @@ const ChoosedDay = () => {
   return (
     <TasksColumnsListWrapper>
       <DayCalendarHead clickChooseDay={chooseDay} />
-      <TasksColumnsList tasks={tasksFilter} />
-      {modalAddState && <Modal closeModal={closeModal} typeOfModal={'add'} />}
+      <TasksColumnsList
+        tasks={tasksFilter}
+        taskObjectFormation={taskObjectFormation}
+      />
+      {modalAddState && (
+        <Modal
+          closeModal={closeModal}
+          typeOfModal={'add'}
+          typeOfColumn={typeOfColumn}
+        />
+      )}
       {modalEditState && (
         <Modal closeModal={closeEditModal} typeOfModal={'edit'} />
       )}
