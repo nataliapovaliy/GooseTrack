@@ -30,6 +30,7 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
   // } else if (task.priority === 'High') {
   //   priorityColor = 'var(--task-high-color)';
   // }
+  let priorityColor = '';
 
   return (
     // <ContainerCalendar>
@@ -52,9 +53,19 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
             <TaskListWrapper>
               {tasks.map(
                 task =>
-                  task.createAt === dayItem.format('YYYY-MM-DD') && (
-                    <TaskItem key={task._id} priority={task.priority}>{task.title}</TaskItem>
+                {
+                  
+                  if (task.priority === 'Low') {
+                    priorityColor = 'var(--priority-low-color)' ;
+                  } else if (task.priority === 'Medium') {
+                    priorityColor = 'var(--priority-med-color)';
+                  } else if (task.priority === 'High') {
+                    priorityColor = 'var(--priority-high-color)' ;
+                  }
+                  return task.createAt === dayItem.format('YYYY-MM-DD') && (
+                    <TaskItem key={task._id} style={{ backgroundColor: priorityColor }}>{task.title}</TaskItem>
                   )
+                }
               )}
             </TaskListWrapper>
           </RowInCell>

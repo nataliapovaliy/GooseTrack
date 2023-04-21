@@ -37,27 +37,8 @@ padding-left: 4px;
  export const TaskItem = styled.li`
  border-radius: 8px;
  padding: 4px 6px;
-background-color: ${props => props.priority === 'Low' &&  'var(--priority-low-color)' || 
-props.priority === 'Medium' &&  'var(--priority-med-color)'  || 
-props.priority === 'High' &&  'var(--priority-high-color)' 
-}
+
 `
-
-
-/* 
-export const TaskItemLow = styled.li`
-background-color: var(--task-low-color);
-`
-
-export const TaskItemMed = styled.li`
-background-color: var(--task-med-color);
-`
-
-export const TaskItemHigh = styled.li`
-background-color: var(--task-high-color);
-` */
-
-
 
 export const DayWrapper = styled.div`
 height: 26px;

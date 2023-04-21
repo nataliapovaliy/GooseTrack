@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const PeriodPaginatorWrapper = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   border-radius: 8px;
   margin-bottom: 14px;
