@@ -5,8 +5,8 @@ import { MonthCalendarHead } from './MonthCalendarHead/MonthCalendarHead';
 
 import moment from 'moment';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectArrTasks } from 'redux/tasks/tasks-selectors';
+import { useDispatch } from 'react-redux';
+// import { selectArrTasks } from 'redux/tasks/tasks-selectors';
 import { fetchTasks } from 'redux/tasks/tasks-operations';
 
 // import { useEffect } from "react"
@@ -18,8 +18,9 @@ export const ChoosedMonth = () => {
   const [displayMode, setDisplayMode] = useState('month');
   const [today, setToday] = useState(moment());
   // const [tasks, setTasks] = useState([])
-  const tasks = useSelector(selectArrTasks);
-  console.log(tasks);
+
+  // const arrTasks = useSelector(selectArrTasks);
+  // console.log(tasks);
 
   const totalDays = 42;
 
