@@ -34,6 +34,11 @@ list-style-position: inside;
 padding-left: 4px;
 `
 
+ export const TaskItem = styled.li`
+ border-radius: 8px;
+ padding: 4px 6px;
+
+`
 
 export const DayWrapper = styled.div`
 height: 26px;
