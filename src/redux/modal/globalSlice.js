@@ -7,6 +7,7 @@ const globalSlice = createSlice({
     isModalUpDateTask: false,
     isModalConfirmation: false,
     isModalLogOut: false,
+    isSideBar: false,
   },
 
   reducers: {
@@ -34,6 +35,12 @@ const globalSlice = createSlice({
     closeModalLogOut(state) {
       state.isModalLogOut = false;
     },
+    openSideBar(state) {
+      state.isSideBar = true;
+    },
+    closeSideBar(state) {
+      state.isSideBar = false;
+    },
   },
 });
 export const {
@@ -45,5 +52,7 @@ export const {
   closeModalUpDateTask,
   openModalConfirmation,
   closeModalConfirmation,
+  openSideBar,
+  closeSideBar,
 } = globalSlice.actions;
 export default globalSlice.reducer;

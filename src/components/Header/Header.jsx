@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMedia } from 'react-use';
 import { ThemeToggler } from 'components/ThemeToggler/ThemeToggler';
 import { Container, Image, H2, Wrapper, Motivation, Accent, Svg, Overlay, } from './Header.styled';
@@ -8,29 +7,28 @@ import { UserInfo } from 'components/UserInfo/UserInfo';
 import { SideBar } from 'components/SideBar/SideBar';
 import goose from './goose.png';
 import icon from '../../images/icons.svg';
-
-// import { selectUser } from 'redux/auth/auth-selectors';
+import { selectArrTasks } from 'redux/tasks/tasks-selectors';
+import { selectSideBar } from 'redux/modal/globalSelectors';
+import { openSideBar } from 'redux/modal/globalSlice';
 
 export const Header = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const isActivePageCalendar = location.pathname.includes('calendar');
 
-  // TODO:
-  // const todoList = useSelector(getTodoList);
-  const todoList = useSelector(state => state);
-
+  // TODO: Перевірити на наявність специфічнішого селектору
+  const todoList = useSelector(selectArrTasks);
   const isTabletOrMobile = useMedia('(max-width: 1439px)');
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const handleSidebarOpen = () => {setIsSidebarOpen(true);};
-  const handleSidebarClose = () => {setIsSidebarOpen(false);};
+  const openMobileMenu = () => dispatch(openSideBar());
+  const sideBarState = useSelector(selectSideBar);
 
   return (
       <Container>
         {isTabletOrMobile ? (
           <Wrapper>
-            <Svg onClick={handleSidebarOpen}> <use href={icon + '#icon-menu'}></use></Svg>
-            {isSidebarOpen && (<Overlay onClick={handleSidebarClose}> <SideBar/> </Overlay>)}
+            <Svg onClick={openMobileMenu}> <use href={icon + '#icon-menu'}></use></Svg>
+            {sideBarState && (<Overlay> <SideBar /> </Overlay>)}
             <Wrapper>
               <ThemeToggler />
               <UserInfo />
@@ -38,7 +36,7 @@ export const Header = () => {
           </Wrapper>
         ) : (
           <Wrapper>
-            {todoList !== null && isActivePageCalendar ? (
+            {todoList.length > 0 && isActivePageCalendar ? (
               <Wrapper>
                 <Image src={goose} alt="Goose"></Image>
                 <div>
