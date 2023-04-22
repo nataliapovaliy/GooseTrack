@@ -259,4 +259,8 @@ export const SvgArrows = styled.svg`
     /* margin-left: 6px; */
     stroke: #000000;
     fill: none;
+
+    :hover {
+        transform: scale(1.2);
+    }
 `;
