@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUser } from 'redux/auth/auth-operations';
+// import { updateUser } from 'redux/auth/auth-operations';
 
 import { Formik, ErrorMessage } from 'formik';
 import { object, string, number, date } from 'yup';
@@ -12,6 +12,7 @@ import { selectUser } from 'redux/auth/auth-selectors';
 import { nanoid } from 'nanoid';
 
 import plus from '../../images/plus.png';
+import phuser from '../../images/phuser.png';
 
 import {
   Container,
@@ -41,65 +42,76 @@ const UserForm = () => {
   const [avatar, setAvatarURL] = useState('');
   console.log('avatar', avatar);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const dataId = nanoid();
   const dataUser = useSelector(selectUser);
 
   console.log('dataUser', dataUser);
 
+  const userName = dataUser && dataUser.user ? dataUser.user.name : '';
+  console.log('userName', userName);
   // const handleSubmit = (values, { resetForm }) => {
   //   const newValues = { ...values, avatarURL, birthday };
   //   console.log(newValues);
   //   resetForm();
   // };
 
-  const handleChange = eve => {
-    setAvatarURL(eve.target.files[0]);
-    console.log('avatar', eve.target.files[0]);
-    console.log(eve);
-  };
+  // const handleChange = eve => {
+  //   setAvatarURL(eve.target.files[0]);
+  //   console.log('avatar', eve.target.files[0]);
+  //   console.log(eve);
+  // };
 
   return (
     <Container>
       <Wrapper>
         <Formik
           initialValues={{
-            username: '',
+            username: `${userName}`,
             email: '',
             phone: '',
             skype: '',
-            avatar,
             birthday,
           }}
-          onSubmit={(values, { resetForm }) => {
-            console.log('values', values);
+          onSubmit={async (values, { resetForm }) => {
+            const avatar = new FormData();
+            avatar.append('avatar', avatar);
+
+            const newValues = { ...values, avatar };
+            console.log('values', newValues);
+            await new Promise(r => setTimeout(r, 500));
+            alert(JSON.stringify(newValues, null, 2));
             // const newValues = { ...values, avatar, birthday };
             // console.log('dispatch', newValues);
-            dispatch(
-              updateUser({
-                username: values.name,
-                email: values.email,
-                phone: values.phone,
-                skype: values.skype,
-                avatar,
-                birthday,
-              })
-            );
+            // dispatch(
+            //   updateUser({
+            //     username: values.name,
+            //     email: values.email,
+            //     phone: values.phone,
+            //     skype: values.skype,
+            //     avatar,
+            //     birthday,
+            //   })
+            // );
             resetForm();
           }}
           validationSchema={validationFormikSchema}
         >
-          {({ values, handleSubmit, handleBlur }) => (
+          {({ values, handleSubmit, handleChange, handleBlur }) => (
             <Forms autoComplete="off" onSubmit={handleSubmit}>
-              <ImgAvatar src={avatar} alt="avatar" />
+              {dataUser ? (
+                <ImgAvatar src={dataUser.user?.avatarURL} alt="avatar" />
+              ) : (
+                <ImgAvatar src={phuser} alt="avatar" />
+              )}
 
               <LabelImg htmlFor="avatar">
                 <ImgBtn src={plus} alt="user" />
 
                 <InputFile
-                  id="file"
+                  id="avatar"
                   type="file"
-                  onChange={handleChange}
+                  onChange={event => setAvatarURL(event.target.files[0])}
                   accept="image/*,.png,.jpg,.gif,.web"
                   name="avatar"
                 ></InputFile>
@@ -113,10 +125,10 @@ const UserForm = () => {
                   <p>User Name</p>
                   <Input
                     type="text"
-                    value={values.name}
-                    placeholder={dataUser.user?.name}
+                    value={values.username}
                     name="username"
                     id="username"
+                    onChange={handleChange}
                   ></Input>
                   <ErrorMessage name="username" />
                 </LabelBtn>
