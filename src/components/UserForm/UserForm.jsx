@@ -27,13 +27,14 @@ import {
   ImgAvatar,
   LabelBtn,
   LabelImg,
+  User,
 } from './UserForm.styled';
 
 const validationFormikSchema = object({
   username: string().max(16).required(),
   birthday: date() /*.default(() => new Date()),*/,
   email: string().email().required(),
-  phone: number(),
+  // phone: number(),
   skype: string().max(16),
 });
 
@@ -48,8 +49,8 @@ const UserForm = () => {
 
   console.log('dataUser', dataUser);
 
-  const userName = dataUser && dataUser.user ? dataUser.user.name : '';
-  console.log('userName', userName);
+  // const userName = dataUser && dataUser.user ? dataUser.user.name : '';
+  console.log('userName', dataUser.user?.name);
   // const handleSubmit = (values, { resetForm }) => {
   //   const newValues = { ...values, avatarURL, birthday };
   //   console.log(newValues);
@@ -67,13 +68,13 @@ const UserForm = () => {
       <Wrapper>
         <Formik
           initialValues={{
-            username: `${userName}`,
-            email: '',
-            phone: '',
-            skype: '',
-            birthday,
+            username: `${dataUser.user?.name}` ?? '',
+            email: `${dataUser.user?.email}` ?? '',
+            phone: `${dataUser.user?.phone}` ?? '',
+            skype: `${dataUser.user?.skype}` ?? '',
+            birthday: `${dataUser.user?.birthday}` ?? '',
           }}
-          onSubmit={async (values, { resetForm }) => {
+          onSubmit={async values => {
             const avatar = new FormData();
             avatar.append('avatar', avatar);
 
@@ -93,7 +94,6 @@ const UserForm = () => {
             //     birthday,
             //   })
             // );
-            resetForm();
           }}
           validationSchema={validationFormikSchema}
         >
@@ -118,7 +118,7 @@ const UserForm = () => {
               </LabelImg>
 
               <h1>{dataUser.user?.name}</h1>
-              <p>User</p>
+              <User>User</User>
 
               <BlockInput>
                 <LabelBtn htmlFor="username">
@@ -129,6 +129,7 @@ const UserForm = () => {
                     name="username"
                     id="username"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   ></Input>
                   <ErrorMessage name="username" />
                 </LabelBtn>
