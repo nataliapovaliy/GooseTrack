@@ -41,7 +41,8 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
       <DateWrapper>
         {daysOfWeek.map((day, index) => {
           const date = new Date(currentDate);
-          const currentDay = (index) % 7; // добавляем 1 и берем остаток от деления на 7
+          const currentDay = (index + 1) % 8;
+
           const daysToAdd = currentDay - currentDate.getDay();
           date.setDate(currentDate.getDate() + daysToAdd);
 
@@ -60,6 +61,7 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
               }}
               style={{
                 backgroundColor: isCurrentDay ? 'var(--accent)' : 'inherit',
+                color: isCurrentDay ? 'var(--btn-text-color)' : 'inherit',
               }}
             >
               <p>{dayValue}</p>
