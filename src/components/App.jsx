@@ -12,6 +12,7 @@ import { CalendarPage } from 'pages/CalendarPage/CalendarPage';
 import { ChoosedDay } from 'components/ChoosedDay/ChoosedDay';
 import { ChoosedMonth } from 'components/ChoosedMonth/ChoosedMonth';
 import { PrivateRoute, PublicRoute } from 'components/PrivatPublicRoutes/PrivatPublicRoutes';
+import { StartPage } from 'pages/StartPage/StartPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const App = () => {
   // прибрав Лоадінг, бо переренджується вся структура і втрачається сенс MainLayout - Alex
   return (
     <Routes>
+      <Route path="/start" element={<PublicRoute component={<StartPage />} />}/>
       <Route path="/login" element={<PublicRoute component={<LoginPage />} />}/>
       <Route path="/register" element={<PublicRoute component={<RegisterPage />} />}/>
       <Route path="/" element={<PrivateRoute component={<MainLayout />} />}>
