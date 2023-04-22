@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Priority } from '../Priority/Priority';
 import { Buttons } from '../Buttons/Buttons';
 import { Form } from '../Form/Form';
 
 import { addTask } from '../../../redux/tasks/tasks-operations';
+import { closeModalAddTask } from 'redux/modal/globalSlice';
 
 export const TaskForm = ({ typeOfModal, closeModal, typeOfColumn }) => {
   const [enterText, setEnterText] = useState('');
@@ -58,20 +59,21 @@ export const TaskForm = ({ typeOfModal, closeModal, typeOfColumn }) => {
   const objectFormation = () => {
     const objectToDispatch = {
       title: enterText,
-      start: start,
-      end: end,
+      start: start.slice(0, 5),
+      end: end.slice(0, 5),
       createAt: new Date().toLocaleDateString('en-CA'),
       priority: prioritys,
       ...typeOfColumn,
     };
-    console.log(objectToDispatch);
+
     const newTask = async () => {
       const answer = await dispatch(addTask(objectToDispatch));
       console.log('answer', answer.payload.data.result);
       return answer.payload.data.result;
     };
     newTask();
-    console.log('jbjectToDispatch', newTask);
+
+    dispatch(closeModalAddTask());
   };
 
   const inputHendler = event => {
