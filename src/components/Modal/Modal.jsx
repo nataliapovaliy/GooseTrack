@@ -4,7 +4,14 @@ import { TaskForm } from './TaskForm/TaskForm';
 import { LogoutForm } from './LogoutForm/LogoutForm';
 import { DeleteForm } from './DeleteForm/DeleteForm';
 
-export const Modal = ({ typeOfModal, closeModal, actionFu, typeOfColumn }) => {
+export const Modal = ({
+  typeOfModal,
+  closeModal,
+  actionFu,
+  typeOfColumn,
+  taskFromCard,
+}) => {
+  // console.log('taskFromCard', taskFromCard);
   return (
     <ModalBody>
       <Cross func={closeModal} height={'14px'} bcgCr={'#111111'} />
@@ -13,6 +20,7 @@ export const Modal = ({ typeOfModal, closeModal, actionFu, typeOfColumn }) => {
           closeModal={closeModal}
           typeOfModal={typeOfModal}
           typeOfColumn={typeOfColumn}
+          taskFromCard={taskFromCard}
         />
       )}
       {typeOfModal === 'logout' && (

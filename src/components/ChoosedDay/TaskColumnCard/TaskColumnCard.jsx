@@ -12,7 +12,7 @@ import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
 // import { useSelector } from 'react-redux';
 // import { getUserAvatar } from '../../redux/user/user-selectors';
 
-export const TaskColumnCard = ({ task }) => {
+export const TaskColumnCard = ({ task, getTask }) => {
   // const [isModalOpen, setIsModalOpen] = useState(false);
   // const toggleModal = () => setIsModalOpen(prev => !prev);
 
@@ -55,7 +55,7 @@ export const TaskColumnCard = ({ task }) => {
               {task.priority}
             </TaskCardPriority>
           </TaskAvatarPriorityWrapper>
-          <TaskToolbar />
+          <TaskToolbar getTask={getTask} task={task} />
         </TaskDetailsWrapper>
       </TaskCardWrapper>
     </>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Priority } from '../Priority/Priority';
 import { Buttons } from '../Buttons/Buttons';
@@ -7,11 +7,17 @@ import { Form } from '../Form/Form';
 import { addTask } from '../../../redux/tasks/tasks-operations';
 import { closeModalAddTask } from 'redux/modal/globalSlice';
 
-export const TaskForm = ({ typeOfModal, closeModal, typeOfColumn }) => {
+export const TaskForm = ({
+  typeOfModal,
+  closeModal,
+  typeOfColumn,
+  taskFromCard,
+}) => {
   const [enterText, setEnterText] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const [prioritys, setPrioritys] = useState('Low');
+
   const [obj, setObj] = useState([
     { status: true, key: 'Low', color: 'blue' },
     { status: false, key: 'Medium', color: 'orange' },
@@ -23,6 +29,10 @@ export const TaskForm = ({ typeOfModal, closeModal, typeOfColumn }) => {
   const prioritySelector = event => {
     const priorityChecked = event.target.innerText;
 
+    setPrioritys(prevState => (prevState = priorityChecked));
+  };
+
+  useEffect(() => {
     const newObj = [];
     obj.forEach(item => {
       if (item.status === true) {
@@ -34,27 +44,8 @@ export const TaskForm = ({ typeOfModal, closeModal, typeOfColumn }) => {
       newObj.push(item);
     });
     setObj(prevState => (prevState = newObj));
-
-    setPrioritys(prevState => (prevState = priorityChecked));
-  };
-
-  // useEffect(() => {
-  //   if (obj[0].number === newObj[0].number) {
-  //     return;
-  //   }
-
-  //   obj.forEach(item => {
-  //     if (item.status === true) {
-  //       item.status = false;
-  //       newObj.push(item);
-  //     }
-  //     if (item.key === prioritys) {
-  //       item.status = true;
-  //       newObj.push(item);
-  //     }
-  //   });
-  //   setObj(prevState => (prevState = newObj));
-  // }, [prioritys, obj]);
+    // eslint-disable-next-line
+  }, [prioritys]);
 
   const objectFormation = () => {
     const objectToDispatch = {

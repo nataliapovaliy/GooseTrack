@@ -20,7 +20,8 @@ import {
 
 const ChoosedDay = () => {
   const [tasksFilter, setTasksFilter] = useState([]);
-  const [typeOfColumn, settypeOfColumn] = useState(null);
+  const [typeOfColumn, setTypeOfColumn] = useState(null);
+  const [taskFromCard, setTaskFromCard] = useState(null);
 
   const tasksMonth = useSelector(selectArrTasks);
   const modalAddState = useSelector(selectAddTaskOpen);
@@ -42,8 +43,12 @@ const ChoosedDay = () => {
 
   // functions for add task =============================>
 
-  const taskObjectFormation = data => {
-    settypeOfColumn(prevState => (prevState = data));
+  const getTypeOfColumn = data => {
+    setTypeOfColumn(prevState => (prevState = data));
+  };
+
+  const getTask = task => {
+    setTaskFromCard(task);
   };
 
   // functions for add task =============================>
@@ -82,7 +87,8 @@ const ChoosedDay = () => {
       <DayCalendarHead clickChooseDay={chooseDay} />
       <TasksColumnsList
         tasks={tasksFilter}
-        taskObjectFormation={taskObjectFormation}
+        getTypeOfColumn={getTypeOfColumn}
+        getTask={getTask}
       />
       {modalAddState && (
         <Modal
@@ -92,7 +98,11 @@ const ChoosedDay = () => {
         />
       )}
       {modalEditState && (
-        <Modal closeModal={closeEditModal} typeOfModal={'edit'} />
+        <Modal
+          closeModal={closeEditModal}
+          typeOfModal={'edit'}
+          taskFromCard={taskFromCard}
+        />
       )}
       {modalConfirmationState && (
         <Modal

@@ -8,11 +8,11 @@ import {
 } from './AddTaskBtn.styled';
 import icon from '../../../images/icons.svg';
 
-export const AddTaskBtn = ({ taskObjectFormation, title }) => {
+export const AddTaskBtn = ({ getTypeOfColumn, title }) => {
   const dispatch = useDispatch();
 
   const openModal = () => {
-    taskObjectFormation({ status: title });
+    getTypeOfColumn({ status: title });
     dispatch(openModalAddTask());
   };
 
