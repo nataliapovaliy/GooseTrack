@@ -8,11 +8,11 @@ import {
 } from './DayCalendarHead.styled';
 
 export const DayCalendarHead = ({ clickChooseDay }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const currentDate = new Date();
   const [choosedDay, setChoosedDay] = useState(
-    new Date().toString().slice(8, 10)
+    String(currentDate.getDate()).padStart(2, '0')
   );
+  currentDate.setDate(currentDate.getDate() - 7);
 
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
@@ -25,7 +25,6 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
     };
     setChoosedDay(dayValue);
     clickChooseDay(dateClickObject);
-    // console.log('Date click props',dateClickObject);
   };
 
   return (
@@ -42,9 +41,7 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
         {daysOfWeek.map((day, index) => {
           const date = new Date(currentDate);
           const currentDay = (index + 1) % 8;
-
-          const daysToAdd = currentDay - currentDate.getDay();
-          date.setDate(currentDate.getDate() + daysToAdd);
+          date.setDate(currentDate.getDate() + currentDay);
 
           const dayValue = String(date.getDate()).padStart(2, '0');
           const monthValue = String(date.getMonth() + 1).padStart(2, '0');
