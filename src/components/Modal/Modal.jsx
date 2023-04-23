@@ -3,14 +3,25 @@ import { Cross } from './Cross/Cross';
 import { TaskForm } from './TaskForm/TaskForm';
 import { LogoutForm } from './LogoutForm/LogoutForm';
 import { DeleteForm } from './DeleteForm/DeleteForm';
-// import { Buttons } from './Buttons/Buttons';
 
-export const Modal = ({ typeOfModal, closeModal, actionFu }) => {
+export const Modal = ({
+  typeOfModal,
+  closeModal,
+  actionFu,
+  typeOfColumn,
+  taskFromCard,
+}) => {
+  // console.log('taskFromCard', taskFromCard);
   return (
     <ModalBody>
       <Cross func={closeModal} height={'14px'} bcgCr={'#111111'} />
       {(typeOfModal === 'add' || typeOfModal === 'edit') && (
-        <TaskForm closeModal={closeModal} typeOfModal={typeOfModal} />
+        <TaskForm
+          closeModal={closeModal}
+          typeOfModal={typeOfModal}
+          typeOfColumn={typeOfColumn}
+          taskFromCard={taskFromCard}
+        />
       )}
       {typeOfModal === 'logout' && (
         <LogoutForm closeModal={closeModal} actionFu={actionFu} />
