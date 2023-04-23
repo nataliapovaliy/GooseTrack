@@ -5,15 +5,29 @@ import icon from '../../images/icons.svg';
 
 export const UserNav = () => {
   const dispatch = useDispatch();
-  
-    const closeMobileMenu = () => dispatch(closeSideBar());
-    return (
+
+  const closeMobileMenu = () => dispatch(closeSideBar());
+  return (
     <>
-        <H3>User Panel</H3>
-        <ul>
-          <Item onClick = { closeMobileMenu }><Link to="/account"><Svg><use href={icon + '#icon-user-account'}></use></Svg>My account</Link></Item>
-          <Item onClick = { closeMobileMenu }><Link to="/calendar"><Svg><use href={icon + '#icon-calendar'}></use></Svg>Calendar</Link></Item>
-        </ul>
+      <H3>User Panel</H3>
+      <ul>
+        <Item onClick={closeMobileMenu}>
+          <Link to="/account">
+            <Svg>
+              <use href={icon + '#icon-user-account'}></use>
+            </Svg>
+            My account
+          </Link>
+        </Item>
+        <Item onClick={closeMobileMenu}>
+          <Link to="/calendar/month/:currentDate">
+            <Svg>
+              <use href={icon + '#icon-calendar'}></use>
+            </Svg>
+            Calendar
+          </Link>
+        </Item>
+      </ul>
     </>
   );
 };
