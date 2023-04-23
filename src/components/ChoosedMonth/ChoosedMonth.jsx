@@ -1,9 +1,13 @@
+
 import { useOutletContext } from 'react-router-dom';
+
 import { CalendarTable } from './CalendarTable/CalendarTable';
 import { MonthCalendarHead } from './MonthCalendarHead/MonthCalendarHead';
 
+
 export const ChoosedMonth = () => {
   const { startDay, today, totalDays } = useOutletContext();
+
   return (
     <>
       <MonthCalendarHead />
@@ -11,6 +15,7 @@ export const ChoosedMonth = () => {
     </>
   );
 };
+
 //------------prev version
 
 // import { CalendarTable } from './CalendarTable/CalendarTable';
@@ -92,3 +97,4 @@ export const ChoosedMonth = () => {
 //     </>
 //   );
 // };
+

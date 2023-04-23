@@ -20,6 +20,8 @@ import {
 
 const ChoosedDay = () => {
   const [tasksFilter, setTasksFilter] = useState([]);
+  const [typeOfColumn, setTypeOfColumn] = useState(null);
+  const [taskFromCard, setTaskFromCard] = useState(null);
 
   const tasksMonth = useSelector(selectArrTasks);
   const modalAddState = useSelector(selectAddTaskOpen);
@@ -38,6 +40,18 @@ const ChoosedDay = () => {
   const deleteTask = () => {
     closeDeleteModal();
   };
+
+  // functions for add task =============================>
+
+  const getTypeOfColumn = data => {
+    setTypeOfColumn(prevState => (prevState = data));
+  };
+
+  const getTask = task => {
+    setTaskFromCard(task);
+  };
+
+  // functions for add task =============================>
 
   useEffect(() => {
     const currentDayFilter = tasksMonth.filter(({ createAt }) => {
@@ -60,26 +74,44 @@ const ChoosedDay = () => {
   }, [tasksMonth]);
 
   const chooseDay = ({ day, month, year }) => {
+
     const filteredTasks = tasksMonth.filter(({ createAt }) => {
       const start = createAt.split('T')[0].replace(/-/g, '/');
       const end = createAt.split('T')[0].replace(/-/g, '/');
+
       const chosenDate = `${year}/${month}/${day}`;
 
       // console.log('Click on week day:', chosenDate);
 
       return start <= chosenDate && end >= chosenDate;
     });
+
     // console.log('Task of the choosed day>>>',filteredTasks);
+
     setTasksFilter(filteredTasks);
   };
 
   return (
     <TasksColumnsListWrapper>
       <DayCalendarHead clickChooseDay={chooseDay} />
-      <TasksColumnsList tasks={tasksFilter} />
-      {modalAddState && <Modal closeModal={closeModal} typeOfModal={'add'} />}
+      <TasksColumnsList
+        tasks={tasksFilter}
+        getTypeOfColumn={getTypeOfColumn}
+        getTask={getTask}
+      />
+      {modalAddState && (
+        <Modal
+          closeModal={closeModal}
+          typeOfModal={'add'}
+          typeOfColumn={typeOfColumn}
+        />
+      )}
       {modalEditState && (
-        <Modal closeModal={closeEditModal} typeOfModal={'edit'} />
+        <Modal
+          closeModal={closeEditModal}
+          typeOfModal={'edit'}
+          taskFromCard={taskFromCard}
+        />
       )}
       {modalConfirmationState && (
         <Modal

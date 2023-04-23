@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { TaskToolbarStyled, TaskToolbarBtn, Svg } from './TaskToolbar.styled';
 
 import iconTrash from '../../../images/icons.svg';
@@ -12,9 +12,9 @@ import {
 // import { TaskModal } from '../TaskModal/TaskModal';
 // import { TaskModalContext } from '../../context/TaskModalContext';
 
-export const TaskToolbar = ({ task }) => {
-  const [setIsModalOpen] = useState(false);
-  const toggleModal = () => setIsModalOpen(prev => !prev);
+export const TaskToolbar = ({ task, getTask }) => {
+  // const [IsModalOpen, setIsModalOpen] = useState(false);
+  // const toggleModal = () => setIsModalOpen(prev => !prev);
 
   // const dispatch = useDispatch();
   // console.log('isModalOpen :>> ', isModalOpen);
@@ -30,6 +30,8 @@ export const TaskToolbar = ({ task }) => {
 
   const openModal = () => {
     dispatch(openModalUpDateTask());
+
+    getTask(task);
   };
 
   const confirmationOpen = () => {
@@ -39,7 +41,7 @@ export const TaskToolbar = ({ task }) => {
   return (
     <>
       <TaskToolbarStyled>
-        <TaskToolbarBtn onClick={toggleModal}>
+        <TaskToolbarBtn>
           <Svg>
             <use xlinkHref={iconTrash + '#icon-round-arrow'}></use>
           </Svg>
