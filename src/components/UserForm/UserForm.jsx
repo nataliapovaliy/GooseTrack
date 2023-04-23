@@ -42,13 +42,12 @@ const UserForm = () => {
   const [birthday, setBirthday] = useState(new Date());
   const [avatar, setAvatarURL] = useState('');
   const [username, setUsername] = useState('');
-  console.log('avatar', avatar);
 
   // const dispatch = useDispatch();
   const dataUser = useSelector(selectUser);
-  const dataId = nanoid();
+  console.log('11111111', dataUser.user?.email);
+  // const dataId = nanoid();
 
-  console.log('dataUser', dataUser);
   // useEffect(() => {
   //   const userName = dataUser && dataUser.user ? dataUser.user.name : '';
   //   setUsername(userName);
@@ -56,7 +55,6 @@ const UserForm = () => {
   // }, [dataUser]);
 
   // const userName = dataUser && dataUser.user ? dataUser.user.name : '';
-  console.log('userName', username);
   // const handleSubmit = (values, { resetForm }) => {
   //   const newValues = { ...values, avatarURL, birthday };
   //   console.log(newValues);
@@ -74,13 +72,13 @@ const UserForm = () => {
       <Wrapper>
         <Formik
           initialValues={{
+            // username: dataUser.user?.name ?? '',
             username: dataUser.user?.name ?? '',
-            // username: dataUser.user ? dataUser.user.name : 'hello',
-            email: `${dataUser.user?.email}` ?? '',
+            email: dataUser.user?.email ?? '',
             phone: dataUser.user?.phone ?? '',
-            // phone: dataUser.user ? dataUser.user.phone : 'phone',
+            phone: dataUser.user ? dataUser.user.phone : '',
             skype: dataUser.user?.skype ?? '',
-            birthday: `${dataUser.user?.birthday}` ?? '',
+            birthday: dataUser.user?.birthday ?? '',
           }}
           onSubmit={async values => {
             const avatar = new FormData();
@@ -131,7 +129,6 @@ const UserForm = () => {
               <BlockInput>
                 <LabelBtn htmlFor="username">
                   <p>User Name</p>
-                  {console.log(111, dataUser.user)}
                   <Input
                     type="text"
                     value={values.username}
@@ -150,7 +147,7 @@ const UserForm = () => {
                     name="phone"
                     id="phone"
                     value={values.phone}
-                    placeholder={dataUser.user?.phone}
+                    placeholder={dataUser.phone}
                   ></Input>
                   <ErrorMessage name="phone" />
                 </LabelBtn>
@@ -175,7 +172,7 @@ const UserForm = () => {
                   <Input
                     type="text"
                     name="skype"
-                    id={dataId}
+                    // id={dataId}
                     value={values.skype}
                     placeholder={dataUser.user?.skype}
                   ></Input>
