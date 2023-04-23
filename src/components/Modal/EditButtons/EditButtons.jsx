@@ -1,11 +1,11 @@
 import { Button } from '../Button/Button';
 import { StyledButtonWraper } from './EditButtons.styled';
 
-export const EditButtons = ({ closeModal }) => {
+export const EditButtons = ({ actionFu }) => {
   return (
     <StyledButtonWraper>
       <Button
-        closeModal={closeModal}
+        actionFu={actionFu}
         cross={false}
         bcg={'#3E85F3'}
         color={'#FFFFFF'}

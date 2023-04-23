@@ -32,6 +32,7 @@ const ChoosedDay = () => {
 
   const closeModal = () => {
     dispatch(closeModalAddTask());
+    setTaskFromCard(null);
   };
 
   const closeEditModal = () => dispatch(closeModalUpDateTask());
@@ -45,6 +46,7 @@ const ChoosedDay = () => {
 
   const getTypeOfColumn = data => {
     setTypeOfColumn(prevState => (prevState = data));
+    console.log(typeOfColumn);
   };
 
   const getTask = task => {
@@ -71,12 +73,10 @@ const ChoosedDay = () => {
 
     console.log('Page loaded', currentDayFilter);
 
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasksMonth]);
 
   const chooseDay = ({ day, month, year }) => {
-
     const filteredTasks = tasksMonth.filter(({ createAt }) => {
       const start = createAt.split('T')[0].replace(/-/g, '/');
       const end = createAt.split('T')[0].replace(/-/g, '/');

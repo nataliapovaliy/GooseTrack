@@ -7,12 +7,7 @@ import { Form } from '../Form/Form';
 import { addTask } from '../../../redux/tasks/tasks-operations';
 import { closeModalAddTask } from 'redux/modal/globalSlice';
 
-export const TaskForm = ({
-  typeOfModal,
-  closeModal,
-  typeOfColumn,
-  taskFromCard,
-}) => {
+export const TaskForm = ({ typeOfModal, closeModal, typeOfColumn }) => {
   const [enterText, setEnterText] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
@@ -47,7 +42,7 @@ export const TaskForm = ({
     // eslint-disable-next-line
   }, [prioritys]);
 
-  const objectFormation = () => {
+  const objectFormation = async () => {
     const objectToDispatch = {
       title: enterText,
       start: start.slice(0, 5),
@@ -57,12 +52,15 @@ export const TaskForm = ({
       ...typeOfColumn,
     };
 
-    const newTask = async () => {
-      const answer = await dispatch(addTask(objectToDispatch));
-      console.log('answer', answer.payload.data.result);
-      return answer.payload.data.result;
-    };
-    newTask();
+    const answer = await dispatch(addTask(objectToDispatch));
+    console.log('answer', answer.payload.data.result);
+
+    // const newTask = async () => {
+    //   const answer = await dispatch(addTask(objectToDispatch));
+    //   console.log('answer', answer.payload.data.result);
+    //   return answer.payload.data.result;
+    // };
+    // newTask();
 
     dispatch(closeModalAddTask());
   };
@@ -103,9 +101,9 @@ export const TaskForm = ({
     <>
       <Form
         inputHendler={inputHendler}
-        enterText={enterText}
-        start={start}
-        end={end}
+        enterTextTitle={enterText}
+        startTitle={start}
+        endTitle={end}
       />
       <Priority obj={obj} prioritySelector={prioritySelector} />
       <Buttons
