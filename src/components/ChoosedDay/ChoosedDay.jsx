@@ -68,9 +68,7 @@ const ChoosedDay = () => {
     });
 
     setTasksFilter(currentDayFilter);
-
-    console.log('Page loaded', currentDayFilter);
-
+    // console.log('Page loaded', currentDayFilter);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasksMonth]);
