@@ -6,7 +6,7 @@ import {
   StyledLabel,
 } from './Form.styled';
 
-export const Form = ({ inputHendler, enterText, hours, minutes }) => {
+export const Form = ({ inputHendler, enterText, start, end }) => {
   return (
     <form action="">
       <InputWraper>
@@ -23,19 +23,19 @@ export const Form = ({ inputHendler, enterText, hours, minutes }) => {
         <InputWraper>
           <StyledLabel htmlFor="">Start</StyledLabel>
           <StyledInput
-            type="number"
-            name="hours"
+            type="text"
+            name="start"
             onChange={inputHendler}
-            value={hours}
+            value={start}
           />
         </InputWraper>
         <InputWraper>
           <StyledLabel htmlFor="">End</StyledLabel>
           <StyledInput
-            type="number"
-            name="minutes"
+            type="text"
+            name="end"
             onChange={inputHendler}
-            value={minutes}
+            value={end}
           />
         </InputWraper>
       </StyledInputContainer>
