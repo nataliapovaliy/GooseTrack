@@ -6,17 +6,15 @@ import {
   StyledPar,
 } from './Priority.styled';
 
-export const Priority = ({ func, priority }) => {
+export const Priority = ({ prioritySelector, func, obj }) => {
   return (
     <PriorityWraper onClick={func}>
-      {priority.map(item => {
+      {obj.map(item => {
         const { status, key, color } = item;
         return (
-          <PriorityItem id={key}>
+          <PriorityItem key={key} onClick={prioritySelector}>
             <PriorityCircle color={color}>
-              {status && (
-                <ActiveCircle color={color} status={status}></ActiveCircle>
-              )}
+              {status && <ActiveCircle color={color}></ActiveCircle>}
             </PriorityCircle>
             <StyledPar>{key}</StyledPar>
           </PriorityItem>
