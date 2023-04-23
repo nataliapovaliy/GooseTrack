@@ -3,6 +3,7 @@ import { TasksColumnsList } from './TasksColumnsList/TasksColumnsList';
 import { TasksColumnsListWrapper } from './ChoosedDay.styled';
 import { DayCalendarHead } from './DayCalendarHead/DayCalendarHead';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { selectArrTasks } from 'redux/tasks/tasks-selectors';
 
@@ -12,16 +13,19 @@ import {
   selectModalConfirmation,
 } from 'redux/modal/globalSelectors';
 import { Modal } from 'components/Modal/Modal';
+
 import {
   closeModalAddTask,
   closeModalUpDateTask,
   closeModalConfirmation,
 } from 'redux/modal/globalSlice';
+import { deleteTask } from 'redux/tasks/tasks-operations';
 
 const ChoosedDay = () => {
   const [tasksFilter, setTasksFilter] = useState([]);
   const [typeOfColumn, setTypeOfColumn] = useState(null);
   const [taskFromCard, setTaskFromCard] = useState(null);
+  // const [taskId, setTaskId] = useState(null)
 
   const tasksMonth = useSelector(selectArrTasks);
   const modalAddState = useSelector(selectAddTaskOpen);
@@ -38,8 +42,13 @@ const ChoosedDay = () => {
   const closeEditModal = () => dispatch(closeModalUpDateTask());
   const closeDeleteModal = () => dispatch(closeModalConfirmation());
 
-  const deleteTask = () => {
+  const deleteTaskFu = () => {
     closeDeleteModal();
+    // console.log(taskFromCard);
+    dispatch(deleteTask(taskFromCard._id))
+      .then(() => toast.success('taskDeleted'))
+      .catch(() => toast.error('taskDeleteError'));
+    setTaskFromCard(null);
   };
 
   // functions for add task =============================>
@@ -118,7 +127,7 @@ const ChoosedDay = () => {
       {modalConfirmationState && (
         <Modal
           closeModal={closeDeleteModal}
-          actionFu={deleteTask}
+          actionFu={deleteTaskFu}
           typeOfModal={'deleteTask'}
         />
       )}
