@@ -131,6 +131,29 @@ export const ImgAvatar = styled.img`
   }
   @media screen and (min-width: 1440px) {
     margin-top: 60px;
+    margin-bottom: 20px;
+  }
+`;
+
+export const SvgAvatar = styled.svg`
+  text-align: center;
+
+  width: 72px;
+  height: 72px;
+
+  border: 2px solid #3e85f3;
+  border-radius: 50%;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+    margin-bottom: 14px;
+
+    width: 124px;
+    height: 124px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-top: 60px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -140,7 +163,9 @@ export const ImgBtn = styled.img`
 `;
 
 export const Container = styled.div`
-  h1 {
+  h2 {
+    margin-bottom: 4px;
+
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -148,6 +173,10 @@ export const Container = styled.div`
     line-height: 18px;
 
     color: #343434;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 8px;
+    }
   }
 `;
 

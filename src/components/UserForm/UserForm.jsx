@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Formik, ErrorMessage } from 'formik';
 import { object, string, date } from 'yup';
@@ -7,7 +7,9 @@ import { object, string, date } from 'yup';
 import { selectUser } from 'redux/auth/auth-selectors';
 
 import plus from '../../images/plus.png';
-import phuser from '../../images/phuser.png';
+import icon from '../../images/icons.svg';
+
+//TODO изменить стили для темного экрана
 
 import {
   Container,
@@ -23,21 +25,21 @@ import {
   LabelBtn,
   LabelImg,
   User,
+  SvgAvatar,
 } from './UserForm.styled';
+
+//TODO Валидация: номер телефона
 
 const validationFormikSchema = object({
   username: string().max(16).required(),
   birthday: date() /*.default(() => new Date()),*/,
   email: string().email().required(),
-
   skype: string().max(16),
 });
 
 const UserForm = () => {
   const [birthday, setBirthday] = useState(new Date());
   const [avatarURL, setAvatarURL] = useState('');
-
-  console.log('avatar', avatarURL);
 
   const { user } = useSelector(selectUser);
 
@@ -57,7 +59,9 @@ const UserForm = () => {
             const newAvatar = new FormData();
             newAvatar.append('avatar', avatarURL);
 
-            const newValues = { ...values, avatarURL };
+            //TODO Некорректно отображается дата. Подготовить корректный запрос для бэкенда.
+
+            const newValues = { ...values, birthday };
             console.log('values', newValues);
             await new Promise(r => setTimeout(r, 500));
             alert(JSON.stringify(newValues, null, 2));
@@ -71,7 +75,10 @@ const UserForm = () => {
               ) : user ? (
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
-                <ImgAvatar src={phuser} alt="avatar" />
+                //TODO размер svg изображения
+                <SvgAvatar>
+                  <use href={icon + '#icon-ph-user'}></use>
+                </SvgAvatar>
               )}
 
               <LabelImg htmlFor="avatar">
@@ -86,7 +93,7 @@ const UserForm = () => {
                 ></InputFile>
               </LabelImg>
 
-              <h1>{user?.name}</h1>
+              <h2>{user?.name ?? ' '} </h2>
               <User>User</User>
 
               <BlockInput>
@@ -99,6 +106,7 @@ const UserForm = () => {
                     id="username"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    placeholder={'Name'}
                   ></Input>
                   <ErrorMessage name="username" />
                 </LabelBtn>
@@ -110,7 +118,7 @@ const UserForm = () => {
                     name="phone"
                     id="phone"
                     value={values.phone}
-                    // placeholder={user.phone}
+                    placeholder={'+380'}
                   ></Input>
                   <ErrorMessage name="phone" />
                 </LabelBtn>
@@ -137,7 +145,7 @@ const UserForm = () => {
                     name="skype"
                     // id={dataId}
                     value={values.skype}
-                    // placeholder={user.skype}
+                    placeholder={'Skype'}
                   ></Input>
                   <ErrorMessage name="skype" />
                 </LabelBtn>
@@ -148,8 +156,8 @@ const UserForm = () => {
                     type="email"
                     name="email"
                     id="email"
-                    // onChange={handleChange}
-                    // placeholder={user.email}
+                    onChange={handleChange}
+                    placeholder={'Email'}
                     value={values.email}
                     onBlur={handleBlur}
                   ></Input>
