@@ -36,16 +36,16 @@ export const DateContainer = styled.button`
   text-align: center;
   font-weight: 700;
   font-size: 16px;
-  width: 27px;
+  width: 35px;
   height: 26px;
   border-radius: 8px;
   background-color: transparent;
-  color: var(--calendar-date-color);
-  padding-left: 0px 0px 0px 0px;
+  color: var(--title-text-main-color);
+  padding: 0px 0px 0px 0px;
   border: none;
   cursor: pointer;
   &:hover {
     background-color: var(--accent);
-    color: var(--btn-text-color);
+    color: var(--active-selection);
   }
 `;

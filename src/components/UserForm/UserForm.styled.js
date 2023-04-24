@@ -12,11 +12,20 @@ export const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  width: 1087px;
-  height: 752px;
+  width: 335px;
+  height: 653px;
 
   background: #ffffff;
   border-radius: 16px;
+
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    height: 854px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1087px;
+    height: 752px;
+  }
 `;
 
 export const Forms = styled(Form)`
@@ -26,9 +35,29 @@ export const Forms = styled(Form)`
   align-items: center;
 `;
 
+export const BlockInput = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  p {
+    margin-bottom: 8px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    min-height: 458px;
+    justify-content: space-between;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 758px;
+    min-height: 264px;
+  }
+`;
+
 export const Input = styled(Field)`
-  width: 354px;
-  height: 46px;
+  width: 299px;
+  height: 42px;
 
   padding-left: 18px;
 
@@ -42,11 +71,17 @@ export const Input = styled(Field)`
   line-height: calc(18 / 16);
 
   color: #343434;
+
+  @media screen and (min-width: 768px) {
+    width: 354px;
+  }
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const DatePick = styled(DatePicker)`
-  width: 354px;
-  height: 46px;
+  width: 299px;
+  height: 42px;
 
   padding-left: 18px;
 
@@ -60,6 +95,12 @@ export const DatePick = styled(DatePicker)`
   line-height: calc(18 / 14);
 
   color: #343434;
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    height: 46px;
+  }
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const InputFile = styled.input`
@@ -72,13 +113,48 @@ export const InputFile = styled.input`
   margin: 0;
 `;
 
-export const Avatar = styled.img`
-  margin-top: 60px;
-  width: 124px;
-  height: 124px;
+export const ImgAvatar = styled.img`
+  text-align: center;
 
-  background-color: coral;
+  width: 72px;
+  height: 72px;
+
+  border: 2px solid #3e85f3;
   border-radius: 50%;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+    margin-bottom: 14px;
+
+    width: 124px;
+    height: 124px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+`;
+
+export const SvgAvatar = styled.svg`
+  text-align: center;
+
+  width: 72px;
+  height: 72px;
+
+  border: 2px solid #3e85f3;
+  border-radius: 50%;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+    margin-bottom: 14px;
+
+    width: 124px;
+    height: 124px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const ImgBtn = styled.img`
@@ -87,8 +163,8 @@ export const ImgBtn = styled.img`
 `;
 
 export const Container = styled.div`
-  h1 {
-    margin-top: 20px;
+  h2 {
+    margin-bottom: 4px;
 
     font-family: 'Inter';
     font-style: normal;
@@ -97,41 +173,46 @@ export const Container = styled.div`
     line-height: 18px;
 
     color: #343434;
-  }
 
-  p {
-    margin-bottom: 40px;
-    color: #343434;
+    @media screen and (min-width: 768px) {
+      margin-bottom: 8px;
+    }
   }
+`;
+
+export const User = styled.p`
+  margin-bottom: 40px;
+  color: #343434;
 `;
 
 export const LabelImg = styled.label`
   position: absolute;
-  left: 400px;
-  top: 167px;
+  left: 188px;
+  top: 55px;
+
+  @media screen and (min-width: 768px) {
+    left: 200px;
+    top: 143px;
+  }
+  @media screen and (min-width: 1440px) {
+    left: 400px;
+    top: 167px;
+  }
 `;
 
 export const LabelBtn = styled.label`
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
-`;
+  margin-bottom: 18px;
 
-export const BlockInput = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  width: 758px;
-  height: 264px;
-
-  p {
-    margin-bottom: 8px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 
 export const Btn = styled.button`
-  margin-top: 88px;
   margin-left: auto;
   margin-right: auto;
 
@@ -153,4 +234,12 @@ export const Btn = styled.button`
 
   background: #3e85f3;
   color: #ffffff;
+
+  @media screen and (min-width: 768px) {
+    width: 262px;
+    height: 48px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-top: 88px;
+  }
 `;

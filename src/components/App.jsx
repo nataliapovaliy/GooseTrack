@@ -59,7 +59,7 @@ const App = () => {
           <Route path="day/:currentDay" element={<ChoosedDay />} />
         </Route>
       </Route>
-      <Route path="*" element={<Navigate to="/calendar" />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };
