@@ -2,7 +2,14 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Formik, ErrorMessage } from 'formik';
-import { object, string, number, date } from 'yup';
+import { object, string, date } from 'yup';
+
+import { selectUser } from 'redux/auth/auth-selectors';
+
+import plus from '../../images/plus.png';
+import icon from '../../images/icons.svg';
+
+//TODO изменить стили для темного экрана
 
 import {
   Container,
@@ -14,19 +21,19 @@ import {
   Forms,
   InputFile,
   ImgBtn,
-  Avatar,
+  ImgAvatar,
   LabelBtn,
   LabelImg,
+  User,
+  SvgAvatar,
 } from './UserForm.styled';
 
-import plus from '../../images/plus.png';
-import { selectUser } from 'redux/auth/auth-selectors';
+//TODO Валидация: номер телефона
 
 const validationFormikSchema = object({
   username: string().max(16).required(),
-  birthday: date().default(() => new Date()),
+  birthday: date() /*.default(() => new Date()),*/,
   email: string().email().required(),
-  phone: number(),
   skype: string().max(16),
 });
 
@@ -34,102 +41,132 @@ const UserForm = () => {
   const [birthday, setBirthday] = useState(new Date());
   const [avatarURL, setAvatarURL] = useState('');
 
-  const selector = useSelector(selectUser);
-
-  const initialValues = {
-    username: '',
-    email: '',
-    phone: '',
-    skype: '',
-  };
-
-  const handleSubmit = (values, { resetForm }) => {
-    const newValues = { ...values, avatarURL, birthday };
-    console.log(newValues);
-    resetForm();
-  };
-
-  const handleChange = eve => {
-    setAvatarURL(eve.target.files[0]);
-  };
+  const { user } = useSelector(selectUser);
 
   return (
     <Container>
       <Wrapper>
         <Formik
-          initialValues={initialValues}
-          onSubmit={handleSubmit}
+          enableReinitialize={true}
+          initialValues={{
+            username: user ? user.name : '',
+            email: user ? user.email : '',
+            phone: user ? user.phone : '',
+            skype: user ? user.skype : '',
+            birthday: user ? user.birthday : '',
+          }}
+          onSubmit={async values => {
+            const newAvatar = new FormData();
+            newAvatar.append('avatar', avatarURL);
+
+            //TODO Некорректно отображается дата. Подготовить корректный запрос для бэкенда.
+
+            const newValues = { ...values, birthday };
+            console.log('values', newValues);
+            await new Promise(r => setTimeout(r, 500));
+            alert(JSON.stringify(newValues, null, 2));
+          }}
           validationSchema={validationFormikSchema}
         >
-          <Forms autoComplete="off" encType="multipart/from-data">
-            <Avatar src={selector.user?.avatarURL} alt="" />
-            <LabelImg htmlFor="file">
-              <ImgBtn src={plus} alt="user" />
-              <InputFile
-                id="file"
-                type="file"
-                onChange={handleChange}
-                accept="image/*,.png,.jpg,.gif,.web"
-                name="file"
-              ></InputFile>
-            </LabelImg>
+          {({ values, handleSubmit, handleChange, handleBlur }) => (
+            <Forms autoComplete="off" onSubmit={handleSubmit}>
+              {avatarURL ? (
+                <ImgAvatar src={URL.createObjectURL(avatarURL)} alt="avatar" />
+              ) : user ? (
+                <ImgAvatar src={user.avatarURL} alt="avatar" />
+              ) : (
+                //TODO размер svg изображения
+                <SvgAvatar>
+                  <use href={icon + '#icon-ph-user'}></use>
+                </SvgAvatar>
+              )}
 
-            <h1>{selector.user?.name}</h1>
-            <p>User</p>
+              <LabelImg htmlFor="avatar">
+                <ImgBtn src={plus} alt="user" />
 
-            <BlockInput>
-              <LabelBtn htmlFor="username">
-                <p>User Name</p>
-                <Input
-                  type="text"
-                  placeholder={selector.user?.name}
-                  name="username"
-                ></Input>
-                <ErrorMessage name="username" />
-              </LabelBtn>
+                <InputFile
+                  id="avatar"
+                  type="file"
+                  onChange={event => setAvatarURL(event.target.files[0])}
+                  accept="image/*,.png,.jpg,.gif,.web"
+                  name="avatar"
+                ></InputFile>
+              </LabelImg>
 
-              <LabelBtn htmlFor="phone">
-                <p>Phone</p>
-                <Input
-                  type="tel"
-                  name="phone"
-                  placeholder={selector.user?.phone}
-                ></Input>
-                <ErrorMessage name="phone" />
-              </LabelBtn>
+              <h2>{user?.name ?? ' '} </h2>
+              <User>User</User>
 
-              <LabelBtn htmlFor="birthday">
-                <p>Birthday</p>
-                <DatePick
-                  selected={birthday}
-                  onChange={date => setBirthday(date)}
-                  dateFormat="dd/MM/yyyy"
-                />
-                <ErrorMessage name="birthday" />
-              </LabelBtn>
+              <BlockInput>
+                <LabelBtn htmlFor="username">
+                  <p>User Name</p>
+                  <Input
+                    type="text"
+                    value={values.username}
+                    name="username"
+                    id="username"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder={'Name'}
+                  ></Input>
+                  <ErrorMessage name="username" />
+                </LabelBtn>
 
-              <LabelBtn htmlFor="skype">
-                <p>Skype</p>
-                <Input
-                  type="text"
-                  name="skype"
-                  placeholder={selector.user?.skype}
-                ></Input>
-                <ErrorMessage name="skype" />
-              </LabelBtn>
+                <LabelBtn htmlFor="phone">
+                  <p>Phone</p>
+                  <Input
+                    type="tel"
+                    name="phone"
+                    id="phone"
+                    value={values.phone}
+                    placeholder={'+380'}
+                  ></Input>
+                  <ErrorMessage name="phone" />
+                </LabelBtn>
 
-              <LabelBtn htmlFor="email">
-                <p>Email</p>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder={selector.user?.email}
-                ></Input>
-                <ErrorMessage name="email" />
-              </LabelBtn>
-            </BlockInput>
-            <Btn type="submit">Save changes</Btn>
-          </Forms>
+                <LabelBtn htmlFor="birthday">
+                  <p>Birthday</p>
+                  <DatePick
+                    name="birthday"
+                    id="date"
+                    type="date"
+                    input={true}
+                    maxDate={new Date()}
+                    selected={birthday}
+                    onChange={data => setBirthday(data)}
+                    dateFormat="dd/MM/yyyy"
+                  />
+                  <ErrorMessage name="birthday" />
+                </LabelBtn>
+
+                <LabelBtn htmlFor="skype">
+                  <p>Skype</p>
+                  <Input
+                    type="text"
+                    name="skype"
+                    // id={dataId}
+                    value={values.skype}
+                    placeholder={'Skype'}
+                  ></Input>
+                  <ErrorMessage name="skype" />
+                </LabelBtn>
+
+                <LabelBtn htmlFor="email">
+                  <p>Email</p>
+                  <Input
+                    type="email"
+                    name="email"
+                    id="email"
+                    onChange={handleChange}
+                    placeholder={'Email'}
+                    value={values.email}
+                    onBlur={handleBlur}
+                  ></Input>
+                  <ErrorMessage name="email" />
+                </LabelBtn>
+              </BlockInput>
+              <Btn type="submit">Save changes</Btn>
+            </Forms>
+          )}
         </Formik>
       </Wrapper>
     </Container>
