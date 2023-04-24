@@ -32,12 +32,12 @@ export const PriorityCircle = styled.div`
 `;
 export const ActiveCircle = styled.div`
   position: absolute;
-  top: -3px;
+  top: -2.5px;
   left: -3px;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  opacity: 0.3;
+  opacity: 0.4;
   border: 2px solid
     ${props =>
       props.color === 'blue'

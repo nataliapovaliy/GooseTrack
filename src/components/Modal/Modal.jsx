@@ -12,10 +12,13 @@ export const Modal = ({
   typeOfColumn,
   taskFromCard,
 }) => {
-  // console.log('taskFromCard', taskFromCard);
   return (
     <ModalBody>
-      <Cross func={closeModal} height={'14px'} bcgCr={'#111111'} />
+      <Cross
+        func={closeModal}
+        height={'14px'}
+        bcgCr={'var(--title-text-main-color)'}
+      />
       {typeOfModal === 'add' && (
         <TaskForm
           closeModal={closeModal}

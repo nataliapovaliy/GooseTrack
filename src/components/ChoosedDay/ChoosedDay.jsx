@@ -21,8 +21,20 @@ import {
 } from 'redux/modal/globalSlice';
 import { deleteTask } from 'redux/tasks/tasks-operations';
 
+const dayFilter = (tasksMonth, date) => {
+  const filteredTasks = tasksMonth.filter(({ createAt }) => {
+    return createAt === date;
+  });
+
+  return filteredTasks;
+};
+
 const ChoosedDay = () => {
   const [tasksFilter, setTasksFilter] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [choosedDay, setChoosedDay] = useState(
+    new Date().toISOString().split('T')[0]
+  );
   const [typeOfColumn, setTypeOfColumn] = useState(null);
   const [taskFromCard, setTaskFromCard] = useState(null);
   // const [taskId, setTaskId] = useState(null)
@@ -31,7 +43,7 @@ const ChoosedDay = () => {
   const modalAddState = useSelector(selectAddTaskOpen);
   const modalEditState = useSelector(selectUpDateTaskModal);
   const modalConfirmationState = useSelector(selectModalConfirmation);
-// console.log('tasksMonth', tasksMonth);
+  // console.log('tasksMonth', tasksMonth);
   const dispatch = useDispatch();
 
   const closeModal = () => {
@@ -65,41 +77,18 @@ const ChoosedDay = () => {
   // functions for add task =============================>
 
   useEffect(() => {
-    const currentDayFilter = tasksMonth.filter(({ createAt }) => {
-      const currentDate = new Date();
-      const currentDay = currentDate
-        .toISOString()
-        .split('T')[0];
- 
-      const start = createAt;
-      const end = createAt;
-    
-      return start <= currentDay && end >= currentDay;
-    });
-
-    setTasksFilter(currentDayFilter);
-
-     console.log('Page loaded, filter tasks for TODAY', currentDayFilter);
-
+    setTasksFilter(dayFilter(tasksMonth, choosedDay));
+    console.log(
+      'Page loaded, filter tasks for TODAY',
+      dayFilter(tasksMonth, choosedDay)
+    );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasksMonth]);
 
   const chooseDay = ({ day, month, year }) => {
-    const filteredTasks = tasksMonth.filter(({ createAt }) => {
-       const start = createAt;
-       const end = createAt;
-      
-      const chosenDate = `${year}-${month}-${day}`;
-
-      // console.log('Click on week day:', chosenDate);
-
-      return start <= chosenDate && end >= chosenDate;
-    });
-
-    // console.log('Task of the choosed day>>>',filteredTasks);
-
-    setTasksFilter(filteredTasks);
+    setChoosedDay(`${year}-${month}-${day}`);
+    setTasksFilter(dayFilter(tasksMonth, `${year}-${month}-${day}`));
   };
 
   return (
@@ -109,6 +98,7 @@ const ChoosedDay = () => {
         tasks={tasksFilter}
         getTypeOfColumn={getTypeOfColumn}
         getTask={getTask}
+        date={choosedDay}
       />
       {modalAddState && (
         <Modal
