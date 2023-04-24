@@ -3,7 +3,7 @@ import { TasksColumn } from '../TasksColumn/TasksColumn';
 import { TasksColumnsListWrapper } from './TasksColumnsList.styled';
 // import { getTasks } from '../../redux/tasks/tasks-selectors';
 
-export const TasksColumnsList = ({ tasks, getTypeOfColumn, getTask }) => {
+export const TasksColumnsList = ({ tasks, getTypeOfColumn, getTask, date }) => {
   const filterTodo = tasks.filter(task => task.status === 'To do');
   const filterInProgress = tasks.filter(task => task.status === 'In progress');
   const filterDone = tasks.filter(task => task.status === 'Done');
@@ -15,18 +15,21 @@ export const TasksColumnsList = ({ tasks, getTypeOfColumn, getTask }) => {
         tasks={filterTodo}
         getTypeOfColumn={getTypeOfColumn}
         getTask={getTask}
+        date={date}
       />
       <TasksColumn
         title={'In progress'}
         tasks={filterInProgress}
         getTypeOfColumn={getTypeOfColumn}
         getTask={getTask}
+        date={date}
       />
       <TasksColumn
         title={'Done'}
         tasks={filterDone}
         getTypeOfColumn={getTypeOfColumn}
         getTask={getTask}
+        date={date}
       />
     </TasksColumnsListWrapper>
   );
