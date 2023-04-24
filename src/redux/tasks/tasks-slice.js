@@ -7,15 +7,18 @@ import {
 } from './tasks-operations';
 
 const initialState = {
-  arrTasks: [{
-    taskId: null,
-    title: '',
-    start: '',
-    end: '',
-    createAt: '',
-    owner: {},
-    priority: '',
-    status: ''}],
+  arrTasks: [
+    {
+      taskId: null,
+      title: '',
+      start: '',
+      end: '',
+      createAt: '',
+      owner: {},
+      priority: '',
+      status: '',
+    },
+  ],
   isLoading: false,
   error: null,
 };
@@ -46,7 +49,7 @@ const tasksSlice = createSlice({
       .addCase(addTask.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.arrTasks.push(payload);
+        state.arrTasks.push(payload.data.result);
       })
       .addCase(addTask.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -58,9 +61,12 @@ const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
+        console.log(payload);
         state.isLoading = false;
         state.error = null;
-        state.arrTasks = state.arrTasks.filter((task => task.taskId !== payload._id))
+        state.arrTasks = state.arrTasks.filter(
+          task => task.taskId !== payload._id
+        );
       })
       .addCase(deleteTask.rejected, (state, { payload }) => {
         state.isLoading = false;
