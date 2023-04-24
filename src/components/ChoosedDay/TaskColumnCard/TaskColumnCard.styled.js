@@ -25,7 +25,10 @@ export const TaskCardDescription = styled.div`
   line-height: 18px;
   margin: 0px 0px 30px 0px;
 `;
-export const TaskCardAvatar = styled.img`
+export const TaskCardAvatar = styled.div`
+ display: flex;
+  align-items: center;
+   justify-content: center;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -37,7 +40,7 @@ export const TaskCardPriority = styled.div`
   height: 20px;
 
   padding: 4px 12px 4px 12px;
-  font-family: 'Inter';
+  /* font-family: 'Inter'; */
   font-style: normal;
   font-weight: 600;
   font-size: 10px;
@@ -50,7 +53,6 @@ export const TaskCardPriority = styled.div`
 export const TaskAvatarPriorityWrapper = styled.div`
   display: flex;
   flex-direction: row;
-
   align-items: flex-end;
   /* justify-content: space-between; */
   /* width: 100%; */
@@ -58,6 +60,31 @@ export const TaskAvatarPriorityWrapper = styled.div`
 
   margin: 0px 0px 18px 0px;
   /* justify-content: space-around; */
+`;
+export const AvatarLetter = styled.span`
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  /* font-style: normal; */
+  font-weight: 700;
+  font-size: 24px;
+  /* padding: 0px 0px 0px 7px; */
+  color: var(--accent);
+  text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
+    0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+  @media screen and (min-width: 768px) {
+    font-weight: 700;
+    font-size: 25px;
+
+  }
+  @media screen and (min-width: 1440px) {
+  }
+`;
+
+export const AvatarImg = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 `;
 export const TaskDetailsWrapper = styled.div`
   display: flex;
