@@ -1,5 +1,6 @@
 import {
   CellWrapper,
+  ContainerCalendar,
   CurrentDay,
   DayWrapper,
   GridWrapper,
@@ -19,21 +20,13 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
   const isSelectedMonth = day => today.isSame(day, 'month');
 
   const tasks = useSelector(selectArrTasks);
-  console.log("++++", tasks);
+  // console.log("++++", tasks);
 
-
-  // let priorityColor = '';
-  // if (task.priority === 'Low') {
-  //   priorityColor = 'var(--task-low-color)';
-  // } else if (task.priority === 'Medium') {
-  //   priorityColor = 'var(--task-med-color)';
-  // } else if (task.priority === 'High') {
-  //   priorityColor = 'var(--task-high-color)';
-  // }
   let priorityColor = '';
+  let priorityTextColor = '';
 
   return (
-    // <ContainerCalendar>
+    <ContainerCalendar>
     <GridWrapper>
       {daysArray.map(dayItem => (
         <CellWrapper
@@ -57,13 +50,16 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
                   
                   if (task.priority === 'Low') {
                     priorityColor = 'var(--priority-low-color)' ;
+                    priorityTextColor = 'var(--task-low-color)';
                   } else if (task.priority === 'Medium') {
                     priorityColor = 'var(--priority-med-color)';
+                    priorityTextColor = 'var(--task-med-color)';
                   } else if (task.priority === 'High') {
                     priorityColor = 'var(--priority-high-color)' ;
+                    priorityTextColor = 'var(--task-high-color)';
                   }
                   return task.createAt === dayItem.format('YYYY-MM-DD') && (
-                    <TaskItem key={task._id} style={{ backgroundColor: priorityColor }}>{task.title}</TaskItem>
+                    <TaskItem key={task._id} style={{ backgroundColor: priorityColor, color: priorityTextColor }}>{task.title}</TaskItem>
                   )
                 }
               )}
@@ -72,6 +68,6 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
         </CellWrapper>
       ))}
     </GridWrapper>
-    //    </ContainerCalendar>
+   </ContainerCalendar>
   );
 };

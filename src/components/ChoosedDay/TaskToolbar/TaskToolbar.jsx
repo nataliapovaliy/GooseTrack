@@ -21,21 +21,22 @@ export const TaskToolbar = ({ task, getTask }) => {
 
   // const handleDeleteTask = () => {
   //   console.log('delete task');
-  //   // dispatch(deleteTask(task.id))
-  //   //     .then(() => toast.success('taskDeleted'))
-  //   //     .catch(() => toast.error('taskDeleteError'));
+  // dispatch(deleteTask(task.id))
+  //     .then(() => toast.success('taskDeleted'))
+  //     .catch(() => toast.error('taskDeleteError'));
   // };
 
   const dispatch = useDispatch();
 
-  const openModal = () => {
+  const openModal = id => {
     dispatch(openModalUpDateTask());
 
     getTask(task);
   };
 
-  const confirmationOpen = () => {
+  const confirmationOpen = id => {
     dispatch(openModalConfirmation());
+    getTask(task);
   };
 
   return (
@@ -46,7 +47,7 @@ export const TaskToolbar = ({ task, getTask }) => {
             <use xlinkHref={iconTrash + '#icon-round-arrow'}></use>
           </Svg>
         </TaskToolbarBtn>
-        <TaskToolbarBtn onClick={openModal}>
+        <TaskToolbarBtn onClick={() => openModal(task._id)}>
           <Svg>
             <use xlinkHref={iconTrash + '#icon-pencil'}></use>
           </Svg>

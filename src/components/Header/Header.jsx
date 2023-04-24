@@ -32,6 +32,7 @@ export const Header = () => {
   return (
     <Container>
       {isTabletOrMobile ? (
+// special mobile view
         <Wrapper>
           <Svg onClick={openMobileMenu}> <use href={icon + '#icon-menu'}></use> </Svg>
           <Overlay isVisible={sideBarState}> {sideBarState && <SideBar />} </Overlay>          
@@ -42,14 +43,16 @@ export const Header = () => {
         </Wrapper>
       ) : (
         <Wrapper>
-          {todoList.length > 0 && isActivePageCalendar ? (
-            <Wrapper>
+          {todoList.length > 0 && todoList[0].taskId !== null && isActivePageCalendar ? (
+// special header view if there more than 1 task
+            <>
               <Image src={goose} alt="Goose"></Image>
               <div>
                 <H2>Calendar</H2>
                 <Motivation> <Accent>Let go </Accent>of the past and focus on the present!</Motivation>
               </div>
-            </Wrapper>
+            </>            
+// regular header view
           ) : isActivePageCalendar ? (<H2>Calendar</H2>) : (<H2>User Profile</H2>)}
           <Wrapper>
             <ThemeToggler />

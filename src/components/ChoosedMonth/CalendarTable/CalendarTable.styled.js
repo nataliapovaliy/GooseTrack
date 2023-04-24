@@ -38,6 +38,10 @@ padding-left: 4px;
  border-radius: 8px;
  padding: 4px 6px;
 
+ font-weight: 700;
+font-size: 14px;
+line-height: 1,28;
+
 `
 
 export const DayWrapper = styled.div`
@@ -64,9 +68,5 @@ color: var(--btn-text-color);
 `
 
 export const ContainerCalendar = styled.div`
-height: 26px;
-width: 26px;
-display: flex;
-align-items: center;
-justify-content: center;
+/* height: 626px; */
 `

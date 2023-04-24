@@ -1,5 +1,5 @@
 import { AddButtons } from '../AddButtons/AddButtons';
-import { EditButtons } from '../EditButtons/EditButtons';
+// import { EditButtons } from '../EditButtons/EditButtons';
 import { ButtonsWrapper } from './Buttons.styled';
 
 export const Buttons = ({ actionFu, closeModal, typeOfButton }) => {
@@ -9,9 +9,9 @@ export const Buttons = ({ actionFu, closeModal, typeOfButton }) => {
         <AddButtons closeModal={closeModal} actionFu={actionFu} />
       )}
 
-      {typeOfButton === 'edit' && (
+      {/* {typeOfButton === 'edit' && (
         <EditButtons text={'Edit'} closeModal={closeModal} />
-      )}
+      )} */}
     </ButtonsWrapper>
   );
 };

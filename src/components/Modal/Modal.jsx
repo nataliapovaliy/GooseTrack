@@ -3,6 +3,7 @@ import { Cross } from './Cross/Cross';
 import { TaskForm } from './TaskForm/TaskForm';
 import { LogoutForm } from './LogoutForm/LogoutForm';
 import { DeleteForm } from './DeleteForm/DeleteForm';
+import { EditForm } from './EditForm/EditForm';
 
 export const Modal = ({
   typeOfModal,
@@ -15,8 +16,15 @@ export const Modal = ({
   return (
     <ModalBody>
       <Cross func={closeModal} height={'14px'} bcgCr={'#111111'} />
-      {(typeOfModal === 'add' || typeOfModal === 'edit') && (
+      {typeOfModal === 'add' && (
         <TaskForm
+          closeModal={closeModal}
+          typeOfModal={typeOfModal}
+          typeOfColumn={typeOfColumn}
+        />
+      )}
+      {typeOfModal === 'edit' && (
+        <EditForm
           closeModal={closeModal}
           typeOfModal={typeOfModal}
           typeOfColumn={typeOfColumn}
