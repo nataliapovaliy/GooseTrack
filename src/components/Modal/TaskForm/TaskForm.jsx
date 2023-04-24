@@ -16,7 +16,7 @@ export const TaskForm = ({ typeOfModal, closeModal, typeOfColumn }) => {
   const [obj, setObj] = useState([
     { status: true, key: 'Low', color: 'blue' },
     { status: false, key: 'Medium', color: 'orange' },
-    { status: false, key: 'Heigh', color: 'red' },
+    { status: false, key: 'High', color: 'red' },
   ]);
 
   const dispatch = useDispatch();

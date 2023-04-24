@@ -11,6 +11,9 @@ export const Priority = ({ prioritySelector, func, obj }) => {
     <PriorityWraper onClick={func}>
       {obj.map(item => {
         const { status, key, color } = item;
+        {
+          console.log('key', key);
+        }
         return (
           <PriorityItem key={key} onClick={prioritySelector}>
             <PriorityCircle color={color}>
