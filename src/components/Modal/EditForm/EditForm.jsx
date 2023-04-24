@@ -22,7 +22,7 @@ export const EditForm = ({
   const [obj, setObj] = useState([
     { status: true, key: 'Low', color: 'blue' },
     { status: false, key: 'Medium', color: 'orange' },
-    { status: false, key: 'Heigh', color: 'red' },
+    { status: false, key: 'High', color: 'red' },
   ]);
 
   const prioritySelector = event => {
@@ -34,16 +34,18 @@ export const EditForm = ({
 
   const updateTaskFu = () => {
     closeModal();
-
+    const id = taskFromCard._id;
     const taskForUpdate = {
       id: taskFromCard._id,
-      title: editText,
-      start: startText,
-      end: endText,
-      createAt: taskFromCard.createAt,
-      priority: prioritys,
+      task: {
+        title: editText,
+        start: startText,
+        end: endText,
+        createAt: taskFromCard.createAt,
+        priority: prioritys,
+      },
     };
-    dispatch(updateTask(taskForUpdate));
+    dispatch(updateTask(taskForUpdate, id));
     // console.log(answer);
   };
 
@@ -60,7 +62,7 @@ export const EditForm = ({
           (prevState = [
             { status: false, key: 'Low', color: 'blue' },
             { status: false, key: 'Medium', color: 'orange' },
-            { status: true, key: 'Heigh', color: 'red' },
+            { status: true, key: 'High', color: 'red' },
           ])
       );
     } else if (prioritys === 'Medium') {
@@ -69,7 +71,7 @@ export const EditForm = ({
           (prevState = [
             { status: false, key: 'Low', color: 'blue' },
             { status: true, key: 'Medium', color: 'orange' },
-            { status: false, key: 'Heigh', color: 'red' },
+            { status: false, key: 'High', color: 'red' },
           ])
       );
     } else if (prioritys === 'Low') {
@@ -78,7 +80,7 @@ export const EditForm = ({
           (prevState = [
             { status: true, key: 'Low', color: 'blue' },
             { status: false, key: 'Medium', color: 'orange' },
-            { status: false, key: 'Heigh', color: 'red' },
+            { status: false, key: 'High', color: 'red' },
           ])
       );
     }
