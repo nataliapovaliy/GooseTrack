@@ -22,7 +22,6 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
   const tasks = useSelector(selectArrTasks);
   // console.log("++++", tasks);
 
-  let xxx =[]
 
   return (
     <ContainerCalendar>
@@ -62,12 +61,3 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
   );
 };
 
-
-{
-  // const xxx = tasks.filter(task => 
-  //   task.priority === 'Low' && task.createAt === dayItem.format('YYYY-MM-DD')
-  //   )
-  // console.log("!!!!!", xxx);
-
-
-}
