@@ -5,6 +5,7 @@ import { Form } from './Form/Form';
 import { EditButtons } from '../EditButtons/EditButtons';
 import { Priority } from '../Priority/Priority';
 import { updateTask } from '../../../redux/tasks/tasks-operations';
+import { StyledDiv } from './EditForm.styled';
 
 export const EditForm = ({
   taskFromCard,
@@ -27,9 +28,9 @@ export const EditForm = ({
 
   const prioritySelector = event => {
     const priorityChecked = event.target.innerText;
+    console.log(obj);
 
     setPrioritys(prevState => (prevState = priorityChecked));
-    console.log(prioritys);
   };
 
   const updateTaskFu = () => {
@@ -56,7 +57,7 @@ export const EditForm = ({
   }, [taskFromCard]);
 
   useEffect(() => {
-    if (prioritys === 'Heigh') {
+    if (prioritys === 'High') {
       setObj(
         prevState =>
           (prevState = [
@@ -110,12 +111,9 @@ export const EditForm = ({
         endText={endText}
       />
       <Priority obj={obj} prioritySelector={prioritySelector} />
-
-      <EditButtons actionFu={updateTaskFu} />
-      {/* <Button text={'Edit'} closeModal={closeModal} /> */}
-      {/* {typeOfButton === 'edit' && (
-        <EditButtons text={'Edit'} closeModal={closeModal} />
-      )} */}
+      <StyledDiv>
+        <EditButtons actionFu={updateTaskFu} />
+      </StyledDiv>
     </>
   );
 };
