@@ -68,37 +68,36 @@ export const TaskToolbar = ({ task, getTask }) => {
           <Svg>
             <use xlinkHref={icon + '#icon-round-arrow'}></use>
           </Svg>
-          {isModalOpen && (
-            <TaskModalChangeStatusWrapper data-modal="true">
-              {statusStates
-                .filter(states => states !== status)
-                .map((state, index) => (
-                  <TaskModalChangeStatusBtn
-                    key={index}
-                    onClick={() => {
-                      console.log('task._id :>> ', task._id, state);
-
-                     
-                      const taskForUpdate = {
-                        id: task._id,
-                        task: {
-                          status: state,
-                        },
-                      };
-                      dispatch(updateTask(taskForUpdate, task._id));
-                      console.log('status :>> ', status);
-                       setStatus(state);
-                    }}
-                  >
-                    <StateStatus>{state}</StateStatus>
-                    <Svg>
-                      <use xlinkHref={icon + '#icon-round-arrow'}></use>
-                    </Svg>
-                  </TaskModalChangeStatusBtn>
-                ))}
-            </TaskModalChangeStatusWrapper>
-          )}
         </TaskToolbarBtn>
+        {isModalOpen && (
+          <TaskModalChangeStatusWrapper data-modal="true">
+            {statusStates
+              .filter(states => states !== status)
+              .map((state, index) => (
+                <TaskModalChangeStatusBtn
+                  key={index}
+                  onClick={() => {
+                    console.log('task._id :>> ', task._id, state);
+
+                    const taskForUpdate = {
+                      id: task._id,
+                      task: {
+                        status: state,
+                      },
+                    };
+                    dispatch(updateTask(taskForUpdate, task._id));
+                    console.log('status :>> ', status);
+                    setStatus(state);
+                  }}
+                >
+                  <StateStatus>{state}</StateStatus>
+                  <Svg>
+                    <use xlinkHref={icon + '#icon-round-arrow'}></use>
+                  </Svg>
+                </TaskModalChangeStatusBtn>
+              ))}
+          </TaskModalChangeStatusWrapper>
+        )}
 
         <TaskToolbarBtn onClick={() => openModal(task._id)}>
           <Svg>

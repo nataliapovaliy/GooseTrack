@@ -37,15 +37,16 @@ export const TaskModalChangeStatusWrapper = styled.div`
   justify-content: center;
   gap: 10px;
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 30%);
   background: var(--modal-background-color);
   border-radius: 5px;
   /* padding: 20px; */
   width: 147px;
   height: 90px;
-  z-index: 100;
+  z-index: 1000;
+  box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
 
 `;
 
