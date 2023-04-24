@@ -51,7 +51,7 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
           
           const currentDay = (index ) % 7;
           date.setDate(currentDate.getDate() + currentDay);
-          console.log(date.toString().slice(0, 3).toUpperCase())
+          // console.log(date.toString().slice(0, 3).toUpperCase())
           
           const dayOfW = date.toString().slice(0, 3).toUpperCase();
           const dayValue = String(date.getDate()).padStart(2, '0');
