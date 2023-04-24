@@ -46,6 +46,7 @@ export const EditForm = ({
         priority: prioritys,
       },
     };
+    console.log('taskForUpdate>>>>', taskForUpdate);
     dispatch(updateTask(taskForUpdate, id));
     // console.log(answer);
   };
