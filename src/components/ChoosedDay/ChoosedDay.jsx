@@ -31,7 +31,7 @@ const ChoosedDay = () => {
   const modalAddState = useSelector(selectAddTaskOpen);
   const modalEditState = useSelector(selectUpDateTaskModal);
   const modalConfirmationState = useSelector(selectModalConfirmation);
-
+// console.log('tasksMonth', tasksMonth);
   const dispatch = useDispatch();
 
   const closeModal = () => {
@@ -69,18 +69,17 @@ const ChoosedDay = () => {
       const currentDate = new Date();
       const currentDay = currentDate
         .toISOString()
-        .split('T')[0]
-        .replace(/-/g, '/');
-      // console.log('currentDay', currentDay);
-      const start = createAt.split('T')[0].replace(/-/g, '/');
-      const end = createAt.split('T')[0].replace(/-/g, '/');
-
+        .split('T')[0];
+ 
+      const start = createAt;
+      const end = createAt;
+    
       return start <= currentDay && end >= currentDay;
     });
 
     setTasksFilter(currentDayFilter);
 
-     console.log('Page loaded', currentDayFilter);
+     console.log('Page loaded, filter tasks for TODAY', currentDayFilter);
 
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,10 +87,10 @@ const ChoosedDay = () => {
 
   const chooseDay = ({ day, month, year }) => {
     const filteredTasks = tasksMonth.filter(({ createAt }) => {
-      const start = createAt.split('T')[0].replace(/-/g, '/');
-      const end = createAt.split('T')[0].replace(/-/g, '/');
-
-      const chosenDate = `${year}/${month}/${day}`;
+       const start = createAt;
+       const end = createAt;
+      
+      const chosenDate = `${year}-${month}-${day}`;
 
       // console.log('Click on week day:', chosenDate);
 

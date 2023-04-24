@@ -143,28 +143,6 @@ export const Svg = styled.svg`
   }
 `;
 
-export const LinkToLogin = styled.h2`
-  font-family: var(--main-font);
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 14px;
-  border-bottom: 1px solid var(--accent-color);
-  color: var(--accent-color);
-  text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
-    0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
-  &:hover,
-  :focus {
-    color: var(--main-background-color);
-    border-color: var(--main-background-color);
-  }
-
-  @media (min-width: 768px) {
-    font-size: 18px;
-    line-height: 24px;
-  }
-`;
-
 export const ErrorMessage = styled.span`
   font-family: var(--main-font);
   font-style: normal;

@@ -5,6 +5,7 @@ import { Form } from './Form/Form';
 import { EditButtons } from '../EditButtons/EditButtons';
 import { Priority } from '../Priority/Priority';
 import { updateTask } from '../../../redux/tasks/tasks-operations';
+import { StyledDiv } from './EditForm.styled';
 
 export const EditForm = ({
   taskFromCard,
@@ -22,28 +23,31 @@ export const EditForm = ({
   const [obj, setObj] = useState([
     { status: true, key: 'Low', color: 'blue' },
     { status: false, key: 'Medium', color: 'orange' },
-    { status: false, key: 'Heigh', color: 'red' },
+    { status: false, key: 'High', color: 'red' },
   ]);
 
   const prioritySelector = event => {
     const priorityChecked = event.target.innerText;
+    console.log(obj);
 
     setPrioritys(prevState => (prevState = priorityChecked));
-    console.log(prioritys);
   };
 
   const updateTaskFu = () => {
     closeModal();
-
+    const id = taskFromCard._id;
     const taskForUpdate = {
       id: taskFromCard._id,
-      title: editText,
-      start: startText,
-      end: endText,
-      createAt: taskFromCard.createAt,
-      priority: prioritys,
+      task: {
+        title: editText,
+        start: startText,
+        end: endText,
+        createAt: taskFromCard.createAt,
+        priority: prioritys,
+      },
     };
-    dispatch(updateTask(taskForUpdate));
+    console.log('taskForUpdate>>>>', taskForUpdate);
+    dispatch(updateTask(taskForUpdate, id));
     // console.log(answer);
   };
 
@@ -54,13 +58,13 @@ export const EditForm = ({
   }, [taskFromCard]);
 
   useEffect(() => {
-    if (prioritys === 'Heigh') {
+    if (prioritys === 'High') {
       setObj(
         prevState =>
           (prevState = [
             { status: false, key: 'Low', color: 'blue' },
             { status: false, key: 'Medium', color: 'orange' },
-            { status: true, key: 'Heigh', color: 'red' },
+            { status: true, key: 'High', color: 'red' },
           ])
       );
     } else if (prioritys === 'Medium') {
@@ -69,7 +73,7 @@ export const EditForm = ({
           (prevState = [
             { status: false, key: 'Low', color: 'blue' },
             { status: true, key: 'Medium', color: 'orange' },
-            { status: false, key: 'Heigh', color: 'red' },
+            { status: false, key: 'High', color: 'red' },
           ])
       );
     } else if (prioritys === 'Low') {
@@ -78,7 +82,7 @@ export const EditForm = ({
           (prevState = [
             { status: true, key: 'Low', color: 'blue' },
             { status: false, key: 'Medium', color: 'orange' },
-            { status: false, key: 'Heigh', color: 'red' },
+            { status: false, key: 'High', color: 'red' },
           ])
       );
     }
@@ -108,12 +112,9 @@ export const EditForm = ({
         endText={endText}
       />
       <Priority obj={obj} prioritySelector={prioritySelector} />
-
-      <EditButtons actionFu={updateTaskFu} />
-      {/* <Button text={'Edit'} closeModal={closeModal} /> */}
-      {/* {typeOfButton === 'edit' && (
-        <EditButtons text={'Edit'} closeModal={closeModal} />
-      )} */}
+      <StyledDiv>
+        <EditButtons actionFu={updateTaskFu} />
+      </StyledDiv>
     </>
   );
 };
