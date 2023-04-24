@@ -7,10 +7,12 @@ import {
 } from './Form.styled';
 
 export const Form = ({
-  inputHendler,
-  enterTextTitle,
-  startTitle,
-  endTitle,
+  titleSetter,
+  startSetter,
+  endSetter,
+  editText,
+  startText,
+  endText,
 }) => {
   return (
     <form action="">
@@ -20,8 +22,8 @@ export const Form = ({
           placeholder="Enter text"
           type="text"
           name="text"
-          onChange={inputHendler}
-          value={enterTextTitle}
+          onChange={titleSetter}
+          value={editText}
         />
       </InputWraper>
       <StyledInputContainer>
@@ -30,8 +32,8 @@ export const Form = ({
           <StyledInput
             type="text"
             name="start"
-            onChange={inputHendler}
-            value={startTitle}
+            onChange={startSetter}
+            value={startText}
           />
         </InputWraper>
         <InputWraper>
@@ -39,8 +41,8 @@ export const Form = ({
           <StyledInput
             type="text"
             name="end"
-            onChange={inputHendler}
-            value={endTitle}
+            onChange={endSetter}
+            value={endText}
           />
         </InputWraper>
       </StyledInputContainer>
