@@ -68,15 +68,13 @@ const UserForm = () => {
 
           //TODO Некорректно отображается дата. Подготовить корректный запрос для бэкенда.
 
-          // console.log('newValues------------>', values.birthday);
-
           resetForm();
         }}
         validationSchema={validationFormikSchema}
       >
         {({ values, handleSubmit, handleChange, handleBlur }) => (
           <Forms autoComplete="off" onSubmit={handleSubmit}>
-            <div>
+            <Container>
               {avatarURL ? (
                 <ImgAvatar src={URL.createObjectURL(avatarURL)} alt="avatar" />
               ) : user ? (
@@ -87,7 +85,7 @@ const UserForm = () => {
                   <use href={icon + '#icon-ph-user'}></use>
                 </SvgAvatar>
               )}
-            </div>
+            </Container>
 
             <LabelImg htmlFor="avatar">
               <ImgBtn src={plus} alt="user" />
