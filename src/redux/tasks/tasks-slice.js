@@ -85,7 +85,7 @@ const tasksSlice = createSlice({
         const updatedTaskIndex = state.arrTasks.findIndex(
           task => task._id === payload.data._id
         );
-        console.log('updatedTaskIndex', updatedTaskIndex);
+
         if (updatedTaskIndex !== -1) {
           state.arrTasks[updatedTaskIndex] = payload.data;
         }

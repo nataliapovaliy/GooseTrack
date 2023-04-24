@@ -6,7 +6,7 @@ import { Form } from '../Form/Form';
 
 import { addTask } from '../../../redux/tasks/tasks-operations';
 import { closeModalAddTask } from 'redux/modal/globalSlice';
-import { pushNewTask } from 'redux/tasks/tasks-slice';
+// import { pushNewTask } from 'redux/tasks/tasks-slice';
 
 export const TaskForm = ({
   typeOfModal,
@@ -14,8 +14,8 @@ export const TaskForm = ({
   typeOfColumn,
   choosedDay,
 }) => {
-  console.log(new Date().toLocaleDateString('en-CA'));
-  console.log('choosedDay', choosedDay);
+  // console.log(new Date().toLocaleDateString('en-CA'));
+  // console.log('choosedDay', choosedDay);
   const [enterText, setEnterText] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
