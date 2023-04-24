@@ -14,6 +14,8 @@
   --inactive-btn-text-color: #84828a;
   --calendar-date-color: #343434;
   --accent: #3e85f3;
+  --input-border-color: #11111126;
+  --label-text-color: #111111;
 
   /* backgroung */
   --main-background-color: #ffffff;
@@ -21,7 +23,6 @@
   --outlet-background-color: #f7f6f9;
   --accent-background-color: #3e85f3;
   --sidebar-background-color: #ffffff;
-  --modal-background-color: #ffffff;
 
   /* tasks */
   --task-high-color: #ea3d65;
@@ -42,12 +43,6 @@
   --scroll-background-color: #f2f2f2;
   --frame-border-color: #e1e7e9;
 
-  /* form */
-  --input-bcg-color: #f7f7f7;
-  --border-input: #ffffff2f;
-  --modal-input-text-color: #616161;
-  --modal-input-lable-color: #343434c5;
-
   /* animation */
   --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -60,21 +55,16 @@
   --active-selection: #3e85f3;
   --calendar-date-color: #ffffff;
   --task-field-text-color: #ffffff;
+  --input-border-color: #ffffff26;
+  --label-text-color: rgba(250, 250, 250, 0.3);
 
   /* backgroung */
   --outlet-background-color: #171820;
   --main-background-color: #21222c;
   --sidebar-background-color: #13151a;
-  --modal-background-color: #171820;
 
   /* other */
   --scroll-color: #2d3037;
   --scroll-background-color: #21222c;
   --frame-border-color: #42434c;
-
-  /* form */
-  --input-bcg-color: #171820;
-  --border-input: #ffffff2f;
-  --modal-input-text-color: #ffffff;
-  --modal-input-lable-color: #fafafa52;
 }
