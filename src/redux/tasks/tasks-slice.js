@@ -65,7 +65,7 @@ const tasksSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.arrTasks = state.arrTasks.filter(
-          task => task.taskId !== payload._id
+          task => task._id !== payload._id
         );
       })
       .addCase(deleteTask.rejected, (state, { payload }) => {
@@ -78,9 +78,14 @@ const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(updateTask.fulfilled, (state, { payload }) => {
+        // state.arrTasks = state.arrTasks.filter(
+        //   task => task._id !== payload.data._id
+        // );
+        // state.arrTasks.push(payload.data);
         const updatedTaskIndex = state.arrTasks.findIndex(
-          task => task.taskId === payload.data.taskId
+          task => task._id === payload.data._id
         );
+        console.log('updatedTaskIndex', updatedTaskIndex);
         if (updatedTaskIndex !== -1) {
           state.arrTasks[updatedTaskIndex] = payload.data;
         }
