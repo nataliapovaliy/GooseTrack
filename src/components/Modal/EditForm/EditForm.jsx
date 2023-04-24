@@ -45,6 +45,7 @@ export const EditForm = ({
         priority: prioritys,
       },
     };
+    console.log('taskForUpdate>>>>', taskForUpdate);
     dispatch(updateTask(taskForUpdate, id));
     // console.log(answer);
   };
@@ -56,7 +57,7 @@ export const EditForm = ({
   }, [taskFromCard]);
 
   useEffect(() => {
-    if (prioritys === 'Heigh') {
+    if (prioritys === 'High') {
       setObj(
         prevState =>
           (prevState = [
