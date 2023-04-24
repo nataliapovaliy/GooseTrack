@@ -12,7 +12,7 @@ const initialState = {
   user: {
     email: '',
     phone: '',
-    avatarURL: null,
+    avatarURL: '',
     birthday: '',
     skype: '',
     name: '',
@@ -82,11 +82,12 @@ const authController = createSlice({
         state.isLoggedIn = false;
         state.isModalLogoutOpen = false;
         state.user = {
-          name: '',
-          id: '',
-          username: '',
           email: '',
-          balance: 0,
+          phone: '',
+          avatarURL: '',
+          birthday: '',
+          skype: '',
+          name: '',
         };
       })
       .addCase(logout.rejected, (state, { payload }) => {
@@ -116,7 +117,8 @@ const authController = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.user = payload;
+        // return { ...state, ...payload };
+        state.user = payload.user;
       })
       .addCase(updateUser.rejected, (state, { payload }) => {
         state.isLoading = false;
