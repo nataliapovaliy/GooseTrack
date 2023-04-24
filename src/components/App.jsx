@@ -1,5 +1,11 @@
 import { useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 // import { useSelector } from 'react-redux';
 // import { selectIsFetchingCurrentUser } from 'redux/auth/auth-selectors';
@@ -11,7 +17,10 @@ import { AccountPage } from 'pages/AccountPage/AccountPage';
 import { CalendarPage } from 'pages/CalendarPage/CalendarPage';
 import { ChoosedDay } from 'components/ChoosedDay/ChoosedDay';
 import { ChoosedMonth } from 'components/ChoosedMonth/ChoosedMonth';
-import { PrivateRoute, PublicRoute } from 'components/PrivatPublicRoutes/PrivatPublicRoutes';
+import {
+  PrivateRoute,
+  PublicRoute,
+} from 'components/PrivatPublicRoutes/PrivatPublicRoutes';
 import { StartPage } from 'pages/StartPage/StartPage';
 
 const App = () => {
@@ -22,8 +31,8 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchingCurrentUser());
-    if (pathname === "/") {
-      navigate("/calendar/month/:currentDate");
+    if (pathname === '/') {
+      navigate('/calendar/month/:currentDate');
     }
   }, [dispatch, pathname, navigate]);
 
@@ -31,9 +40,18 @@ const App = () => {
   // прибрав Лоадінг, бо переренджується вся структура і втрачається сенс MainLayout - Alex
   return (
     <Routes>
-      <Route path="/start" element={<PublicRoute component={<StartPage />} />}/>
-      <Route path="/login" element={<PublicRoute component={<LoginPage />} />}/>
-      <Route path="/register" element={<PublicRoute component={<RegisterPage />} />}/>
+      <Route
+        path="/start"
+        element={<PublicRoute component={<StartPage />} />}
+      />
+      <Route
+        path="/login"
+        element={<PublicRoute component={<LoginPage />} />}
+      />
+      <Route
+        path="/register"
+        element={<PublicRoute component={<RegisterPage />} />}
+      />
       <Route path="/" element={<PrivateRoute component={<MainLayout />} />}>
         <Route path="/account" element={<AccountPage />} />
         <Route path="/calendar" element={<CalendarPage />}>
@@ -41,7 +59,7 @@ const App = () => {
           <Route path="day/:currentDay" element={<ChoosedDay />} />
         </Route>
       </Route>
-      <Route path="*" element={<Navigate to="/calendar" />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };
