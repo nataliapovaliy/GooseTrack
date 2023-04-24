@@ -1,14 +1,16 @@
 import { TaskItem } from '../CalendarTable.styled';
 
 export const CalendarTaskDay = ({ task }) => {
-
+  // console.log(task);
 
   let priorityColor = '';
   let priorityTextColor = '';
+ 
 
   if (task.priority === 'Low') {
     priorityColor = 'var(--priority-low-color)';
     priorityTextColor = 'var(--task-low-color)';
+
   } else if (task.priority === 'Medium') {
     priorityColor = 'var(--priority-med-color)';
     priorityTextColor = 'var(--task-med-color)';
@@ -22,7 +24,6 @@ export const CalendarTaskDay = ({ task }) => {
       style={{ backgroundColor: priorityColor, color: priorityTextColor }}
     >
       {task.title}
-      
     </TaskItem>
   );
 };
