@@ -87,6 +87,7 @@ const ChoosedDay = () => {
   }, [tasksMonth]);
 
   const chooseDay = ({ day, month, year }) => {
+    setChoosedDay(`${year}-${month}-${day}`);
     setTasksFilter(dayFilter(tasksMonth, `${year}-${month}-${day}`));
   };
 
@@ -97,6 +98,7 @@ const ChoosedDay = () => {
         tasks={tasksFilter}
         getTypeOfColumn={getTypeOfColumn}
         getTask={getTask}
+        date={choosedDay}
       />
       {modalAddState && (
         <Modal
