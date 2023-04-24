@@ -31,7 +31,6 @@ const dayFilter = (tasksMonth, date) => {
 
 const ChoosedDay = () => {
   const [tasksFilter, setTasksFilter] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [choosedDay, setChoosedDay] = useState(
     new Date().toISOString().split('T')[0]
   );
