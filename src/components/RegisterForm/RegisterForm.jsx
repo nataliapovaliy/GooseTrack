@@ -3,7 +3,7 @@ import { register } from 'redux/auth/auth-operations';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { nanoid } from 'nanoid';
-import { Link } from 'react-router-dom';
+
 import {
   Wrapper,
   RegisterButton,
@@ -13,7 +13,6 @@ import {
   RegisterInput,
   RegisterLabel,
   RegisterParaghraph,
-  LinkToLogin,
   ErrorMessage,
   Svg,
   ButtonText,
@@ -22,6 +21,8 @@ import {
 import icons from 'images/icons.svg';
 import GooseRegister from 'images/goose-register.png';
 import GooseRegister2x from 'images/goose-register@2x.png';
+import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
+import { Routes } from 'Routes/Routes';
 
 const validationSchema = yup.object().shape({
   name: yup
@@ -130,9 +131,7 @@ export const RegisterForm = () => {
                 </Svg>
               </RegisterButton>
             </Form>
-            <Link to="/login">
-              <LinkToLogin>Log in</LinkToLogin>
-            </Link>
+            <AuthNavigate route={Routes.login} content="Log In" />
             <RegisterGooseImage
               srcset={`${GooseRegister} 1x, ${GooseRegister2x} 2x`}
               src={`${GooseRegister}`}
