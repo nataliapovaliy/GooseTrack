@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   width: 335px;
   height: 653px;
 
-  background: #ffffff;
+  background: var(--main-background-color);
   border-radius: 16px;
 
   @media screen and (min-width: 768px) {
@@ -25,6 +25,22 @@ export const Wrapper = styled.div`
   @media screen and (min-width: 1440px) {
     width: 1087px;
     height: 752px;
+  }
+
+  h2 {
+    margin-bottom: 4px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: calc(18 / 18);
+
+    color: var(--title-text-main-color);
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 8px;
+    }
   }
 `;
 
@@ -50,6 +66,8 @@ export const BlockInput = styled.div`
     justify-content: space-between;
   }
   @media screen and (min-width: 1440px) {
+    margin-bottom: 88px;
+
     width: 758px;
     min-height: 264px;
   }
@@ -61,18 +79,21 @@ export const Input = styled(Field)`
 
   padding-left: 18px;
 
-  border: 1px solid rgba(17, 17, 17, 0.15);
+  border: 1px solid var(--input-border-color);
   border-radius: 8px;
+  background: var(--main-background-color);
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   line-height: calc(18 / 16);
 
-  color: #343434;
+  color: var(--title-text-main-color);
 
   @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: calc(18 / 16);
     width: 354px;
   }
   @media screen and (min-width: 1440px) {
@@ -85,19 +106,24 @@ export const DatePick = styled(DatePicker)`
 
   padding-left: 18px;
 
-  border: 1px solid rgba(17, 17, 17, 0.15);
+  border: 1px solid var(--input-border-color);
   border-radius: 8px;
+  background: var(--main-background-color);
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: calc(18 / 14);
+  color: var(--title-text-main-color);
 
-  color: #343434;
   @media screen and (min-width: 768px) {
     width: 354px;
     height: 46px;
+
+    font-size: 16px;
+    line-height: calc(18 / 16);
+    width: 354px;
   }
   @media screen and (min-width: 1440px) {
   }
@@ -162,27 +188,11 @@ export const ImgBtn = styled.img`
   height: 24px;
 `;
 
-export const Container = styled.div`
-  h2 {
-    margin-bottom: 4px;
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 18px;
-
-    color: #343434;
-
-    @media screen and (min-width: 768px) {
-      margin-bottom: 8px;
-    }
-  }
-`;
+export const Container = styled.div``;
 
 export const User = styled.p`
   margin-bottom: 40px;
-  color: #343434;
+  color: var(--label-text-color);
 `;
 
 export const LabelImg = styled.label`
@@ -201,6 +211,7 @@ export const LabelImg = styled.label`
 `;
 
 export const LabelBtn = styled.label`
+  color: var(--label-text-color);
   display: flex;
   flex-direction: column;
   margin-bottom: 18px;
@@ -232,7 +243,7 @@ export const Btn = styled.button`
   font-size: 14px;
   line-height: calc(18 / 14);
 
-  background: #3e85f3;
+  background: var(--accent-background-color);
   color: #ffffff;
 
   @media screen and (min-width: 768px) {
@@ -240,6 +251,5 @@ export const Btn = styled.button`
     height: 48px;
   }
   @media screen and (min-width: 1440px) {
-    margin-top: 88px;
   }
 `;
