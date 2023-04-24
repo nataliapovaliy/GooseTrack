@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Formik, ErrorMessage } from 'formik';
 import { object, string, date } from 'yup';
 
 import { selectUser } from 'redux/auth/auth-selectors';
+import { updateUser } from 'redux/auth/auth-operations';
 
 import plus from '../../images/plus.png';
 import icon from '../../images/icons.svg';
@@ -31,7 +32,7 @@ import {
 //TODO Валидация: номер телефона
 
 const validationFormikSchema = object({
-  username: string().max(16).required(),
+  name: string().max(16).required(),
   birthday: date() /*.default(() => new Date()),*/,
   email: string().email().required(),
   skype: string().max(16),
@@ -39,9 +40,10 @@ const validationFormikSchema = object({
 
 const UserForm = () => {
   const [birthday, setBirthday] = useState(new Date());
-  const [avatarURL, setAvatarURL] = useState('');
+  const [avatarURL, setAvatarURL] = useState(null);
 
   const { user } = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   return (
     <Container>
@@ -49,22 +51,31 @@ const UserForm = () => {
         <Formik
           enableReinitialize={true}
           initialValues={{
-            username: user ? user.name : '',
+            name: user ? user.name : '',
             email: user ? user.email : '',
             phone: user ? user.phone : '',
             skype: user ? user.skype : '',
-            birthday: user ? user.birthday : '',
+            // birthday: user ? user.birthday : '',
           }}
-          onSubmit={async values => {
-            const newAvatar = new FormData();
-            newAvatar.append('avatar', avatarURL);
+          onSubmit={(values, { resetForm }) => {
+            // console.log('avatarURL----->', avatarURL);
 
+            // const formData = new FormData();
+            // formData.append('avatar', avatarURL);
+            // const newValues = { ...values, birthday };
             //TODO Некорректно отображается дата. Подготовить корректный запрос для бэкенда.
 
-            const newValues = { ...values, birthday };
-            console.log('values', newValues);
-            await new Promise(r => setTimeout(r, 500));
-            alert(JSON.stringify(newValues, null, 2));
+            // console.log('values', newValues);
+
+            dispatch(
+              updateUser({
+                name: values.name,
+                email: values.email,
+                phone: values.phone,
+                skype: values.skype,
+              })
+            );
+            resetForm();
           }}
           validationSchema={validationFormikSchema}
         >
@@ -97,18 +108,18 @@ const UserForm = () => {
               <User>User</User>
 
               <BlockInput>
-                <LabelBtn htmlFor="username">
+                <LabelBtn htmlFor="name">
                   <p>User Name</p>
                   <Input
                     type="text"
-                    value={values.username}
-                    name="username"
-                    id="username"
+                    value={values.name}
+                    name="name"
+                    id="name"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    placeholder={'Name'}
+                    placeholder="Name"
                   ></Input>
-                  <ErrorMessage name="username" />
+                  <ErrorMessage name="name" />
                 </LabelBtn>
 
                 <LabelBtn htmlFor="phone">
@@ -118,7 +129,8 @@ const UserForm = () => {
                     name="phone"
                     id="phone"
                     value={values.phone}
-                    placeholder={'+380'}
+                    onBlur={handleBlur}
+                    placeholder="+380"
                   ></Input>
                   <ErrorMessage name="phone" />
                 </LabelBtn>
@@ -143,9 +155,10 @@ const UserForm = () => {
                   <Input
                     type="text"
                     name="skype"
-                    // id={dataId}
+                    id="skype"
                     value={values.skype}
-                    placeholder={'Skype'}
+                    onBlur={handleBlur}
+                    placeholder="Skype"
                   ></Input>
                   <ErrorMessage name="skype" />
                 </LabelBtn>
@@ -157,7 +170,7 @@ const UserForm = () => {
                     name="email"
                     id="email"
                     onChange={handleChange}
-                    placeholder={'Email'}
+                    placeholder="Email"
                     value={values.email}
                     onBlur={handleBlur}
                   ></Input>
