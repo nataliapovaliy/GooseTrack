@@ -47,26 +47,26 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
                 
 
                   {tasks.map((task) => {
-  if (task.createAt === dayItem.format('YYYY-MM-DD')) {
-    xxx += 1;
-    if (xxx <= 2) {
-      return (
-        <li key={task._id}>
-          <CalendarTaskDay task={task} />
-        </li>
-      );
-    } else if (xxx === 3) {
-      return (
-        <li key="more">
-          <button>More...</button>
-        </li>
-      );
-    } else if (xxx >= 4) {
-      xxx = 0;
-    }
-  }
-  return null;
-})}
+                    if (task.createAt === dayItem.format('YYYY-MM-DD')) {
+                      xxx += 1;
+                      if (xxx <= 2) {
+                        return (
+                          <li key={task._id}>
+                            <CalendarTaskDay task={task} />
+                          </li>
+                        );
+                      } else if (xxx === 3) {
+                        return (
+                          <li key="more">
+                            <button>More...</button>
+                          </li>
+                        );
+                      } else if (xxx > 3) {
+                        xxx = 0;
+                      }
+                    }
+                    return null;
+                  })}
                 
               </TaskListWrapper>
             </RowInCell>
