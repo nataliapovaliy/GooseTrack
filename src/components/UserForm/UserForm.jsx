@@ -11,7 +11,7 @@ import plus from '../../images/plus.png';
 import icon from '../../images/icons.svg';
 
 import {
-  Container,
+  ContainerImg,
   Wrapper,
   Input,
   DatePick,
@@ -74,18 +74,17 @@ const UserForm = () => {
       >
         {({ values, handleSubmit, handleChange, handleBlur }) => (
           <Forms autoComplete="off" onSubmit={handleSubmit}>
-            <Container>
+            <ContainerImg>
               {avatarURL ? (
                 <ImgAvatar src={URL.createObjectURL(avatarURL)} alt="avatar" />
               ) : user ? (
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
-                //TODO размер svg изображения
                 <SvgAvatar>
                   <use href={icon + '#icon-ph-user'}></use>
                 </SvgAvatar>
               )}
-            </Container>
+            </ContainerImg>
 
             <LabelImg htmlFor="avatar">
               <ImgBtn src={plus} alt="user" />
