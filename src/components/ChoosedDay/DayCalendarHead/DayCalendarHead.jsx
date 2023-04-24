@@ -9,10 +9,16 @@ import {
 
 export const DayCalendarHead = ({ clickChooseDay }) => {
   const currentDate = new Date();
+  // console.log(currentDate)
+
   const [choosedDay, setChoosedDay] = useState(
     String(currentDate.getDate()).padStart(2, '0')
   );
-  currentDate.setDate(currentDate.getDate() - 7);
+  // currentDate.setDate(currentDate.getDate() - 7);
+
+//   console.log(currentDate)
+// console.log(choosedDay);
+
 
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
@@ -40,7 +46,7 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
       <DateWrapper>
         {daysOfWeek.map((day, index) => {
           const date = new Date(currentDate);
-          const currentDay = (index + 1) % 8;
+          const currentDay = (index ) % 7;
           date.setDate(currentDate.getDate() + currentDay);
 
           const dayValue = String(date.getDate()).padStart(2, '0');
