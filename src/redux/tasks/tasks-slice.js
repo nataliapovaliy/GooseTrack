@@ -78,7 +78,12 @@ const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(updateTask.fulfilled, (state, { payload }) => {
-        state.arrTasks = payload;
+        const updatedTaskIndex = state.arrTasks.findIndex(
+          task => task.taskId === payload.data.taskId
+        );
+        if (updatedTaskIndex !== -1) {
+          state.arrTasks[updatedTaskIndex] = payload.data;
+        }
         state.isLoading = false;
         state.error = null;
       })
