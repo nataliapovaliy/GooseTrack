@@ -10,7 +10,6 @@ import { selectSideBar } from 'redux/modal/globalSelectors';
 import { closeSideBar, openSideBar } from 'redux/modal/globalSlice';
 import goose from './goose.png';
 import icon from '../../images/icons.svg';
-import { useEffect } from 'react';
 
 export const Header = () => {
   const dispatch = useDispatch();
