@@ -21,6 +21,11 @@ export const TaskForm = ({
   const [end, setEnd] = useState('');
   const [prioritys, setPrioritys] = useState('Low');
 
+  const [hour, sethour] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [hourEnd, sethourEnd] = useState(23);
+  const [minutesEnd, setMinutesEnd] = useState(59);
+
   const [obj, setObj] = useState([
     { status: true, key: 'Low', color: 'blue' },
     { status: false, key: 'Medium', color: 'orange' },
@@ -61,17 +66,87 @@ export const TaskForm = ({
       ...typeOfColumn,
     };
 
-    await dispatch(addTask(objectToDispatch));
+    if (hour > hourEnd) {
+      alert('task end time cannot be greater than its start time');
+      setEnd('');
+      setStart('');
+      sethour(0);
+      sethourEnd(23);
+      setMinutes(0);
+      setMinutesEnd(59);
+      return;
+    }
 
-    // const newTask = async () => {
-    //   const answer = await dispatch(addTask(objectToDispatch));
-    //   console.log('answer', answer.payload.data.result);
-    //   return answer.payload.data.result;
-    // };
-    // newTask();
+    await dispatch(addTask(objectToDispatch));
 
     dispatch(closeModalAddTask());
   };
+
+  useEffect(() => {
+    if (start.slice(0, 2) > 23) {
+      alert('you cannot specify an hour value greater than 24');
+      setStart('');
+    }
+    if (start.slice(2, 4) > 59) {
+      alert('you cannot specify an minutes value greater than 59');
+      setStart('');
+    }
+    if (start.length === 2) {
+      sethour(start);
+    }
+    if (start.length === 4) {
+      setMinutes(start.slice(2));
+    }
+    if (start.length === 5) {
+      setStart(hour.concat(':', minutes));
+    }
+
+    if (start.length === 6) {
+      setStart('');
+      setMinutes('');
+      sethour('');
+    }
+
+    // console.log('hour', hour);
+    // console.log('minutes', minutes);
+  }, [start, minutes, hour]);
+
+  useEffect(() => {
+    if (end.slice(0, 2) > 23) {
+      alert('you cannot specify an hour value greater than 24');
+      setEnd('');
+    }
+    if (end.slice(2, 4) > 59) {
+      alert('you cannot specify an minutes value greater than 59');
+      setEnd('');
+    }
+    if (end.length === 2) {
+      sethourEnd(end);
+    }
+    if (end.length === 4) {
+      setMinutesEnd(end.slice(2));
+    }
+    if (end.length === 5) {
+      setEnd(hourEnd.concat(':', minutesEnd));
+    }
+    if (end.length === 6) {
+      setEnd('');
+      setMinutesEnd('');
+      sethourEnd('');
+    }
+  }, [end, minutesEnd, hourEnd]);
+
+  // useEffect(() => {
+  //   if (hour > hourEnd) {
+  //     alert('task end time cannot be greater than its start time');
+  //     setEnd('');
+  //     setStart('');
+  //     sethour(0);
+  //     sethourEnd(24);
+  //     setMinutes(0);
+  //     setMinutesEnd(59);
+  //   }
+  // }, [hour, hourEnd, minutes, minutesEnd]);
 
   const inputHendler = event => {
     const { value, name } = event.target;
@@ -82,23 +157,9 @@ export const TaskForm = ({
         break;
       case 'start':
         setStart(value);
-        if (start.length === 2) {
-          setStart(start + ':');
-        }
-        if (start.length === 6) {
-          setStart(start.slice(0, 5));
-          return;
-        }
         break;
       case 'end':
         setEnd(value);
-        if (end.length === 2) {
-          setEnd(end + ':');
-        }
-        if (end.length === 6) {
-          setEnd(end.slice(0, 5));
-          return;
-        }
         break;
       default:
         break;
