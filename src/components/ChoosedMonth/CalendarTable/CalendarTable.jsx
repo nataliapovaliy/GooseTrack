@@ -1,4 +1,5 @@
 import {
+  CalendarTableMoreBtn,
   CellWrapper,
   ContainerCalendar,
   CurrentDay,
@@ -92,7 +93,7 @@ export const CalendarTable = ({ startDay, today, currentDate }) => {
                     } else if (xxx === 3) {
                       return (
                         <li key="more">
-                          <button type='button'>More...</button>
+                          <CalendarTableMoreBtn type='button'>More...</CalendarTableMoreBtn>
                         </li>
                       );
                     } else if (xxx > 3) {

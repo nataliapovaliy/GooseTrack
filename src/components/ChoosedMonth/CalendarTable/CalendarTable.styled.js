@@ -111,3 +111,22 @@ export const CurrentDay = styled.div`
 export const ContainerCalendar = styled.div`
   /* height: 626px; */
 `;
+
+
+
+
+export const CalendarTableMoreBtn = styled.button`
+  color: var(--btn-text-color);
+  border: none;
+  border-radius: 8px;
+  background-color: red;
+  
+  padding: 4px 12px 4px 10px;
+  text-align: start;
+
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.16;
+  cursor: pointer;
+
+`;
