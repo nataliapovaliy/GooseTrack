@@ -57,8 +57,8 @@ export const TaskToolbar = ({ task, getTask }) => {
   };
 
   useEffect(() => {
-    dispatch(fetchTasks())
-  }, [dispatch, status]);
+    dispatch(fetchTasks());
+  }, [dispatch, status, getTask]);
 
 
   return (
@@ -87,7 +87,7 @@ export const TaskToolbar = ({ task, getTask }) => {
                     };
                     dispatch(updateTask(taskForUpdate, task._id));
                     console.log('status :>> ', status);
-                    setStatus(state);
+                    // setStatus(state);
                   }}
                 >
                   <StateStatus>{state}</StateStatus>
