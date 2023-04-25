@@ -62,8 +62,8 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
           const isCurrentDay = date.toDateString().slice(8, 10) === choosedDay;
 
           return (
-            <WeekInfoWrapper>
-              <DayOfWeek key={dayOfW} >{dayOfW}</DayOfWeek>
+            <WeekInfoWrapper key={dayOfW+111}>
+              <DayOfWeek key={dayOfW}>{dayOfW}</DayOfWeek>
               <DateContainer
                 key={dateKey}
                 onClick={() => {
