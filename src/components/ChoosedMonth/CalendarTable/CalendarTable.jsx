@@ -13,15 +13,27 @@ import { useSelector } from 'react-redux';
 import { selectArrTasks } from 'redux/tasks/tasks-selectors';
 import { CalendarTaskDay } from './CalendarTaskDay/CalendarTaskDay';
 
-export const CalendarTable = ({ startDay, today, totalDays }) => {
+export const CalendarTable = ({ startDay, today})  => {
+  const tasks = useSelector(selectArrTasks);
+
+  const  totalDays = 42
+
+  // console.log(startDay.days())
+
+
+
   const day = startDay.clone().subtract(1, 'day');
   const daysArray = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
   const isCurrentDay = day => moment().isSame(day, 'day');
   const isSelectedMonth = day => today.isSame(day, 'month');
+  
 
-  const tasks = useSelector(selectArrTasks);
+  
   // console.log("++++", tasks);
-  console.log('++++', tasks.length);
+  // console.log('++++', tasks.length);
+
+
+
 
   let xxx = 0;
 
