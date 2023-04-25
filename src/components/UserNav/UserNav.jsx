@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { closeSideBar } from 'redux/modal/globalSlice';
 import { H3, Item, Link, Svg } from './UserNav.styled';
 import icon from '../../images/icons.svg';
+import { routes } from 'Routes/Routes';
 
 export const UserNav = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export const UserNav = () => {
       <H3>User Panel</H3>
       <ul>
         <Item onClick={closeMobileMenu}>
-          <Link to="/account">
+          <Link to={routes.account}>
             <Svg>
               <use href={icon + '#icon-user-account'}></use>
             </Svg>
@@ -20,7 +21,7 @@ export const UserNav = () => {
           </Link>
         </Item>
         <Item onClick={closeMobileMenu}>
-          <Link to="/calendar/month/:currentDate">
+          <Link to={routes.calendar + routes.month}>
             <Svg>
               <use href={icon + '#icon-calendar'}></use>
             </Svg>

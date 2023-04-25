@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Formik, ErrorMessage } from 'formik';
 import { object, string, date } from 'yup';
 
 import { selectUser } from 'redux/auth/auth-selectors';
-import { updateUser } from 'redux/auth/auth-operations';
+import { fetchingCurrentUser, updateUser } from 'redux/auth/auth-operations';
 
 import plus from '../../images/plus.png';
 import icon from '../../images/icons.svg';
 
 import {
-  Container,
+  ContainerImg,
   Wrapper,
   Input,
   DatePick,
@@ -31,19 +31,24 @@ import {
 
 const validationFormikSchema = object({
   name: string().max(16).required(),
-  birthday: date() /*.default(() => new Date()),*/,
+  birthday: date().default(() => new Date()),
   email: string().email().required(),
   skype: string().max(16),
 });
 
 const UserForm = () => {
-  const [birthday, setBirthday] = useState(new Date());
   const [avatarURL, setAvatarURL] = useState(null);
-
+  const [newBirthday, setNewBirthday] = useState(null);
+  const [isUpdateForm, setIsUpdateForm] = useState(null);
   const { user } = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  // useEffect(()=>)
+  useEffect(() => {
+    if (isUpdateForm) {
+      dispatch(fetchingCurrentUser());
+      setIsUpdateForm(null);
+    }
+  }, [dispatch, isUpdateForm]);
 
   return (
     <Wrapper>
@@ -54,38 +59,41 @@ const UserForm = () => {
           email: user ? user.email : '',
           phone: user ? user.phone : '',
           skype: user ? user.skype : '',
-          birthday: user ? user.birthday : '',
+          birthday: newBirthday
+            ? newBirthday
+            : user
+            ? new Date(user.birthday)
+            : new Date(),
         }}
-        onSubmit={(values, { resetForm }) => {
+        onSubmit={async (values, { resetForm }) => {
           const formData = new FormData();
           formData.append('name', values.name);
           formData.append('email', values.email);
           formData.append('phone', values.phone);
           formData.append('skype', values.skype);
           formData.append('birthday', values.birthday);
-          formData.append('avatar', avatarURL);
-          dispatch(updateUser(formData));
-
-          //TODO Некорректно отображается дата. Подготовить корректный запрос для бэкенда.
-
+          if (avatarURL !== null) {
+            formData.append('avatar', avatarURL);
+          }
+          await dispatch(updateUser(formData));
+          setIsUpdateForm(true);
           resetForm();
         }}
         validationSchema={validationFormikSchema}
       >
         {({ values, handleSubmit, handleChange, handleBlur }) => (
           <Forms autoComplete="off" onSubmit={handleSubmit}>
-            <Container>
+            <ContainerImg>
               {avatarURL ? (
                 <ImgAvatar src={URL.createObjectURL(avatarURL)} alt="avatar" />
               ) : user ? (
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
-                //TODO размер svg изображения
                 <SvgAvatar>
                   <use href={icon + '#icon-ph-user'}></use>
                 </SvgAvatar>
               )}
-            </Container>
+            </ContainerImg>
 
             <LabelImg htmlFor="avatar">
               <ImgBtn src={plus} alt="user" />
@@ -99,7 +107,7 @@ const UserForm = () => {
               ></InputFile>
             </LabelImg>
 
-            <h2>{user?.name ?? ' '} </h2>
+            <h2>{user?.name} </h2>
             <User>User</User>
 
             <BlockInput>
@@ -139,9 +147,10 @@ const UserForm = () => {
                   id="birthday"
                   input={true}
                   maxDate={new Date()}
-                  selected={birthday}
-                  // value={values.birthday}
-                  onChange={data => setBirthday(data)}
+                  selected={values.birthday}
+                  onChange={data => {
+                    setNewBirthday(data);
+                  }}
                   placeholder="Birthday"
                   dateFormat="dd/MM/yyyy"
                 />

@@ -66,7 +66,6 @@ const ChoosedDay = () => {
 
   const getTypeOfColumn = data => {
     setTypeOfColumn(prevState => (prevState = data));
-    console.log(typeOfColumn);
   };
 
   const getTask = task => {
@@ -97,13 +96,13 @@ const ChoosedDay = () => {
         tasks={tasksFilter}
         getTypeOfColumn={getTypeOfColumn}
         getTask={getTask}
-        date={choosedDay}
       />
       {modalAddState && (
         <Modal
           closeModal={closeModal}
           typeOfModal={'add'}
           typeOfColumn={typeOfColumn}
+          choosedDay={choosedDay}
         />
       )}
       {modalEditState && (
