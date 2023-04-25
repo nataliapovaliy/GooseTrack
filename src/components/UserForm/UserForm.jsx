@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Formik, ErrorMessage, useField } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import { object, string, date } from 'yup';
 
 import { selectUser } from 'redux/auth/auth-selectors';
@@ -37,19 +37,18 @@ const validationFormikSchema = object({
 });
 
 const UserForm = () => {
-  const { user } = useSelector(selectUser);
   const [avatarURL, setAvatarURL] = useState(null);
   const [newBirthday, setNewBirthday] = useState(null);
   const [isUpdateForm, setIsUpdateForm] = useState(null);
+  const { user } = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  console.log('user after update', user?.birthday);
-  // useEffect(() => {
-  //   if (isUpdateForm) {
-  //     dispatch(fetchingCurrentUser());
-  //     setIsUpdateForm(null);
-  //   }
-  // }, [dispatch, isUpdateForm]);
+  useEffect(() => {
+    if (isUpdateForm) {
+      dispatch(fetchingCurrentUser());
+      setIsUpdateForm(null);
+    }
+  }, [dispatch, isUpdateForm]);
 
   return (
     <Wrapper>
