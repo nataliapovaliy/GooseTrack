@@ -78,7 +78,6 @@ const UserForm = () => {
           await dispatch(updateUser(formData));
           setIsUpdateForm(true);
           resetForm();
-          //TODO Некорректно отображается дата. Подготовить корректный запрос для бэкенда.
         }}
         validationSchema={validationFormikSchema}
       >
