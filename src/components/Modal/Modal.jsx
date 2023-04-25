@@ -11,6 +11,7 @@ export const Modal = ({
   actionFu,
   typeOfColumn,
   taskFromCard,
+  choosedDay,
 }) => {
   return (
     <ModalBody>
@@ -24,6 +25,7 @@ export const Modal = ({
           closeModal={closeModal}
           typeOfModal={typeOfModal}
           typeOfColumn={typeOfColumn}
+          choosedDay={choosedDay}
         />
       )}
       {typeOfModal === 'edit' && (
