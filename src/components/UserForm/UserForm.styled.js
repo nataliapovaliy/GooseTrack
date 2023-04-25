@@ -223,6 +223,7 @@ export const LabelBtn = styled.label`
   }
   @media screen and (min-width: 1440px) {
     height: 72px;
+    margin-bottom: 24px;
   }
 `;
 
