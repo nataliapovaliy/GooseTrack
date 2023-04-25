@@ -40,6 +40,7 @@ const UserForm = () => {
   const [avatarURL, setAvatarURL] = useState(null);
   const [newBirthday, setNewBirthday] = useState(null);
   const [isUpdateForm, setIsUpdateForm] = useState(null);
+
   const { user } = useSelector(selectUser);
   const dispatch = useDispatch();
 
@@ -93,19 +94,19 @@ const UserForm = () => {
                   <use href={icon + '#icon-ph-user'}></use>
                 </SvgAvatar>
               )}
+
+              <LabelImg htmlFor="avatar">
+                <ImgBtn src={plus} alt="user" />
+
+                <InputFile
+                  id="avatar"
+                  type="file"
+                  onChange={event => setAvatarURL(event.target.files[0])}
+                  accept="image/*,.png,.jpg,.gif,.web"
+                  name="avatar"
+                ></InputFile>
+              </LabelImg>
             </ContainerImg>
-
-            <LabelImg htmlFor="avatar">
-              <ImgBtn src={plus} alt="user" />
-
-              <InputFile
-                id="avatar"
-                type="file"
-                onChange={event => setAvatarURL(event.target.files[0])}
-                accept="image/*,.png,.jpg,.gif,.web"
-                name="avatar"
-              ></InputFile>
-            </LabelImg>
 
             <h2>{user?.name} </h2>
             <User>User</User>

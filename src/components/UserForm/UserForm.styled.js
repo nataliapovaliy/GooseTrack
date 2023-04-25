@@ -28,6 +28,7 @@ export const Wrapper = styled.div`
   }
 
   h2 {
+    margin-top: 59px;
     margin-bottom: 4px;
 
     height: 18px;
@@ -35,14 +36,38 @@ export const Wrapper = styled.div`
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
-    line-height: calc(18 / 18);
+    font-size: 14px;
+    line-height: calc(18 / 14);
 
     color: var(--title-text-main-color);
 
     @media screen and (min-width: 768px) {
       margin-bottom: 8px;
+      margin-top: 0px;
+      font-size: 18px;
+      line-height: calc(18 / 18);
     }
+  }
+`;
+
+export const User = styled.p`
+  margin-bottom: 40px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: calc(14 / 12);
+
+  color: var(--modal-input-text-color);
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: calc(18 / 14);
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 44px;
   }
 `;
 
@@ -51,6 +76,10 @@ export const Forms = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (min-width: 768px) {
+    position: unset;
+  }
 `;
 
 export const BlockInput = styled.div`
@@ -58,26 +87,35 @@ export const BlockInput = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 
+  width: 299px;
+  height: 392px;
+
   p {
     margin-bottom: 8px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: calc(14 / 12);
   }
 
   @media screen and (min-width: 768px) {
     width: 354px;
-    min-height: 458px;
+    height: 458px;
     justify-content: space-between;
   }
   @media screen and (min-width: 1440px) {
-    margin-bottom: 88px;
-
     width: 758px;
-    min-height: 250px;
+    height: 264px;
   }
 `;
 
 export const Input = styled(Field)`
   width: 299px;
   height: 42px;
+
+  margin-bottom: 18px;
 
   padding-left: 18px;
 
@@ -94,13 +132,13 @@ export const Input = styled(Field)`
   color: var(--title-text-main-color);
 
   @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+
     width: 354px;
     height: 46px;
 
     font-size: 16px;
     line-height: calc(18 / 16);
-  }
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -108,6 +146,7 @@ export const DatePick = styled(DatePicker)`
   width: 299px;
   height: 42px;
 
+  margin-bottom: 18px;
   padding-left: 18px;
 
   border: 1px solid var(--input-border-color);
@@ -125,10 +164,10 @@ export const DatePick = styled(DatePicker)`
     width: 354px;
     height: 46px;
 
+    margin-bottom: 24px;
+
     font-size: 16px;
     line-height: calc(18 / 16);
-  }
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -142,10 +181,34 @@ export const InputFile = styled.input`
   margin: 0;
 `;
 
+export const ImgBtn = styled.img`
+  width: 14px;
+  height: 14px;
+
+  @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+export const LabelImg = styled.label`
+  position: absolute;
+  left: 43px;
+  top: 62px;
+  @media screen and (min-width: 768px) {
+    left: 76px;
+    top: 106px;
+  }
+`;
+
 export const ContainerImg = styled.div`
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  left: 0px;
+  top: 0px;
 
   width: 72px;
   height: 72px;
@@ -155,6 +218,7 @@ export const ContainerImg = styled.div`
   background: var(--main-background-color);
 
   @media screen and (min-width: 768px) {
+    position: relative;
     margin-top: 40px;
     margin-bottom: 14px;
 
@@ -172,11 +236,6 @@ export const ImgAvatar = styled.img`
   height: 100%;
 
   border-radius: 50%;
-
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const SvgAvatar = styled.svg`
@@ -191,45 +250,25 @@ export const SvgAvatar = styled.svg`
   }
 `;
 
-export const ImgBtn = styled.img`
-  width: 24px;
-  height: 24px;
-`;
-
-export const User = styled.p`
-  margin-bottom: 44px;
-  color: var(--label-text-color);
-`;
-
-export const LabelImg = styled.label`
-  position: absolute;
-  left: 188px;
-  top: 55px;
-
-  @media screen and (min-width: 768px) {
-    left: 200px;
-    top: 143px;
-  }
-  @media screen and (min-width: 1440px) {
-    left: 400px;
-    top: 167px;
-  }
-`;
-
 export const LabelBtn = styled.label`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+
   color: var(--label-text-color);
 
   @media screen and (min-width: 768px) {
   }
   @media screen and (min-width: 1440px) {
-    height: 72px;
-    margin-bottom: 24px;
   }
 `;
 
 export const Btn = styled.button`
   margin-left: auto;
   margin-right: auto;
+  margin-top: 40px;
 
   padding: 0;
 
@@ -254,6 +293,8 @@ export const Btn = styled.button`
     width: 262px;
     height: 48px;
   }
+
   @media screen and (min-width: 1440px) {
+    margin-top: 80px;
   }
 `;
