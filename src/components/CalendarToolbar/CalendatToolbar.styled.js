@@ -7,6 +7,8 @@ margin-bottom: 14px;
 @media screen and (min-width: 768px) {
 display: flex;
 justify-content: space-between;
+align-items: flex-start;
+
 }
 
 `
