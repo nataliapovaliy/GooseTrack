@@ -31,7 +31,7 @@ import {
 
 const validationFormikSchema = object({
   name: string().max(16).required(),
-  birthday: date() /*.default(() => new Date()),*/,
+  birthday: date().default(() => new Date()),
   email: string().email().required(),
   skype: string().max(16),
 });
