@@ -61,12 +61,9 @@ const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.isLoading = false;
         state.error = null;
-        state.arrTasks = state.arrTasks.filter(
-          task => task._id !== payload._id
-        );
+        state.arrTasks = state.arrTasks.filter(task => task._id !== payload.id);
       })
       .addCase(deleteTask.rejected, (state, { payload }) => {
         state.isLoading = false;

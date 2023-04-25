@@ -27,5 +27,5 @@ padding: 14px 60px;
 `
 
 export const MonthCalendarHeadItem = styled.li`
-color: ${props => props.isWeekend ? 'var(--accent)' : 'var(--task-field-text-color)'}
+color: var(--accent) ;
 `
