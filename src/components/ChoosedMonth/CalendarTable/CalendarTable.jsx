@@ -13,15 +13,20 @@ import { useSelector } from 'react-redux';
 import { selectArrTasks } from 'redux/tasks/tasks-selectors';
 import { CalendarTaskDay } from './CalendarTaskDay/CalendarTaskDay';
 
+
 export const CalendarTable = ({ startDay, today }) => {
   const day = startDay.clone().subtract(1, 'day');
+
   const isCurrentDay = day => moment().isSame(day, 'day');
   const isSelectedMonth = day => today.isSame(day, 'month');
+  // console.log(currentDate);
+
 
   // === Змінюємо розміри календаря start ===>
   let totalDays = 35;
   const numberOfDays = day.clone().subtract(-1, 'month').daysInMonth();
   const isTheFirstDayOfTheMonth = day.clone().subtract(-1, 'month').startOf('month').format('dddd');
+
 
   if ((isTheFirstDayOfTheMonth.includes('Saturday') || isTheFirstDayOfTheMonth.includes('Sunday')) && numberOfDays === 31) totalDays = 42;
   if (isTheFirstDayOfTheMonth.includes('Sunday') && numberOfDays === 30) totalDays = 42;
@@ -36,6 +41,10 @@ export const CalendarTable = ({ startDay, today }) => {
   const tasks = useSelector(selectArrTasks);
   let xxx = 0;
 
+  
+
+
+
   return (
     <ContainerCalendar>
       <GridWrapper>
@@ -46,7 +55,7 @@ export const CalendarTable = ({ startDay, today }) => {
           >
             <RowInCell justifyContent={'flex-end'}>
               <ShowDayWrapper>
-                <DayWrapper>
+                <DayWrapper >
                   {isCurrentDay(dayItem) ? (
                     <CurrentDay>{dayItem.format('D')}</CurrentDay>
                   ) : (

@@ -1,6 +1,7 @@
 import {
   PeriodPaginatorButton,
   PeriodPaginatorIcon,
+  PeriodPaginatorInner,
   PeriodPaginatorLeft,
   PeriodPaginatorRight,
   PeriodPaginatorSpan,
@@ -15,6 +16,7 @@ export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
         <PeriodPaginatorSpan>{today.format('MMMM')}</PeriodPaginatorSpan>
         <PeriodPaginatorSpan>{today.format('Y')}</PeriodPaginatorSpan>
       </PeriodPaginatorButton>
+      <PeriodPaginatorInner>
       <PeriodPaginatorLeft type="button" onClick={prevHandler}>
         <PeriodPaginatorIcon>
           <use href={`${Icon}#icon-chevron-right-new`} />
@@ -25,6 +27,7 @@ export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
           <use href={`${Icon}#icon-chevron-left-new`} />
         </PeriodPaginatorIcon>
       </PeriodPaginatorRight>
+      </PeriodPaginatorInner>
     </PeriodPaginatorWrapper>
   );
 };
