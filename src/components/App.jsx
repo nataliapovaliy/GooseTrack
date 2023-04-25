@@ -22,6 +22,7 @@ import {
   PublicRoute,
 } from 'components/PrivatPublicRoutes/PrivatPublicRoutes';
 import { StartPage } from 'pages/StartPage/StartPage';
+import { routes } from 'Routes/Routes';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,8 +32,8 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchingCurrentUser());
-    if (pathname === '/') {
-      navigate('/calendar/month/:currentDate');
+    if (pathname === routes.root) {
+      navigate(`${routes.calendar}/${routes.month}`);
     }
   }, [dispatch, pathname, navigate]);
 
@@ -41,25 +42,28 @@ const App = () => {
   return (
     <Routes>
       <Route
-        path="/start"
+        path={routes.start}
         element={<PublicRoute component={<StartPage />} />}
       />
       <Route
-        path="/login"
+        path={routes.login}
         element={<PublicRoute component={<LoginPage />} />}
       />
       <Route
-        path="/register"
+        path={routes.register}
         element={<PublicRoute component={<RegisterPage />} />}
       />
-      <Route path="/" element={<PrivateRoute component={<MainLayout />} />}>
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/calendar" element={<CalendarPage />}>
-          <Route path="month/:currentDate" element={<ChoosedMonth />} />
-          <Route path="day/:currentDay" element={<ChoosedDay />} />
+      <Route
+        path={routes.root}
+        element={<PrivateRoute component={<MainLayout />} />}
+      >
+        <Route path={routes.account} element={<AccountPage />} />
+        <Route path={routes.calendar} element={<CalendarPage />}>
+          <Route path={routes.month} element={<ChoosedMonth />} />
+          <Route path={routes.day} element={<ChoosedDay />} />
         </Route>
       </Route>
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to={routes.root} />} />
     </Routes>
   );
 };
