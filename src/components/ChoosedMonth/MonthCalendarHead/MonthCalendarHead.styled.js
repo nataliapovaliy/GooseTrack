@@ -1,4 +1,4 @@
-import { insert } from 'formik';
+
 import styled from 'styled-components';
 
 export const MonthCalendarHeadList = styled.ul`
@@ -27,5 +27,5 @@ padding: 14px 60px;
 `
 
 export const MonthCalendarHeadItem = styled.li`
-color: ${props => props.isWeekend ? 'var(--accent)' : insert}
+color: ${props => props.isWeekend ? 'var(--accent)' : 'var(--main-background-color)'}
 `

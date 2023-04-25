@@ -13,12 +13,12 @@ import moment from 'moment';
 import { useSelector } from 'react-redux';
 import { selectArrTasks } from 'redux/tasks/tasks-selectors';
 import { CalendarTaskDay } from './CalendarTaskDay/CalendarTaskDay';
+import { useState } from 'react';
 
 
 export const CalendarTable = ({ startDay, today, currentDate }) => {
   const tasks = useSelector(selectArrTasks);
   const day = startDay.clone().subtract(1, 'day');
-
 
   // const ggg = new Date()
 
