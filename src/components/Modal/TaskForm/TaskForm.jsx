@@ -6,8 +6,16 @@ import { Form } from '../Form/Form';
 
 import { addTask } from '../../../redux/tasks/tasks-operations';
 import { closeModalAddTask } from 'redux/modal/globalSlice';
+// import { pushNewTask } from 'redux/tasks/tasks-slice';
 
-export const TaskForm = ({ typeOfModal, closeModal, typeOfColumn }) => {
+export const TaskForm = ({
+  typeOfModal,
+  closeModal,
+  typeOfColumn,
+  choosedDay,
+}) => {
+  // console.log(new Date().toLocaleDateString('en-CA'));
+  // console.log('choosedDay', choosedDay);
   const [enterText, setEnterText] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
@@ -47,13 +55,13 @@ export const TaskForm = ({ typeOfModal, closeModal, typeOfColumn }) => {
       title: enterText,
       start: start.slice(0, 5),
       end: end.slice(0, 5),
-      createAt: new Date().toLocaleDateString('en-CA'),
+      // createAt: new Date().toLocaleDateString('en-CA'),
+      createAt: choosedDay,
       priority: prioritys,
       ...typeOfColumn,
     };
 
-    const answer = await dispatch(addTask(objectToDispatch));
-    console.log('answer', answer.payload.data.result);
+    await dispatch(addTask(objectToDispatch));
 
     // const newTask = async () => {
     //   const answer = await dispatch(addTask(objectToDispatch));
