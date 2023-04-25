@@ -17,12 +17,12 @@ export const CellWrapper = styled.div`
   color: ${props =>
     props.isSelectedMonth
       ? 'var(--calendar-date-color)'
-      : 'var(--btn-text-color)'};
+      : 'red'};
 
   @media screen and (min-width: 768px) {
     width: 100px;
     height: 144px;
-    padding: 18px 22px;
+    padding: 18px 22px 8px 8px;
   }
   @media screen and (min-width: 1440px) {
     width: 155px;

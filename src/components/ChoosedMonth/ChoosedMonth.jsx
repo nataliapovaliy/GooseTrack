@@ -6,12 +6,12 @@ import { MonthCalendarHead } from './MonthCalendarHead/MonthCalendarHead';
 
 
 export const ChoosedMonth = () => {
-  const { startDay, today, totalDays } = useOutletContext();
+  const { startDay, today, totalDays, currentDate } = useOutletContext();
 
   return (
     <>
       <MonthCalendarHead />
-      <CalendarTable startDay={startDay} today={today} totalDays={totalDays} />
+      <CalendarTable startDay={startDay} today={today} totalDays={totalDays} currentDate={currentDate}/>
     </>
   );
 };

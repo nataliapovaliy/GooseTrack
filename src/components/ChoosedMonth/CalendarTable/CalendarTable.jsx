@@ -13,15 +13,37 @@ import { useSelector } from 'react-redux';
 import { selectArrTasks } from 'redux/tasks/tasks-selectors';
 import { CalendarTaskDay } from './CalendarTaskDay/CalendarTaskDay';
 
-export const CalendarTable = ({ startDay, today }) => {
+
+export const CalendarTable = ({ startDay, today, currentDate }) => {
   const tasks = useSelector(selectArrTasks);
-
-  const totalDays = 42;
-
   const day = startDay.clone().subtract(1, 'day');
-  const daysArray = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
+
+
+  // const ggg = new Date()
+
+  // const kkk = ggg.clone().add(1, 'month');
+
+  // const nextMonth = String(kkk).slice(4, 7)
+  // console.log('!!!!!!!', nextMonth);
+
+  let totalDays = 42;
+
+  let daysArray = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
+
+// const filterNextMonth = daysArray.filter(day => String(day._d).slice(4, 7) === nextMonth)
+// console.log(filterNextMonth);
+
+// if(filterNextMonth.length >= 7 ) {
+//   totalDays = 35
+//   daysArray = [...Array(totalDays)].map(() => day.add(1, 'day').clone())
+// }
+
+
+  
+  
   const isCurrentDay = day => moment().isSame(day, 'day');
   const isSelectedMonth = day => today.isSame(day, 'month');
+  // console.log(currentDate);
 
   // let options = { weekday: 'long'};
 
@@ -30,10 +52,14 @@ export const CalendarTable = ({ startDay, today }) => {
   // console.log(new Intl.DateTimeFormat('en-US').format());
   // // Monday
 
-  // console.log("++++", tasks);
+  // console.log("++++", daysArray);
   // console.log('++++', tasks.length);
 
   let xxx = 0;
+
+  
+
+
 
   return (
     <ContainerCalendar>
@@ -45,7 +71,7 @@ export const CalendarTable = ({ startDay, today }) => {
           >
             <RowInCell justifyContent={'flex-end'}>
               <ShowDayWrapper>
-                <DayWrapper>
+                <DayWrapper >
                   {isCurrentDay(dayItem) ? (
                     <CurrentDay>{dayItem.format('D')}</CurrentDay>
                   ) : (
