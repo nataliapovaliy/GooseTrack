@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   border: 1px solid rgba(220, 227, 229, 0.8);
   border-radius: 8px;
   background-color: var(--main-background-color);
