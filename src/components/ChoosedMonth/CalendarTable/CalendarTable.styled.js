@@ -17,7 +17,7 @@ export const CellWrapper = styled.div`
   color: ${props =>
     props.isSelectedMonth
       ? 'var(--calendar-date-color)'
-      : 'red'};
+      : 'transparent'};
 
   @media screen and (min-width: 768px) {
     width: 100px;
