@@ -86,6 +86,8 @@ export const Forms = styled(Form)`
 `;
 
 export const BlockInput = styled.div`
+  position: relative;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -210,8 +212,8 @@ export const ContainerImg = styled.div`
   justify-content: center;
   align-items: center;
 
-  left: 0px;
-  top: 0px;
+  left: 115px;
+  top: -30px;
 
   width: 72px;
   height: 72px;
@@ -224,6 +226,9 @@ export const ContainerImg = styled.div`
     position: relative;
     margin-top: 40px;
     margin-bottom: 14px;
+
+    left: 0px;
+    top: 0px;
 
     width: 124px;
     height: 124px;
@@ -246,10 +251,25 @@ export const SvgAvatar = styled.svg`
   height: 48px;
 
   border-radius: 50%;
+`;
 
+export const VectorPng = styled.img`
+  position: absolute;
+
+  color: var(--title-text-main-color);
+
+  left: 260px;
+  bottom: 175px;
+
+  width: 18px;
+  height: 18px;
   @media screen and (min-width: 768px) {
+    left: 310px;
+    bottom: 219px;
   }
   @media screen and (min-width: 1440px) {
+    left: 314px;
+    bottom: 118px;
   }
 `;
 
@@ -271,6 +291,8 @@ export const LabelBtn = styled.label`
 export const Btn = styled.button`
   margin-left: auto;
   margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
 
   padding: 0;
 
@@ -300,4 +322,40 @@ export const Btn = styled.button`
 
   @media screen and (min-width: 1440px) {
   }
+
+  &:hover,
+  :focus {
+    color: var(--primary-bg-color);
+    background-color: var(--accent-color);
+    box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
+      0px 2px 2px rgba(0, 0, 0, 0.12);
+    border: none;
+    transition: var(--transition-transform),
+      box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 `;
+
+// .btn {
+//   padding: 6px 22px;
+//   cursor: pointer;
+//   font-family: "Roboto", sans-serif;
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 1.62;
+//   text-align: center;
+//   letter-spacing: 0.03em;
+//   border: none;
+//   border-radius: 4px;
+//   color: var(--title-text-color);
+//   background-color: rgb(245, 244, 250);
+//   transition: var(--transition-transform), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+// }
+
+// .btn:hover,
+// .btn:focus {
+//   color: var(--primary-bg-color);
+//   background-color: var(--accent-color);
+//   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
+//   border: none;
+//   transition: var(--transition-transform), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+// }
