@@ -94,6 +94,13 @@ export const Button = styled.button`
   color: var(--btn-text-color);
   border: none;
 
+  &:hover {
+    border: 1px solid #42b8cc;
+  }
+  &:active {
+    filter: blur(0.1rem);
+  }
+
   @media screen and (min-width: 768px) {
     font-weight: 600;
     font-size: 18px;

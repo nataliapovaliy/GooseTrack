@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Name = styled.span`
@@ -53,4 +54,10 @@ export const AvatarImg = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 50%;
+`;
+
+export const Link = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 `;
