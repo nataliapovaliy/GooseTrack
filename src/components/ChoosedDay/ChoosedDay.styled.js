@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const TasksColumnsListWrapper = styled.div`
   display: flex;
   flex-direction: column;
- 
+  position: relative;
   align-items: flex-start;
   width: 100%;
   /* height: 100%; */
@@ -12,8 +12,8 @@ export const TasksColumnsListWrapper = styled.div`
   overflow-y: hidden;
 
   &::-webkit-scrollbar {
- width: 704px;
-height: 14px;
+    width: 704px;
+    height: 14px;
     display: true;
     background: var(--outlet-background-color);
     border-radius: 12px;

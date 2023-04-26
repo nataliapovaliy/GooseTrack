@@ -13,6 +13,8 @@ export const Form = ({
   editText,
   startText,
   endText,
+  onBlurFu,
+  onFocusFu,
 }) => {
   return (
     <form action="" autoComplete="off">
@@ -34,6 +36,8 @@ export const Form = ({
             name="start"
             onChange={startSetter}
             value={startText}
+            onBlur={onBlurFu}
+            onFocus={onFocusFu}
           />
         </InputWraper>
         <InputWraper>
@@ -43,6 +47,8 @@ export const Form = ({
             name="end"
             onChange={endSetter}
             value={endText}
+            onBlur={onBlurFu}
+            onFocus={onFocusFu}
           />
         </InputWraper>
       </StyledInputContainer>
