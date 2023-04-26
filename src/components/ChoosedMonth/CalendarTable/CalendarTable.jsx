@@ -57,8 +57,6 @@ export const CalendarTable = ({ startDay, today }) => {
   //   // eslint-disable-next-line 
   // }, []);
   
-
-
   // === Змінюємо розміри календаря end ===|
 
   const daysArray = [...Array(totalDaysRef.current)].map(() => day.add(1, 'day').clone());
