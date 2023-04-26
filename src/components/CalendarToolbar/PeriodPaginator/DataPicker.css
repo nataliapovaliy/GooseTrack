@@ -1,6 +1,8 @@
+
 .sdp {
     width: 373px;
     max-width: 100%;
+    padding: 18.5px;
 
     align-items: center;
 padding: 9px 18px;
@@ -53,6 +55,7 @@ line-height: 24px;
     background-color: var(--btn-background);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    
     color: #FFFFFF;
     
   }
@@ -217,3 +220,5 @@ line-height: 28px;
     box-shadow: var(--shadow);
   }
   
+
+

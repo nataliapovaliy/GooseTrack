@@ -1,3 +1,4 @@
+import { ChoosedDay } from 'components/ChoosedDay/ChoosedDay';
 import { useNavigate } from 'react-router-dom';
 import { TaskItem } from '../CalendarTable.styled';
 
@@ -21,7 +22,13 @@ export const CalendarTaskDay = ({ task }) => {
   return (
     <TaskItem
       type="button"
-      onClick={() => navigate('/calendar/day/:currentDay')}
+      // onClick={() => navigate('/calendar/day/:currentDay')}
+      onClick={() => {
+        navigate('/calendar/day/:currentDay')
+        // console.log(task.createAt);
+         return <ChoosedDay dayProps={task.createAt}/>
+      }
+      }
       style={{ backgroundColor: priorityColor, color: priorityTextColor }}
     >
       {task.title}
