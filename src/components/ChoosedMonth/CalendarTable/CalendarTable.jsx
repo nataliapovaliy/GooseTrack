@@ -21,9 +21,7 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
 
   const tasks = useSelector(selectArrTasks);
   // console.log("++++", tasks);
-  console.log('++++', tasks.length);
-
-  let xxx = 0;
+  // console.log('++++', tasks.length);
 
   return (
     <ContainerCalendar>
@@ -44,9 +42,32 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
                 </DayWrapper>
               </ShowDayWrapper>
               <TaskListWrapper>
-                
+                {tasks
+                  .filter(
+                    task => task.createAt === dayItem.format('YYYY-MM-DD')
+                  )
+                  .slice(0, 2)
+                  .map(task => (
+                    <li key={task._id}>
+                      <CalendarTaskDay task={task} />
+                    </li>
+                  ))}
+                {tasks.filter(
+                  task => task.createAt === dayItem.format('YYYY-MM-DD')
+                ).length >= 2 && (
+                  <li key="more">
+                    <button>More...</button>
+                  </li>
+                )}
+                {/* {tasks.map((task) => {
+                    if (task.createAt === dayItem.format('YYYY-MM-DD')) {
+                 
+                     
+                    }
+                    return null;
+                })} */}
 
-                  {tasks.map((task) => {
+                {/* {tasks.map((task) => {
                     if (task.createAt === dayItem.format('YYYY-MM-DD')) {
                       xxx += 1;
                       if (xxx <= 2) {
@@ -66,8 +87,7 @@ export const CalendarTable = ({ startDay, today, totalDays }) => {
                       }
                     }
                     return null;
-                  })}
-                
+                  })} */}
               </TaskListWrapper>
             </RowInCell>
           </CellWrapper>
