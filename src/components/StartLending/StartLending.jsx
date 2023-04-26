@@ -1,6 +1,6 @@
 import {
     SectionNull, Img, Title, Div, LinkSign, Button, SvgLogIn,
-    SectionFirst, DivSection, H2, H3, H3One, H4, Paragraf, ImgSection,
+    SectionFirst, DivSection, DivSectionSecond, H2, H3, H3One, H4, Paragraf, ImgSection,
     SectionSecond,
     SectionReviews, H3Reviews, DivSectionReviews, DivReviews, ImgReview, DivOneReview, TitleReview, ImgStars, ParagrafReview,
     DivArrows, SvgArrows
@@ -49,12 +49,12 @@ export const StartLending = () => {
 
             <SectionSecond>
                 <ImgSection src={imageSidebar} alt="image-sidebar"></ImgSection>
-                <DivSection data-aos="fade-left">
+                <DivSectionSecond data-aos="fade-left">
                     <H2>2.</H2>
                     <H4>Sidebar</H4>
                     <Paragraf>GooseTrack offers easy access to your account settings, calendar, and filters. The "My Account" section allows you to manage your profile information and preferences, while the calendar provides a quick and convenient way to view your upcoming events and tasks.
                     </Paragraf>
-                </DivSection>
+                </DivSectionSecond>
             </SectionSecond>
 
             <SectionFirst>

@@ -57,18 +57,21 @@ export const Div = styled.div`
     height: 268px;
     margin: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: space-between;
+    align-items: center;
     @media screen and (min-width: 768px) {
-        width: 190px;
+        width: 196px;
         height: auto;
         display: flex;
+        flex-direction: row;
         gap: 24px;
         align-items: center;
     }
     @media screen and (min-width: 1440px) {
         width: 196px;
         display: flex;
+        flex-direction: row;
         gap: 24px;
         align-items: center;
     }
@@ -106,7 +109,7 @@ export const Button = styled.button`
 
     background: var(--main-background-color);
     box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
-        border-radius: 16px;
+    border-radius: 16px;
     border: none;
     cursor: pointer;
     @media screen and (min-width: 768px) {
@@ -125,23 +128,29 @@ export const SvgLogIn = styled.svg`
 `;
 
 export const SectionFirst = styled.section`
-    width: 100%;
+    width: 375px;
+    margin: auto;
+    margin-bottom: 64px;
     padding: 0 20px;
-
     display: flex;
     flex-direction: column;
     gap: 40px;
     @media screen and (min-width: 768px) {
-        width: 100%;
+        width: 768px;
+        margin: auto;
+        margin-bottom: 64px;
         padding: 0 32px;
         display: flex;
         flex-direction: column;
         gap: 48px;
     }
     @media screen and (min-width: 1440px) {
+        width: 1440px;
+        margin: auto;
+        margin-bottom: 64px;
         display: flex;
         gap: 228px;
-        
+        flex-direction: row;
         width: 1107px;
         height: 700px;
         margin-left: 205px;
@@ -151,16 +160,18 @@ export const SectionFirst = styled.section`
 `;
 
 export const SectionSecond = styled.section`
-    width: 100%;
+    width: 375px;
+    margin: auto;
+    margin-bottom: 64px;
     padding: 0 32px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 40px;
     @media screen and (min-width: 768px) {
-        width: 100%;
+        width: 768px;
         padding: 0 32px;
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 48px;
     }
     @media screen and (min-width: 1440px) {
@@ -170,11 +181,23 @@ export const SectionSecond = styled.section`
         margin-right: 205px;
         margin-bottom: 64px;
         display: flex;
+        flex-direction: row;
         gap: 228px;
     }
 `;
 
 export const DivSection = styled.div`
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: 768px) {
+
+    }
+    @media screen and (min-width: 1440px) {
+        padding-left: 0;
+    }
+`;
+
+export const DivSectionSecond = styled.div`
     display: flex;
     flex-direction: column;
     @media screen and (min-width: 768px) {
@@ -211,6 +234,7 @@ export const H3 = styled.button`
 
     width: 214px;
     padding: 8px 18px;
+    margin-bottom: 8px;
     display: flex;
     background: #DCEBF7;
     border-radius: 44px;
@@ -225,13 +249,14 @@ export const H3 = styled.button`
 export const H3One = styled.button`
     font-family: 'Inter';
     font-weight: 700;
-    font-size: 40px;
+    font-size: 32px;
     line-height: 1.1;
     text-transform: uppercase;
     color: var(--accent);
 
     width: 139px;
     padding: 6px 18px;
+    margin-bottom: 8px;
     display: flex;
     background: #DCEBF7;
     border-radius: 44px;
@@ -286,38 +311,77 @@ export const ImgSection = styled.img`
 `;
 
 export const SectionReviews = styled.section`
-    width: 1184px;
-    height: 374px;
-    margin-left: 128px;
-    margin-right: 128px;
+    width: 375px;
+    margin: auto;
+    padding: 0 20px;
+    @media screen and (min-width: 768px) {
+        width: 768px;
+        padding: 0 32px;
+        margin: auto;
+    }
+    @media screen and (min-width: 1440px) {
+        width: 1184px;
+        height: 374px;
+        margin-left: 128px;
+        margin-right: 128px;
+    }
 `;
 
 export const H3Reviews = styled.h3`
     text-align: center;
     font-family: 'Inter';
     font-weight: 700;
-    font-size: 40px;
-    line-height: 1.1;
+    font-size: 28px;
+    line-height: 1.14;
     text-transform: uppercase;
     color: var(--accent);
+    @media screen and (min-width: 768px) {
+        font-size: 40px;
+        line-height: 1.1;
+    }
+    @media screen and (min-width: 1440px) {
+
+    }
 `;
 
 export const DivSectionReviews = styled.div`
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
+    flex-direction: column;
     gap: 24px;
+    @media screen and (min-width: 768px) {
+        margin-top: 50px;
+    }
+    @media screen and (min-width: 1440px) {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+    }
 `;
 
 export const DivReviews = styled.div`
-    width: 580px;
-    height: 187px;
-    padding-top: 32px;
-    padding-left: 32px;
-    padding-right: 32px;
+    width: 335px;
+    margin: auto;
+    padding: 24px;
     border: 1px solid rgba(17, 17, 17, 0.1);
     border-radius: 8px;
     display: flex;
     gap: 18px;
+    @media screen and (min-width: 768px) {
+        width: 580px;
+    }
+    @media screen and (min-width: 1440px) {
+        width: 580px;
+        height: 187px;
+        padding-top: 32px;
+        padding-left: 32px;
+        padding-right: 32px;
+        border: 1px solid rgba(17, 17, 17, 0.1);
+        border-radius: 8px;
+        display: flex;
+        gap: 18px;
+    }
 `;
 
 export const ImgReview = styled.img`
@@ -365,7 +429,6 @@ gap: 25px;
 export const SvgArrows = styled.svg`
     width: 61px;
     height: 61px;
-    /* margin-left: 6px; */
     stroke: #000000;
     fill: none;
 
