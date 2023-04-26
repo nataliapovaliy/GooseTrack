@@ -1,4 +1,5 @@
 import {
+  CalendarTableMoreBtn,
   CellWrapper,
   ContainerCalendar,
   CurrentDay,
@@ -73,7 +74,7 @@ export const CalendarTable = ({ startDay, today }) => {
                   task => task.createAt === dayItem.format('YYYY-MM-DD')
                 ).length >= 2 && (
                   <li key="more">
-                    <button>More...</button>
+                    <CalendarTableMoreBtn type='button'>See all...</CalendarTableMoreBtn>
                   </li>
                 )}
                 {/* {tasks.map((task) => {
