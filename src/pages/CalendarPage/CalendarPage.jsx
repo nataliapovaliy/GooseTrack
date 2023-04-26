@@ -34,7 +34,9 @@ import { useNavigate } from 'react-router';
       .toString()
       .padStart(2, '0')}`;
     return `/calendar/day/${nextDay}`;
-  };
+};
+  
+
 const navigateToPrevDate = currentDay => {
   const dayFromParams =
     currentDay === ':currentDay'
@@ -68,14 +70,17 @@ export const CalendarPage = () => {
   const startDay = today.clone().startOf('month').startOf('week');
 
   const prevHandler = () => {
-    if (!currentDay) {
+     if (!currentDay && typeof currentDay === 'undefined') {
       setToday(prev => prev.clone().subtract(1, 'month'));
+      return
     }
     navigate(navigateToPrevDate(currentDay));
   };
   const nextHandler = () => {
-    if (!currentDay) {
+  
+    if (!currentDay && typeof currentDay === 'undefined') {
       setToday(next => next.clone().add(1, 'month'));
+      return;
     }
     navigate(navigateToNextDate(currentDay));
 
