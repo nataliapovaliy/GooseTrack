@@ -1,5 +1,4 @@
 import {
-  Overlay,
   PeriodPaginatorButton,
   PeriodPaginatorIcon,
   PeriodPaginatorInner,
@@ -15,18 +14,16 @@ import { CalendarDataPicker } from '../CalendarDataPicker/CalendarDataPicker';
 export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [date, setDate] = useState(new Date());
+
   const handleClick = e => {
     e.preventDefault();
     setIsOpen(!isOpen);
   };
 
-  const onChange = (newDate) => {
+  const onChange = newDate => {
     console.log(`New date selected - ${newDate.toString()}`);
     setDate(newDate);
-    
   };
- 
-
 
   const onClose = evt => {
     if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
@@ -35,15 +32,17 @@ export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
   };
 
   return (
-    <PeriodPaginatorWrapper>
-      <PeriodPaginatorButton type="button" onClick={handleClick}>
+    <PeriodPaginatorWrapper onClick={onClose}>
+      <PeriodPaginatorButton
+        variant="outlined"
+        type="button"
+        onClick={handleClick}
+      >
         <PeriodPaginatorSpan>{today.format('MMMM')}</PeriodPaginatorSpan>
         <PeriodPaginatorSpan>{today.format('Y')}</PeriodPaginatorSpan>
       </PeriodPaginatorButton>
       {isOpen ? (
-        <Overlay onClick={onClose}>
-          <CalendarDataPicker open={isOpen} onChange={onChange} value={date} />
-        </Overlay>
+        <CalendarDataPicker open={isOpen} onChange={onChange} value={date} />
       ) : null}
       <PeriodPaginatorInner>
         <PeriodPaginatorLeft type="button" onClick={prevHandler}>
