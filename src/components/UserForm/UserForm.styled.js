@@ -86,6 +86,8 @@ export const Forms = styled(Form)`
 `;
 
 export const BlockInput = styled.div`
+  position: relative;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -210,8 +212,8 @@ export const ContainerImg = styled.div`
   justify-content: center;
   align-items: center;
 
-  left: 0px;
-  top: 0px;
+  left: 115px;
+  top: -30px;
 
   width: 72px;
   height: 72px;
@@ -224,6 +226,9 @@ export const ContainerImg = styled.div`
     position: relative;
     margin-top: 40px;
     margin-bottom: 14px;
+
+    left: 0px;
+    top: 0px;
 
     width: 124px;
     height: 124px;
@@ -246,10 +251,28 @@ export const SvgAvatar = styled.svg`
   height: 48px;
 
   border-radius: 50%;
+`;
 
+export const VectorPng = styled.svg`
+  position: absolute;
+
+  transform: rotate(270deg);
+
+  stroke: var(--title-text-main-color);
+  fill: none;
+
+  left: 260px;
+  bottom: 175px;
+
+  width: 18px;
+  height: 18px;
   @media screen and (min-width: 768px) {
+    left: 310px;
+    bottom: 219px;
   }
   @media screen and (min-width: 1440px) {
+    left: 314px;
+    bottom: 118px;
   }
 `;
 
@@ -271,6 +294,8 @@ export const LabelBtn = styled.label`
 export const Btn = styled.button`
   margin-left: auto;
   margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
 
   padding: 0;
 
@@ -289,6 +314,7 @@ export const Btn = styled.button`
   line-height: calc(18 / 14);
 
   background: var(--accent-background-color);
+  color: var(--btn-text-color);
   color: #ffffff;
 
   @media screen and (min-width: 768px) {
@@ -299,5 +325,12 @@ export const Btn = styled.button`
   }
 
   @media screen and (min-width: 1440px) {
+  }
+
+  &:hover {
+    border: 1px solid #42b8cc;
+  }
+  &:active {
+    filter: blur(0.1rem);
   }
 `;

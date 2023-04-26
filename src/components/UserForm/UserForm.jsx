@@ -8,7 +8,8 @@ import { selectUser } from 'redux/auth/auth-selectors';
 import { fetchingCurrentUser, updateUser } from 'redux/auth/auth-operations';
 
 import plus from '../../images/plus.png';
-import icon from '../../images/icons.svg';
+// import chevron from '../../images/chevron.png';
+import Icon from '../../images/icons.svg';
 
 import {
   ContainerImg,
@@ -25,15 +26,14 @@ import {
   LabelImg,
   User,
   SvgAvatar,
+  VectorPng,
 } from './UserForm.styled';
-
-//TODO Валидация: номер телефона
 
 const validationFormikSchema = object({
   name: string().max(16).required(),
-  birthday: date(), //.default(() => new Date()),
+  birthday: date(),
   email: string().email().required(),
-  // skype: string().max(16),
+  skype: string().max(16),
 });
 
 const UserForm = () => {
@@ -97,7 +97,7 @@ const UserForm = () => {
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
                 <SvgAvatar>
-                  <use href={icon + '#icon-ph-user'}></use>
+                  <use href={Icon + '#icon-ph-user'}></use>
                 </SvgAvatar>
               )}
 
@@ -159,6 +159,11 @@ const UserForm = () => {
                   placeholder="Birthday"
                   dateFormat="dd/MM/yyyy"
                 />
+
+                <VectorPng>
+                  <use href={Icon + '#icon-chevron-right-new'}></use>
+                </VectorPng>
+
                 <ErrorMessage name="birthday" />
               </LabelBtn>
 
