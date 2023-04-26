@@ -115,3 +115,27 @@ export const PeriodPaginatorIcon = styled.svg`
     height: 18px;
   }
 `;
+
+export const Overlay = styled.div`
+  position: fixed;
+  top: 60px;
+  left: 0;
+  /* max-width: 320px; */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    /* background-color: white; */
+
+  /* background-color: rgba(0, 0, 0, 0.25); */
+  z-index: 1200;
+  
+  @media screen and (min-width: 768px) {
+    max-width: 100%;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.05);
+    top: 0;
+  left: 0;
+  }
+`;

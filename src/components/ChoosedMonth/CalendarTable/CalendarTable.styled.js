@@ -12,12 +12,11 @@ export const GridWrapper = styled.div`
 export const CellWrapper = styled.div`
   width: 48px;
   height: 94px;
+  cursor: pointer;
   padding: 12px 10px;
   border: 1px solid rgba(220, 227, 229, 0.8);
   color: ${props =>
-    props.isSelectedMonth
-      ? 'var(--calendar-date-color)'
-      : 'transparent'};
+    props.isSelectedMonth ? 'var(--calendar-date-color)' : 'transparent'};
 
   @media screen and (min-width: 768px) {
     width: 100px;
@@ -43,7 +42,7 @@ export const ShowDayWrapper = styled.div`
 `;
 
 export const TaskListWrapper = styled.ul`
-  margin: unset;
+  margin: 0;
   list-style-position: inside;
   padding-left: 4px;
 `;
@@ -64,11 +63,10 @@ export const TaskItem = styled.button`
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    
   }
   @media screen and (min-width: 1440px) {
-  font-size: 14px;
-  line-height: 1.28;
+    font-size: 14px;
+    line-height: 1.28;
   }
 `;
 
@@ -78,7 +76,7 @@ export const DayWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2px;
+  /* margin: 2px; */
 
   font-weight: 700;
   font-size: 14px;
@@ -86,16 +84,15 @@ export const DayWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
-  line-height: 1.2;
-}
-@media screen and (min-width: 1440px) {
+    line-height: 1.2;
+  }
+  @media screen and (min-width: 1440px) {
     height: 26px;
-  width: 26px;
+    width: 26px;
 
-  font-size: 16px;
-  line-height: 1.2;
-}
-
+    font-size: 16px;
+    line-height: 1.2;
+  }
 `;
 
 export const CurrentDay = styled.div`
@@ -112,21 +109,19 @@ export const ContainerCalendar = styled.div`
   /* height: 626px; */
 `;
 
-
-
-
 export const CalendarTableMoreBtn = styled.button`
-  color: var(--btn-text-color);
+  /* color: var(--btn-text-color); */
   border: none;
   border-radius: 8px;
-  background-color: red;
+
+  background-color: var(--main-background-color);
   
-  padding: 4px 12px 4px 10px;
+  /* padding: 4px 12px 4px 10px; */
+
   text-align: start;
 
   font-weight: 700;
   font-size: 12px;
   line-height: 1.16;
   cursor: pointer;
-
 `;
