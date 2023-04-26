@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   Container,
@@ -7,7 +7,8 @@ import {
   DateWrapper,
   DateContainer,
 } from './DayCalendarHead.styled';
-import { nanoid } from 'nanoid';
+import { format } from 'date-fns';
+
 
 const chooseIndexOfCurrentDay = date => {
   switch (date.toString().slice(0, 3).toUpperCase()) {
@@ -29,19 +30,22 @@ const chooseIndexOfCurrentDay = date => {
       return 0;
   }
 };
-
+  const dateParts = currentDay =>
+    currentDay !== ':currentDay'
+      ? currentDay.split('-')
+    : format(new Date(), 'yyyy-MM-dd').split('-');
+      
 export function DayCalendarHead({ clickChooseDay }) {
   const navigate = useNavigate();
   const { currentDay } = useParams();
 
-  const dayFromParams =
-    currentDay === ':currentDay'
-      ? String(new Date().getDate()).padStart(2, '0')
-      : currentDay.slice(8, 10);
+  const year = dateParts(currentDay)[0]
+  const month = dateParts(currentDay)[1] - 1; 
+  const dayy = dateParts(currentDay)[2];
 
-  const currentDate = new Date();
+const currentDate = new Date(year, month, dayy);
 
-  const [choosedDay, setChoosedDay] = useState(dayFromParams);
+  const [choosedDay, setChoosedDay] = useState(dayy);
 
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
@@ -56,15 +60,10 @@ export function DayCalendarHead({ clickChooseDay }) {
     clickChooseDay(dateClickObject);
   };
 
-  //   useEffect(() => {
-  //  setChoosedDay(dayFromParams);
-  //   }, [choosedDay]);
 
-  return (
-    <Container>
-      <DateWrapper>
-        {daysOfWeek.map((day, index) => {
-          const date = new Date(currentDate);
+  const weekInfoWrappers = useMemo(() => (
+  daysOfWeek.map((day, index) => {
+          const date = new Date(year, month, dayy);
 
           const currentDay = index % 7;
 
@@ -82,7 +81,7 @@ export function DayCalendarHead({ clickChooseDay }) {
           const isCurrentDay = date.toDateString().slice(8, 10) === choosedDay;
 
           return (
-            <WeekInfoWrapper key={nanoid()}>
+            <WeekInfoWrapper key={dateKey}>
               <DayOfWeek key={dayOfWeek}>{dayOfWeek}</DayOfWeek>
               <DateContainer
                 key={dateKey}
@@ -101,8 +100,13 @@ export function DayCalendarHead({ clickChooseDay }) {
               </DateContainer>
             </WeekInfoWrapper>
           );
-        })}
-      </DateWrapper>
+        })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  ), [daysOfWeek, currentDate, chooseIndexOfCurrentDay]);
+  
+  return (
+    <Container>
+      <DateWrapper>{weekInfoWrappers}</DateWrapper>
     </Container>
   );
 }
