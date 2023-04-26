@@ -47,8 +47,8 @@ export const TaskModalChangeStatusWrapper = styled.div`
   width: 147px;
   height: 90px;
   z-index: 1000;
- box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
-border-radius: 8px;
+  box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
+  border-radius: 8px;
 `;
 
 export const TaskModalChangeStatusBtn = styled.button`
@@ -56,7 +56,6 @@ export const TaskModalChangeStatusBtn = styled.button`
   /* align-items: start; */
   /* justify-content: space-around; */
 
-  
   padding: 0px;
   margin: 0px;
   border: none;
@@ -65,6 +64,7 @@ export const TaskModalChangeStatusBtn = styled.button`
   color: var(--title-text-main-color);
   &:hover {
     color: var(--accent);
+    stroke: var(--accent);
   }
 `;
 
@@ -73,16 +73,17 @@ export const TaskModalChangeStatusBtnElem = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0px 10px 0px 20px;
- margin: 0px 0px 5px 0px;
+  margin: 0px 0px 5px 0px;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
+  &:hover {
+    color: var(--accent);
+    stroke: var(--accent);
+  }
 `;
 
-
 export const StateStatus = styled.div`
-margin: 0px 10px 0px 0px;
+  margin: 0px 10px 0px 0px;
   padding: 0px 0px 0px 0px;
-  
-  `;
-
+`;
