@@ -26,7 +26,7 @@ export const CalendarTaskDay = ({ task }) => {
       onClick={() => {
         navigate('/calendar/day/:currentDay')
         // console.log(task.createAt);
-         return <ChoosedDay dayProps={task.createAt}/>
+        return <ChoosedDay dayProps={task.createAt}/>
       }
       }
       style={{ backgroundColor: priorityColor, color: priorityTextColor }}

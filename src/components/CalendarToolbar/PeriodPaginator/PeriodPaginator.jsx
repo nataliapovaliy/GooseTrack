@@ -8,20 +8,20 @@ import {
   PeriodPaginatorWrapper,
 } from './PeriodPaginator.styled';
 import Icon from '../../../images/icons.svg';
-// import { useState } from 'react';
-// import DatePicker from 'sassy-datepicker';
-// import './DataPicker.css';
+import { useState } from 'react';
+import DatePicker from 'sassy-datepicker';
+import './DataPicker.css';
 
 export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
-  // // const [isOpen, setIsOpen] = useState(false);
-  // const handleClick = e => {
-  //   e.preventDefault();
-  //   setIsOpen(true);
-  // };
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClick = e => {
+    e.preventDefault();
+    setIsOpen(true);
+  };
 
   return (
     <PeriodPaginatorWrapper>
-      {/* <DatePicker open={isOpen} weekStartsFrom="Monday" /> */}
+      <DatePicker open={isOpen} weekStartsFrom="Monday" />
       <PeriodPaginatorButton type="button" >
         <PeriodPaginatorSpan>{today.format('MMMM')}</PeriodPaginatorSpan>
         <PeriodPaginatorSpan>{today.format('Y')}</PeriodPaginatorSpan>
