@@ -32,6 +32,7 @@ export const PriorityCircle = styled.div`
 `;
 export const ActiveCircle = styled.div`
   position: absolute;
+
   top: -2.5px;
   left: -3px;
   width: 14px;
@@ -55,4 +56,5 @@ export const StyledPar = styled.p`
   font-weight: 600;
   font-size: 12px;
   line-height: 1.17;
+  cursor: pointer;
 `;

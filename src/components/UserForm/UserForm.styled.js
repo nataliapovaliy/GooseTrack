@@ -30,6 +30,8 @@ export const Wrapper = styled.div`
   h2 {
     margin-bottom: 4px;
 
+    height: 18px;
+
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -69,7 +71,7 @@ export const BlockInput = styled.div`
     margin-bottom: 88px;
 
     width: 758px;
-    min-height: 264px;
+    min-height: 250px;
   }
 `;
 
@@ -92,9 +94,11 @@ export const Input = styled(Field)`
   color: var(--title-text-main-color);
 
   @media screen and (min-width: 768px) {
+    width: 354px;
+    height: 46px;
+
     font-size: 16px;
     line-height: calc(18 / 16);
-    width: 354px;
   }
   @media screen and (min-width: 1440px) {
   }
@@ -123,7 +127,6 @@ export const DatePick = styled(DatePicker)`
 
     font-size: 16px;
     line-height: calc(18 / 16);
-    width: 354px;
   }
   @media screen and (min-width: 1440px) {
   }
@@ -139,14 +142,17 @@ export const InputFile = styled.input`
   margin: 0;
 `;
 
-export const ImgAvatar = styled.img`
-  text-align: center;
+export const ContainerImg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   width: 72px;
   height: 72px;
 
-  border: 2px solid #3e85f3;
+  border: 2px solid var(--accent-background-color);
   border-radius: 50%;
+  background: var(--main-background-color);
 
   @media screen and (min-width: 768px) {
     margin-top: 40px;
@@ -161,25 +167,27 @@ export const ImgAvatar = styled.img`
   }
 `;
 
-export const SvgAvatar = styled.svg`
-  text-align: center;
+export const ImgAvatar = styled.img`
+  width: 100%;
+  height: 100%;
 
-  width: 72px;
-  height: 72px;
-
-  border: 2px solid #3e85f3;
   border-radius: 50%;
 
   @media screen and (min-width: 768px) {
-    margin-top: 40px;
-    margin-bottom: 14px;
-
-    width: 124px;
-    height: 124px;
   }
   @media screen and (min-width: 1440px) {
-    margin-top: 60px;
-    margin-bottom: 20px;
+  }
+`;
+
+export const SvgAvatar = styled.svg`
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -188,10 +196,8 @@ export const ImgBtn = styled.img`
   height: 24px;
 `;
 
-export const Container = styled.div``;
-
 export const User = styled.p`
-  margin-bottom: 40px;
+  margin-bottom: 44px;
   color: var(--label-text-color);
 `;
 
@@ -212,14 +218,12 @@ export const LabelImg = styled.label`
 
 export const LabelBtn = styled.label`
   color: var(--label-text-color);
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 18px;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 24px;
   }
   @media screen and (min-width: 1440px) {
+    height: 72px;
+    margin-bottom: 24px;
   }
 `;
 

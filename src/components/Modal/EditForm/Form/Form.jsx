@@ -15,7 +15,7 @@ export const Form = ({
   endText,
 }) => {
   return (
-    <form action="">
+    <form action="" autoComplete="off">
       <InputWraper>
         <StyledLabel htmlFor="">Title</StyledLabel>
         <StyledInputText
