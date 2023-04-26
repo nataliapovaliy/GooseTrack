@@ -40,12 +40,12 @@ export function DayCalendarHead({ clickChooseDay }) {
 
   const year = dateParts(currentDay)[0];
   const month = dateParts(currentDay)[1] - 1;
-  const dayy = dateParts(currentDay)[2];
+  const dayFromParams = dateParts(currentDay)[2];
   
 
-  const currentDate = new Date(year, month, dayy);
+  const currentDate = new Date(year, month, dayFromParams);
 
-  const [choosedDay, setChoosedDay] = useState(dayy);
+  const [choosedDay, setChoosedDay] = useState(dayFromParams);
 
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
@@ -61,13 +61,14 @@ export function DayCalendarHead({ clickChooseDay }) {
   };
 
   useEffect(() => {
-setChoosedDay(dayy);
+setChoosedDay(dayFromParams);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentDay]);
 
   const weekInfoWrappers = useMemo(
     () =>
       daysOfWeek.map((day, index) => {
-        const date = new Date(year, month, dayy);
+        const date = new Date(year, month, dayFromParams);
 
         const currentDay = index % 7;
 
