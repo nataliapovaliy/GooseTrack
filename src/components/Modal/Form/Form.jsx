@@ -7,10 +7,15 @@ import {
 } from './Form.styled';
 
 export const Form = ({
-  inputHendler,
+  titleSetter,
+  startSetter,
+  endSetter,
+  // inputHendler,
   enterTextTitle,
   startTitle,
   endTitle,
+  onBlurFu,
+  onFocusFu,
 }) => {
   return (
     <form action="" autoComplete="off">
@@ -22,7 +27,7 @@ export const Form = ({
           name="text"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Text can contain a maximum of 250 characters"
-          onChange={inputHendler}
+          onChange={titleSetter}
           value={enterTextTitle}
         />
       </InputWraper>
@@ -34,8 +39,10 @@ export const Form = ({
             name="start"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="The date must be in this format '00:00'"
-            onChange={inputHendler}
+            onChange={startSetter}
+            onBlur={onBlurFu}
             value={startTitle}
+            onFocus={onFocusFu}
           />
         </InputWraper>
         <InputWraper>
@@ -44,8 +51,10 @@ export const Form = ({
             type="text"
             name="end"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            onChange={inputHendler}
+            onChange={endSetter}
+            onBlur={onBlurFu}
             value={endTitle}
+            onFocus={onFocusFu}
           />
         </InputWraper>
       </StyledInputContainer>
