@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { selectArrTasks } from 'redux/tasks/tasks-selectors';
 import { CalendarTaskDay } from './CalendarTaskDay/CalendarTaskDay';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const CalendarTable = ({ startDay, today }) => {
   const navigate = useNavigate();
@@ -21,7 +22,6 @@ export const CalendarTable = ({ startDay, today }) => {
 
   const isCurrentDay = day => moment().isSame(day, 'day');
   const isSelectedMonth = day => today.isSame(day, 'month');
-  // console.log(currentDate);
 
   // === Змінюємо розміри календаря start ===>
   let totalDays = 35;
@@ -32,22 +32,26 @@ export const CalendarTable = ({ startDay, today }) => {
     .startOf('month')
     .format('dddd');
 
-  if (
-    (isTheFirstDayOfTheMonth.includes('Saturday') ||
-      isTheFirstDayOfTheMonth.includes('Sunday')) &&
-    numberOfDays === 31
-  )
-    totalDays = 42;
-  if (isTheFirstDayOfTheMonth.includes('Sunday') && numberOfDays === 30)
-    totalDays = 42;
-  if (isTheFirstDayOfTheMonth.includes('Friday') && numberOfDays === 31)
-    totalDays = 35;
-  if (isTheFirstDayOfTheMonth.includes('Sunday') && numberOfDays === 29)
-    totalDays = 35;
-  if (isTheFirstDayOfTheMonth.includes('Sunday') && numberOfDays === 28)
-    totalDays = 35;
-  if (isTheFirstDayOfTheMonth.includes('Monday') && numberOfDays === 28)
-    totalDays = 28;
+    useEffect(() => {
+       if (
+         (isTheFirstDayOfTheMonth.includes('Saturday') ||
+           isTheFirstDayOfTheMonth.includes('Sunday')) &&
+         numberOfDays === 31
+       )
+         totalDays = 42;
+       if (isTheFirstDayOfTheMonth.includes('Sunday') && numberOfDays === 30)
+         totalDays = 42;
+       if (isTheFirstDayOfTheMonth.includes('Friday') && numberOfDays === 31)
+         totalDays = 35;
+       if (isTheFirstDayOfTheMonth.includes('Sunday') && numberOfDays === 29)
+         totalDays = 35;
+       if (isTheFirstDayOfTheMonth.includes('Sunday') && numberOfDays === 28)
+         totalDays = 35;
+       if (isTheFirstDayOfTheMonth.includes('Monday') && numberOfDays === 28)
+         totalDays = 28;
+    }, []);
+  
+
 
   // === Змінюємо розміри календаря end ===|
 
