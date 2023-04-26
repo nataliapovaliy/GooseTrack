@@ -5,7 +5,7 @@ import { ColumnWrapper } from './TasksColumn.styled';
 import { AddTaskBtn } from '../AddTaskBtn/AddTaskBtn';
 
 export const TasksColumn = ({ getTypeOfColumn, title, tasks, getTask }) => {
-  // console.log('TasksColumn', date)
+
   return (
     <ColumnWrapper>
       <ColumnHeadBar
