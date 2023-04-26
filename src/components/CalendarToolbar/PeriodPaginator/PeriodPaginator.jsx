@@ -39,13 +39,12 @@ export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
       <PeriodPaginatorButton type="button" onClick={handleClick}>
         <PeriodPaginatorSpan>{today.format('MMMM')}</PeriodPaginatorSpan>
         <PeriodPaginatorSpan>{today.format('Y')}</PeriodPaginatorSpan>
-        {isOpen ? (
+      </PeriodPaginatorButton>
+      {isOpen ? (
         <Overlay onClick={onClose}>
           <CalendarDataPicker open={isOpen} onChange={onChange} value={date} />
         </Overlay>
       ) : null}
-      </PeriodPaginatorButton>
-     
       <PeriodPaginatorInner>
         <PeriodPaginatorLeft type="button" onClick={prevHandler}>
           <PeriodPaginatorIcon>
