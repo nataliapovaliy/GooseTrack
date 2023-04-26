@@ -253,10 +253,13 @@ export const SvgAvatar = styled.svg`
   border-radius: 50%;
 `;
 
-export const VectorPng = styled.img`
+export const VectorPng = styled.svg`
   position: absolute;
 
-  color: var(--title-text-main-color);
+  transform: rotate(270deg);
+
+  stroke: var(--title-text-main-color);
+  fill: none;
 
   left: 260px;
   bottom: 175px;
@@ -311,6 +314,7 @@ export const Btn = styled.button`
   line-height: calc(18 / 14);
 
   background: var(--accent-background-color);
+  color: var(--btn-text-color);
   color: #ffffff;
 
   @media screen and (min-width: 768px) {
@@ -323,39 +327,10 @@ export const Btn = styled.button`
   @media screen and (min-width: 1440px) {
   }
 
-  &:hover,
-  :focus {
-    color: var(--primary-bg-color);
-    background-color: var(--accent-color);
-    box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
-      0px 2px 2px rgba(0, 0, 0, 0.12);
-    border: none;
-    transition: var(--transition-transform),
-      box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    border: 1px solid #42b8cc;
+  }
+  &:active {
+    filter: blur(0.1rem);
   }
 `;
-
-// .btn {
-//   padding: 6px 22px;
-//   cursor: pointer;
-//   font-family: "Roboto", sans-serif;
-//   font-weight: 500;
-//   font-size: 16px;
-//   line-height: 1.62;
-//   text-align: center;
-//   letter-spacing: 0.03em;
-//   border: none;
-//   border-radius: 4px;
-//   color: var(--title-text-color);
-//   background-color: rgb(245, 244, 250);
-//   transition: var(--transition-transform), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-// }
-
-// .btn:hover,
-// .btn:focus {
-//   color: var(--primary-bg-color);
-//   background-color: var(--accent-color);
-//   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
-//   border: none;
-//   transition: var(--transition-transform), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-// }

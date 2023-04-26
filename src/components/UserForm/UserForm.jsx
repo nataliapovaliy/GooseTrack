@@ -8,8 +8,8 @@ import { selectUser } from 'redux/auth/auth-selectors';
 import { fetchingCurrentUser, updateUser } from 'redux/auth/auth-operations';
 
 import plus from '../../images/plus.png';
-import chevron from '../../images/chevron.png';
-import icon from '../../images/icons.svg';
+// import chevron from '../../images/chevron.png';
+import Icon from '../../images/icons.svg';
 
 import {
   ContainerImg,
@@ -97,7 +97,7 @@ const UserForm = () => {
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
                 <SvgAvatar>
-                  <use href={icon + '#icon-ph-user'}></use>
+                  <use href={Icon + '#icon-ph-user'}></use>
                 </SvgAvatar>
               )}
 
@@ -159,7 +159,11 @@ const UserForm = () => {
                   placeholder="Birthday"
                   dateFormat="dd/MM/yyyy"
                 />
-                <VectorPng src={chevron} alt="chevron"></VectorPng>
+
+                <VectorPng>
+                  <use href={Icon + '#icon-chevron-right-new'}></use>
+                </VectorPng>
+
                 <ErrorMessage name="birthday" />
               </LabelBtn>
 
