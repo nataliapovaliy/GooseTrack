@@ -43,7 +43,7 @@ export const TaskToolbar = ({ task, getTask }) => {
 
   useEffect(() => {
     dispatch(fetchTasks());
-  }, [dispatch, status]);
+  }, [dispatch]);
 
   const handleStatusChange = state => {
     const taskForUpdate = {
