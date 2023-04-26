@@ -43,10 +43,6 @@ const UserForm = () => {
 
   const { user } = useSelector(selectUser);
   const dispatch = useDispatch();
-  console.log('isUpdateForm', isUpdateForm);
-
-  console.log('user', user);
-  console.log('newBirthday', newBirthday);
 
   useEffect(() => {
     if (isUpdateForm) {
@@ -55,7 +51,6 @@ const UserForm = () => {
     }
   }, [dispatch, isUpdateForm]);
 
-  console.log('object', user);
   return (
     <Wrapper>
       <Formik
@@ -98,7 +93,7 @@ const UserForm = () => {
             <ContainerImg>
               {avatarURL ? (
                 <ImgAvatar src={URL.createObjectURL(avatarURL)} alt="avatar" />
-              ) : user === null ? (
+              ) : user?.avatarURL ? (
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
                 <SvgAvatar>
@@ -118,10 +113,8 @@ const UserForm = () => {
                 ></InputFile>
               </LabelImg>
             </ContainerImg>
-
             <h2>{user?.name} </h2>
             <User>User</User>
-
             <BlockInput>
               <LabelBtn htmlFor="name">
                 <p>User Name</p>
