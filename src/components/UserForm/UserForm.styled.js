@@ -271,7 +271,6 @@ export const LabelBtn = styled.label`
 export const Btn = styled.button`
   margin-left: auto;
   margin-right: auto;
-  margin-top: 40px;
 
   padding: 0;
 
@@ -295,9 +294,10 @@ export const Btn = styled.button`
   @media screen and (min-width: 768px) {
     width: 262px;
     height: 48px;
+    margin-top: 22px;
+    margin-bottom: 40px;
   }
 
   @media screen and (min-width: 1440px) {
-    margin-top: 80px;
   }
 `;
