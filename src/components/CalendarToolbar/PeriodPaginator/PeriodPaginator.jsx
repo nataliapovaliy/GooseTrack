@@ -8,11 +8,15 @@ import {
   PeriodPaginatorWrapper,
 } from './PeriodPaginator.styled';
 import Icon from '../../../images/icons.svg';
+import { CalendarPicker } from '../DataPicer/DataPicker';
+
 
 export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
+
   return (
     <PeriodPaginatorWrapper>
-      <PeriodPaginatorButton type="button">
+      <CalendarPicker />
+      <PeriodPaginatorButton type="button" >
         <PeriodPaginatorSpan>{today.format('MMMM')}</PeriodPaginatorSpan>
         <PeriodPaginatorSpan>{today.format('Y')}</PeriodPaginatorSpan>
       </PeriodPaginatorButton>
