@@ -73,7 +73,7 @@ export const CalendarTable = ({ startDay, today }) => {
                   task => task.createAt === dayItem.format('YYYY-MM-DD')
                 ).length >= 2 && (
                   <li key="more">
-                    <button>More...</button>
+                    <p>See all...</p>
                   </li>
                 )}
                 {/* {tasks.map((task) => {
