@@ -87,7 +87,7 @@ const UserForm = () => {
             <ContainerImg>
               {avatarURL ? (
                 <ImgAvatar src={URL.createObjectURL(avatarURL)} alt="avatar" />
-              ) : user ? (
+              ) : user === null ? (
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
                 <SvgAvatar>
