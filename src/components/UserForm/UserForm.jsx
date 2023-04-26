@@ -31,17 +31,22 @@ import {
 
 const validationFormikSchema = object({
   name: string().max(16).required(),
-  birthday: date().default(() => new Date()),
+  birthday: date(), //.default(() => new Date()),
   email: string().email().required(),
-  skype: string().max(16),
+  // skype: string().max(16),
 });
 
 const UserForm = () => {
   const [avatarURL, setAvatarURL] = useState(null);
   const [newBirthday, setNewBirthday] = useState(null);
   const [isUpdateForm, setIsUpdateForm] = useState(null);
+
   const { user } = useSelector(selectUser);
   const dispatch = useDispatch();
+  console.log('isUpdateForm', isUpdateForm);
+
+  console.log('user', user);
+  console.log('newBirthday', newBirthday);
 
   useEffect(() => {
     if (isUpdateForm) {
@@ -50,6 +55,7 @@ const UserForm = () => {
     }
   }, [dispatch, isUpdateForm]);
 
+  console.log('object', user);
   return (
     <Wrapper>
       <Formik
@@ -66,15 +72,21 @@ const UserForm = () => {
             : new Date(),
         }}
         onSubmit={async (values, { resetForm }) => {
+          console.log('values', values);
           const formData = new FormData();
           formData.append('name', values.name);
           formData.append('email', values.email);
-          formData.append('phone', values.phone);
-          formData.append('skype', values.skype);
+          if (values.phone) {
+            formData.append('phone', values.phone);
+          }
+          if (values.skype) {
+            formData.append('skype', values.skype);
+          }
           formData.append('birthday', values.birthday);
-          if (avatarURL !== null) {
+          if (avatarURL) {
             formData.append('avatar', avatarURL);
           }
+
           await dispatch(updateUser(formData));
           setIsUpdateForm(true);
           resetForm();
@@ -86,26 +98,26 @@ const UserForm = () => {
             <ContainerImg>
               {avatarURL ? (
                 <ImgAvatar src={URL.createObjectURL(avatarURL)} alt="avatar" />
-              ) : user ? (
+              ) : user === null ? (
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
                 <SvgAvatar>
                   <use href={icon + '#icon-ph-user'}></use>
                 </SvgAvatar>
               )}
+
+              <LabelImg htmlFor="avatar">
+                <ImgBtn src={plus} alt="user" />
+
+                <InputFile
+                  id="avatar"
+                  type="file"
+                  onChange={event => setAvatarURL(event.target.files[0])}
+                  accept="image/*,.png,.jpg,.gif,.web"
+                  name="avatar"
+                ></InputFile>
+              </LabelImg>
             </ContainerImg>
-
-            <LabelImg htmlFor="avatar">
-              <ImgBtn src={plus} alt="user" />
-
-              <InputFile
-                id="avatar"
-                type="file"
-                onChange={event => setAvatarURL(event.target.files[0])}
-                accept="image/*,.png,.jpg,.gif,.web"
-                name="avatar"
-              ></InputFile>
-            </LabelImg>
 
             <h2>{user?.name} </h2>
             <User>User</User>
@@ -131,7 +143,7 @@ const UserForm = () => {
                   type="tel"
                   name="phone"
                   id="phone"
-                  value={values.phone}
+                  value={values.phone ? values.phone : ''}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder="+380"
@@ -164,7 +176,7 @@ const UserForm = () => {
                   name="skype"
                   id="skype"
                   placeholder="Skype"
-                  value={values.skype}
+                  value={values.skype ? values.skype : ''}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 ></Input>
