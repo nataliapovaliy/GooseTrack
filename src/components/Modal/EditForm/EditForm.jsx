@@ -97,6 +97,9 @@ export const EditForm = ({ taskFromCard, closeModal }) => {
 
   const onBlurFu = event => {
     const { name, value } = event.target;
+    if (value && String(value).length < 4) {
+      Notiflix.Notify.failure('value cannot be less than 4 characters');
+    }
     switch (name) {
       case 'start':
         if (value && String(value).length === 5) {
