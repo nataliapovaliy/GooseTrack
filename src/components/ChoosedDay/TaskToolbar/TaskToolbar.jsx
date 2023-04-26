@@ -18,7 +18,6 @@ import { useEffect, useState } from 'react';
 import { fetchTasks, updateTask } from 'redux/tasks/tasks-operations';
 import Notiflix from 'notiflix';
 
-
 export const TaskToolbar = ({ task, getTask }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 

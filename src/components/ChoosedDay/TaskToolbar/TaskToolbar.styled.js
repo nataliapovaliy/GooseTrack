@@ -19,6 +19,7 @@ export const TaskToolbarBtn = styled.button`
   background: none;
   cursor: pointer;
 `;
+
 export const Svg = styled.svg`
   width: 16px;
   height: 16px;
@@ -32,8 +33,6 @@ export const Svg = styled.svg`
 export const TaskModalChangeStatusWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* align-content: flex-start; */
   justify-content: center;
   gap: 10px;
   position: absolute;
@@ -43,7 +42,6 @@ export const TaskModalChangeStatusWrapper = styled.div`
   background: var(--modal-background-color);
   border: 1px solid var(--modal-border-color);
   border-radius: 5px;
-  /* padding: 20px; */
   width: 147px;
   height: 90px;
   z-index: 1000;
@@ -52,10 +50,6 @@ export const TaskModalChangeStatusWrapper = styled.div`
 `;
 
 export const TaskModalChangeStatusBtn = styled.button`
-  /* display: flex; */
-  /* align-items: start; */
-  /* justify-content: space-around; */
-
   padding: 0px;
   margin: 0px;
   border: none;
