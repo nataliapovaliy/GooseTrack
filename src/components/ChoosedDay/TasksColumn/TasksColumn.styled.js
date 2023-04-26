@@ -6,6 +6,6 @@ export const ColumnWrapper = styled.div`
   width: 344px;
   height: 568px;
   background: var(--main-background-color);
-  border: 1px solid rgba(220, 227, 229, 0.8);
+  border: 1px solid var(--task-border-color);
   border-radius: 8px;
 `;
