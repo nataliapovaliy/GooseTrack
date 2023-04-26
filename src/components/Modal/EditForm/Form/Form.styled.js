@@ -52,4 +52,7 @@ export const StyledInput = styled.input`
   font-size: 14px;
   line-height: 1.29;
   border-radius: 8px;
+  @media screen and (max-width: 375px) {
+    width: 126px;
+  }
 `;

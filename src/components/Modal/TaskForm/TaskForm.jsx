@@ -6,6 +6,7 @@ import { Form } from '../Form/Form';
 
 import { addTask } from '../../../redux/tasks/tasks-operations';
 import { closeModalAddTask } from 'redux/modal/globalSlice';
+import Notiflix from 'notiflix';
 // import { pushNewTask } from 'redux/tasks/tasks-slice';
 
 export const TaskForm = ({
@@ -67,17 +68,19 @@ export const TaskForm = ({
     };
 
     if (!enterText) {
-      alert('task title cannot be empty');
+      Notiflix.Notify.failure('task title cannot be empty');
       return;
     }
 
     if (!hour) {
-      alert('task start time field cannot be empty');
+      Notiflix.Notify.failure('task start time field cannot be empty');
       return;
     }
     if (hour.concat(minutes) >= hourEnd.concat(minutesEnd)) {
       console.log('second');
-      alert('task end time cannot be greater ore equal than its start time');
+      Notiflix.Notify.failure(
+        'task end time cannot be greater ore equal than its start time'
+      );
       setEnd('');
       setStart('');
       sethour(0);
@@ -94,11 +97,15 @@ export const TaskForm = ({
 
   useEffect(() => {
     if (start.slice(0, 2) > 23) {
-      alert('you cannot specify an hour value greater than 23');
+      Notiflix.Notify.failure(
+        'you cannot specify an hour value greater than 23'
+      );
       setStart('');
     }
     if (start.slice(2, 4) > 59) {
-      alert('you cannot specify an minutes value greater than 59');
+      Notiflix.Notify.failure(
+        'you cannot specify an minutes value greater than 59'
+      );
       setStart('');
     }
     if (start.length === 2) {
@@ -123,11 +130,15 @@ export const TaskForm = ({
 
   useEffect(() => {
     if (end.slice(0, 2) > 23) {
-      alert('you cannot specify an hour value greater than 24');
+      Notiflix.Notify.failure(
+        'you cannot specify an hour value greater than 23'
+      );
       setEnd('');
     }
     if (end.slice(2, 4) > 59) {
-      alert('you cannot specify an minutes value greater than 59');
+      Notiflix.Notify.failure(
+        'you cannot specify an minutes value greater than 59'
+      );
       setEnd('');
     }
     if (end.length === 2) {
