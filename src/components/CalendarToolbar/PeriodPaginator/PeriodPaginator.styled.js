@@ -28,6 +28,12 @@ export const PeriodPaginatorButton = styled.button`
   border-radius: 8px;
   background-color: var(--accent-background-color);
   cursor: pointer;
+  &:hover {
+    border: 1px solid #42b8cc;
+  }
+  &:active {
+    filter: blur(0.1rem);
+  }
   @media screen and (min-width: 768px) {
     display: flex;
     width: 170px;
@@ -73,6 +79,7 @@ export const PeriodPaginatorLeft = styled.button`
   border-radius: 8px 0px 0px 8px;
   background-color: var(--main-background-color);
   cursor: pointer;
+  
   @media screen and (min-width: 768px) {
     padding: 8px 10px;
     height: 34px;
