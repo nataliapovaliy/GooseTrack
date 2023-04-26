@@ -1,6 +1,6 @@
 import {
     SectionNull, Img, Title, Div, LinkSign, Button, SvgLogIn,
-    SectionFirst, DivSection, H2, H3, H3One, H4, Paragraf, ImgSection,
+    SectionFirst, DivSection, DivSectionSecond, H2, H3, H3One, H4, Paragraf, ImgSection,
     SectionSecond,
     SectionReviews, H3Reviews, DivSectionReviews, DivReviews, ImgReview, DivOneReview, TitleReview, ImgStars, ParagrafReview,
     DivArrows, SvgArrows
@@ -14,8 +14,11 @@ import imageOne from 'images/image-one.png';
 import imgFotoFirst from 'images/foto-1.png';
 import imgFotoSecond from 'images/foto-2.png'
 import imgStars from 'images/stars.png';
+import { useMedia } from "react-use";
 
 export const StartLending = () => {
+    const isTabletOrMobile = useMedia('(max-width: 1439px)');
+
     return (
         <>
             <SectionNull>
@@ -49,12 +52,12 @@ export const StartLending = () => {
 
             <SectionSecond>
                 <ImgSection src={imageSidebar} alt="image-sidebar"></ImgSection>
-                <DivSection data-aos="fade-left">
+                <DivSectionSecond data-aos="fade-left">
                     <H2>2.</H2>
                     <H4>Sidebar</H4>
                     <Paragraf>GooseTrack offers easy access to your account settings, calendar, and filters. The "My Account" section allows you to manage your profile information and preferences, while the calendar provides a quick and convenient way to view your upcoming events and tasks.
                     </Paragraf>
-                </DivSection>
+                </DivSectionSecond>
             </SectionSecond>
 
             <SectionFirst>
@@ -72,31 +75,45 @@ export const StartLending = () => {
                 <H3Reviews>Reviews</H3Reviews>
 
                 <DivSectionReviews>
-                    <DivReviews>
-                        <ImgReview src={imgFotoFirst} alt="Olena"></ImgReview>
-                        <DivOneReview>
-                            <TitleReview>Olena Doe</TitleReview>
-                            <ImgStars src={imgStars} alt="stars"></ImgStars>
-                            <ParagrafReview>GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended.
-                            </ParagrafReview>
-                        </DivOneReview>
-                    </DivReviews>
-
-                    <DivReviews>
-                        <ImgReview src={imgFotoSecond} alt="Alexsnder"></ImgReview>
-                        <DivOneReview>
-                            <TitleReview>Alexander Hubbard</TitleReview>
-                            <ImgStars src={imgStars} alt="stars"></ImgStars>
-                            <ParagrafReview>GooseTrack is incredibly helpful, the sidebar with account management, calendar, and filter options make navigation seamless. Great for staying organized.
-                            </ParagrafReview>
-                        </DivOneReview>
-                    </DivReviews>
+                    {isTabletOrMobile ? (
+                        <DivReviews>
+                            <ImgReview src={imgFotoFirst} alt="Olena"></ImgReview>
+                            <DivOneReview>
+                                <TitleReview>Olena Doe</TitleReview>
+                                <ImgStars src={imgStars} alt="stars"></ImgStars>
+                                <ParagrafReview>GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended.
+                                </ParagrafReview>
+                            </DivOneReview>
+                        </DivReviews>
+                    ) : (
+                            <>
+                            <DivReviews>
+                                <ImgReview src={imgFotoFirst} alt="Olena"></ImgReview>
+                                <DivOneReview>
+                                    <TitleReview>Olena Doe</TitleReview>
+                                    <ImgStars src={imgStars} alt="stars"></ImgStars>
+                                    <ParagrafReview>GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended.
+                                    </ParagrafReview>
+                                </DivOneReview>
+                            </DivReviews>
+                            
+                            <DivReviews>
+                                <ImgReview src={imgFotoSecond} alt="Alexsnder"></ImgReview>
+                                <DivOneReview>
+                                    <TitleReview>Alexander Hubbard</TitleReview>
+                                    <ImgStars src={imgStars} alt="stars"></ImgStars>
+                                    <ParagrafReview>GooseTrack is incredibly helpful, the sidebar with account management, calendar, and filter options make navigation seamless. Great for staying organized.
+                                    </ParagrafReview>
+                                </DivOneReview>
+                            </DivReviews>
+                            </>
+                    )}
+                    
                 </DivSectionReviews>
-
-                <DivArrows>
-                    <SvgArrows><use href={icon + '#icon-arrow-left'}></use></SvgArrows>
-                    <SvgArrows><use href={icon + '#icon-arrow-right'}></use></SvgArrows>
-                </DivArrows>
+                    <DivArrows>
+                        <SvgArrows><use href={icon + '#icon-arrow-left'}></use></SvgArrows>
+                        <SvgArrows><use href={icon + '#icon-arrow-right'}></use></SvgArrows>
+                    </DivArrows>
                 
             </SectionReviews>
         </>
