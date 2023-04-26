@@ -66,8 +66,18 @@ export const TaskForm = ({
       ...typeOfColumn,
     };
 
-    if (hour > hourEnd) {
-      alert('task end time cannot be greater than its start time');
+    if (!enterText) {
+      alert('task title cannot be empty');
+      return;
+    }
+
+    if (!hour) {
+      alert('task start time field cannot be empty');
+      return;
+    }
+    if (hour.concat(minutes) >= hourEnd.concat(minutesEnd)) {
+      console.log('second');
+      alert('task end time cannot be greater ore equal than its start time');
       setEnd('');
       setStart('');
       sethour(0);
@@ -84,7 +94,7 @@ export const TaskForm = ({
 
   useEffect(() => {
     if (start.slice(0, 2) > 23) {
-      alert('you cannot specify an hour value greater than 24');
+      alert('you cannot specify an hour value greater than 23');
       setStart('');
     }
     if (start.slice(2, 4) > 59) {
@@ -135,18 +145,6 @@ export const TaskForm = ({
       sethourEnd('');
     }
   }, [end, minutesEnd, hourEnd]);
-
-  // useEffect(() => {
-  //   if (hour > hourEnd) {
-  //     alert('task end time cannot be greater than its start time');
-  //     setEnd('');
-  //     setStart('');
-  //     sethour(0);
-  //     sethourEnd(24);
-  //     setMinutes(0);
-  //     setMinutesEnd(59);
-  //   }
-  // }, [hour, hourEnd, minutes, minutesEnd]);
 
   const inputHendler = event => {
     const { value, name } = event.target;
