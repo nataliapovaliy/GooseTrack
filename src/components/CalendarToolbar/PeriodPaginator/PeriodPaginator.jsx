@@ -1,4 +1,5 @@
 import {
+  Overlay,
   PeriodPaginatorButton,
   PeriodPaginatorIcon,
   PeriodPaginatorInner,
@@ -9,25 +10,41 @@ import {
 } from './PeriodPaginator.styled';
 import Icon from '../../../images/icons.svg';
 import { useState } from 'react';
-import DatePicker from 'sassy-datepicker';
-import './DataPicker.css';
+import { CalendarDataPicker } from '../CalendarDataPicker/CalendarDataPicker';
 
 export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [date, setDate] = useState(new Date());
   const handleClick = e => {
     e.preventDefault();
-    setIsOpen(true);
+    setIsOpen(!isOpen);
   };
-  
-  console.log(handleClick);
+
+  const onChange = (newDate) => {
+    console.log(`New date selected - ${newDate.toString()}`);
+    setDate(newDate);
+    
+  };
+ 
+
+
+  const onClose = evt => {
+    if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
+      setIsOpen(false);
+    }
+  };
 
   return (
     <PeriodPaginatorWrapper>
-      <DatePicker open={isOpen} weekStartsFrom="Monday" />
-      <PeriodPaginatorButton type="button" >
+      <PeriodPaginatorButton type="button" onClick={handleClick}>
         <PeriodPaginatorSpan>{today.format('MMMM')}</PeriodPaginatorSpan>
         <PeriodPaginatorSpan>{today.format('Y')}</PeriodPaginatorSpan>
       </PeriodPaginatorButton>
+      {isOpen ? (
+        <Overlay onClick={onClose}>
+          <CalendarDataPicker open={isOpen} onChange={onChange} value={date} />
+        </Overlay>
+      ) : null}
       <PeriodPaginatorInner>
         <PeriodPaginatorLeft type="button" onClick={prevHandler}>
           <PeriodPaginatorIcon>

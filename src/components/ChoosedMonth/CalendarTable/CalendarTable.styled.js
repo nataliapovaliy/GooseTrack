@@ -42,7 +42,7 @@ export const ShowDayWrapper = styled.div`
 `;
 
 export const TaskListWrapper = styled.ul`
-  margin: unset;
+  margin: 0;
   list-style-position: inside;
   padding-left: 4px;
 `;
@@ -76,7 +76,7 @@ export const DayWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2px;
+  /* margin: 2px; */
 
   font-weight: 700;
   font-size: 14px;
@@ -110,12 +110,14 @@ export const ContainerCalendar = styled.div`
 `;
 
 export const CalendarTableMoreBtn = styled.button`
-  color: var(--btn-text-color);
+  /* color: var(--btn-text-color); */
   border: none;
   border-radius: 8px;
-  background-color: red;
 
-  padding: 4px 12px 4px 10px;
+  background-color: var(--main-background-color);
+  
+  /* padding: 4px 12px 4px 10px; */
+
   text-align: start;
 
   font-weight: 700;

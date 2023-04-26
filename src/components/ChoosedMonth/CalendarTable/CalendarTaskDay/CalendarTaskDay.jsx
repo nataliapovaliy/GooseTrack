@@ -20,7 +20,6 @@ export const CalendarTaskDay = ({ task }) => {
   }
   const handleTaskItemClick = () => {
     navigate(`/calendar/day/${task.createAt}`); 
-   
   };
   return (
     <TaskItem
