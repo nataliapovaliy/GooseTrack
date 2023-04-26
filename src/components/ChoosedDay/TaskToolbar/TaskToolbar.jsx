@@ -3,7 +3,8 @@ import {
   TaskToolbarBtn,
   Svg,
   TaskModalChangeStatusWrapper,
-  TaskModalChangeStatusBtn,
+  TaskModalChangeStatusBtn, 
+  TaskModalChangeStatusBtnElem,
   StateStatus,
 } from './TaskToolbar.styled';
 
@@ -22,6 +23,7 @@ export const TaskToolbar = ({ task, getTask }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const statusStates = ['To do', 'In progress', 'Done'];
+  // eslint-disable-next-line no-unused-vars
   const [status, setStatus] = useState(task.status);
 
   const toggleModal = () => {
@@ -74,10 +76,12 @@ export const TaskToolbar = ({ task, getTask }) => {
                     handleStatusChange(state);
                   }}
                 >
-                  <StateStatus>{state}</StateStatus>
-                  <Svg>
-                    <use xlinkHref={icon + '#icon-round-arrow'}></use>
-                  </Svg>
+                  <TaskModalChangeStatusBtnElem>
+                    <StateStatus>{state}</StateStatus>
+                    <Svg>
+                      <use xlinkHref={icon + '#icon-round-arrow'}></use>
+                    </Svg>
+                  </TaskModalChangeStatusBtnElem>
                 </TaskModalChangeStatusBtn>
               ))}
           </TaskModalChangeStatusWrapper>
@@ -95,7 +99,6 @@ export const TaskToolbar = ({ task, getTask }) => {
           </Svg>
         </TaskToolbarBtn>
       </TaskToolbarStyled>
-
     </>
   );
 };

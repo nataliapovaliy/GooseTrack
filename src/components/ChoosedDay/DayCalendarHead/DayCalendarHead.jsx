@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   Container,
   WeekInfoWrapper,
@@ -31,18 +31,17 @@ const chooseIndexOfCurrentDay = date => {
 };
 
 export function DayCalendarHead({ clickChooseDay }) {
-    const { currentDay } = useParams();
-    console.log('From params', currentDay);
-    const dayFromParams =
-      currentDay === ':currentDay'
-        ? String(new Date().getDate()).padStart(2, '0')
-        : currentDay.slice(8, 10 ); 
- 
+  const navigate = useNavigate();
+  const { currentDay } = useParams();
+
+  const dayFromParams =
+    currentDay === ':currentDay'
+      ? String(new Date().getDate()).padStart(2, '0')
+      : currentDay.slice(8, 10);
+
   const currentDate = new Date();
 
   const [choosedDay, setChoosedDay] = useState(dayFromParams);
-
-  console.log('choosedDay', choosedDay)
 
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
@@ -56,6 +55,10 @@ export function DayCalendarHead({ clickChooseDay }) {
     setChoosedDay(dayValue);
     clickChooseDay(dateClickObject);
   };
+
+  //   useEffect(() => {
+  //  setChoosedDay(dayFromParams);
+  //   }, [choosedDay]);
 
   return (
     <Container>
@@ -85,7 +88,10 @@ export function DayCalendarHead({ clickChooseDay }) {
                 key={dateKey}
                 onClick={() => {
                   handleClickDay(day, dayValue, monthValue, yearValue);
-                } }
+                  navigate(
+                    `/calendar/day/${yearValue}-${monthValue}-${dayValue}`
+                  );
+                }}
                 style={{
                   backgroundColor: isCurrentDay ? 'var(--accent)' : 'inherit',
                   color: isCurrentDay ? 'var(--btn-text-color)' : 'inherit',

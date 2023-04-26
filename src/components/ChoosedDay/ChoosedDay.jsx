@@ -30,17 +30,17 @@ const dayFilter = (tasksMonth, date) => {
 };
 
 const ChoosedDay = () => {
-    const { currentDay } = useParams(); 
-  console.log('From params', currentDay);
-  const dayFromParams = currentDay === ':currentDay' ? new Date().toISOString().split('T')[0] : currentDay; 
-  const [tasksFilter, setTasksFilter] = useState([]);
-  const [choosedDay, setChoosedDay] = useState( dayFromParams  );
+  const { currentDay } = useParams();
 
-  console.log(new Date().toISOString().split('T')[0]);
-  console.log('choosedDay', choosedDay)
+  const dayFromParams =
+    currentDay === ':currentDay'
+      ? new Date().toISOString().split('T')[0]
+      : currentDay;
+  const [tasksFilter, setTasksFilter] = useState([]);
+  const [choosedDay, setChoosedDay] = useState(dayFromParams);
+
   const [typeOfColumn, setTypeOfColumn] = useState(null);
   const [taskFromCard, setTaskFromCard] = useState(null);
-  
 
   const tasksMonth = useSelector(selectArrTasks);
   const modalAddState = useSelector(selectAddTaskOpen);
@@ -59,7 +59,7 @@ const ChoosedDay = () => {
 
   const deleteTaskFu = () => {
     closeDeleteModal();
- 
+
     dispatch(deleteTask(taskFromCard._id))
       .then(() => toast.success('taskDeleted'))
       .catch(() => toast.error('taskDeleteError'));
@@ -80,10 +80,10 @@ const ChoosedDay = () => {
 
   useEffect(() => {
     setTasksFilter(dayFilter(tasksMonth, choosedDay));
-    console.log(
-      'Page loaded, filter tasks for TODAY',
-      dayFilter(tasksMonth, choosedDay)
-    );
+    // console.log(
+    //   'Page loaded, filter tasks for TODAY',
+    //   dayFilter(tasksMonth, choosedDay)
+    // );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasksMonth]);
