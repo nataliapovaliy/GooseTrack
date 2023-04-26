@@ -15,17 +15,10 @@ export const TaskForm = ({
   typeOfColumn,
   choosedDay,
 }) => {
-  // console.log(new Date().toLocaleDateString('en-CA'));
-  // console.log('choosedDay', choosedDay);
   const [enterText, setEnterText] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const [prioritys, setPrioritys] = useState('Low');
-
-  const [hour, sethour] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [hourEnd, sethourEnd] = useState(23);
-  const [minutesEnd, setMinutesEnd] = useState(59);
 
   const [obj, setObj] = useState([
     { status: true, key: 'Low', color: 'blue' },
@@ -41,22 +34,18 @@ export const TaskForm = ({
     setPrioritys(prevState => (prevState = priorityChecked));
   };
 
-  useEffect(() => {
-    const newObj = [];
-    obj.forEach(item => {
-      if (item.status === true) {
-        item.status = false;
-      }
-      if (item.key === prioritys) {
-        item.status = true;
-      }
-      newObj.push(item);
-    });
-    setObj(prevState => (prevState = newObj));
-    // eslint-disable-next-line
-  }, [prioritys]);
-
   const objectFormation = async () => {
+    if (timeFormValidation() === 'invalid') {
+      Notiflix.Notify.failure(
+        'task end time cannot be greater ore equal than its start time'
+      );
+      return;
+    }
+    if (start.length < 5 && end.length < 5 && enterText.length < 1) {
+      Notiflix.Notify.failure('fields cannot be empty');
+      return;
+    }
+
     const objectToDispatch = {
       title: enterText,
       start: start.slice(0, 5),
@@ -67,118 +56,206 @@ export const TaskForm = ({
       ...typeOfColumn,
     };
 
-    if (!enterText) {
-      Notiflix.Notify.failure('task title cannot be empty');
-      return;
-    }
-
-    if (!hour) {
-      Notiflix.Notify.failure('task start time field cannot be empty');
-      return;
-    }
-    if (hour.concat(minutes) >= hourEnd.concat(minutesEnd)) {
-      console.log('second');
-      Notiflix.Notify.failure(
-        'task end time cannot be greater ore equal than its start time'
-      );
-      setEnd('');
-      setStart('');
-      sethour(0);
-      sethourEnd(23);
-      setMinutes(0);
-      setMinutesEnd(59);
-      return;
-    }
-
     await dispatch(addTask(objectToDispatch));
 
     dispatch(closeModalAddTask());
   };
 
-  useEffect(() => {
-    if (start.slice(0, 2) > 23) {
-      Notiflix.Notify.failure(
-        'you cannot specify an hour value greater than 23'
-      );
-      setStart('');
-    }
-    if (start.slice(2, 4) > 59) {
-      Notiflix.Notify.failure(
-        'you cannot specify an minutes value greater than 59'
-      );
-      setStart('');
-    }
-    if (start.length === 2) {
-      sethour(start);
-    }
-    if (start.length === 4) {
-      setMinutes(start.slice(2));
-    }
-    if (start.length === 5) {
-      setStart(hour.concat(':', minutes));
-    }
-
-    if (start.length === 6) {
-      setStart('');
-      setMinutes('');
-      sethour('');
-    }
-
-    // console.log('hour', hour);
-    // console.log('minutes', minutes);
-  }, [start, minutes, hour]);
-
-  useEffect(() => {
-    if (end.slice(0, 2) > 23) {
-      Notiflix.Notify.failure(
-        'you cannot specify an hour value greater than 23'
-      );
-      setEnd('');
-    }
-    if (end.slice(2, 4) > 59) {
-      Notiflix.Notify.failure(
-        'you cannot specify an minutes value greater than 59'
-      );
-      setEnd('');
-    }
-    if (end.length === 2) {
-      sethourEnd(end);
-    }
-    if (end.length === 4) {
-      setMinutesEnd(end.slice(2));
-    }
-    if (end.length === 5) {
-      setEnd(hourEnd.concat(':', minutesEnd));
-    }
-    if (end.length === 6) {
-      setEnd('');
-      setMinutesEnd('');
-      sethourEnd('');
-    }
-  }, [end, minutesEnd, hourEnd]);
-
-  const inputHendler = event => {
-    const { value, name } = event.target;
-
+  const onFocusFu = event => {
+    const { name } = event.target;
     switch (name) {
-      case 'text':
-        setEnterText(value);
-        break;
       case 'start':
-        setStart(value);
+        setStart('');
         break;
       case 'end':
-        setEnd(value);
+        setEnd('');
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    if (start && String(start).length > 5) {
+      setStart('');
+      Notiflix.Notify.failure('Enter the correct time in the format 00:00');
+    }
+    if (end && String(end).length > 5) {
+      setEnd('');
+      Notiflix.Notify.failure('Enter the correct time in the format 00:00');
+    }
+    if (enterText && String(enterText).length > 255) {
+      setEnterText(enterText.slice(0, 255));
+      Notiflix.Notify.failure('title cannot be longer than 255 characters');
+    }
+  }, [start, end, enterText]);
+
+  const timeFormatValidation = (hour, mimutes) => {
+    let valid = 'valid';
+
+    if (Number(hour) > 23) {
+      Notiflix.Notify.failure(
+        'you cannot specify an hour value greater than 23'
+      );
+      return (valid = 'invalid');
+    }
+    if (Number(mimutes > 59)) {
+      Notiflix.Notify.failure(
+        'you cannot specify an minutes value greater than 59'
+      );
+      return (valid = 'invalid');
+    }
+    return valid;
+  };
+
+  const timeFormValidation = () => {
+    let status = 'valid';
+    let timeOfStart = start.slice(0, 2).concat(start.slice(3, 5));
+    let timeOfEnd = end.slice(0, 2).concat(end.slice(3, 5));
+
+    if (Number(timeOfStart) >= Number(timeOfEnd)) {
+      // setStartText('');
+      // setEndText('');
+      status = 'invalid';
+    }
+    return status;
+  };
+
+  function isAN(value) {
+    return (
+      (value instanceof Number || typeof value === 'number') && !isNaN(value)
+    );
+  }
+
+  const onBlurFu = event => {
+    const { name, value } = event.target;
+    switch (name) {
+      case 'start':
+        if (value && String(value).length === 5) {
+          let hour = value.slice(0, 2);
+          let mimutes = value.slice(3, 5);
+          if (!isAN(Number(hour)) || !isAN(Number(mimutes))) {
+            Notiflix.Notify.failure('Value must be the number');
+            setStart('');
+            return;
+          }
+          if (timeFormatValidation(hour, mimutes) === 'invalid') {
+            setStart('');
+            return;
+          }
+          const time = hour.concat(':', mimutes);
+          setStart(time);
+        }
+        if (value && String(value).length === 4) {
+          let hour = value.slice(0, 2);
+          let mimutes = value.slice(2, 4);
+
+          if (!isAN(Number(hour)) || !isAN(Number(mimutes))) {
+            Notiflix.Notify.failure('Value must be the number');
+            setStart('');
+            return;
+          }
+          if (timeFormatValidation(hour, mimutes) === 'invalid') {
+            setStart('');
+            return;
+          }
+          const time = hour.concat(':', mimutes);
+          setStart(time);
+        }
+
+        break;
+      case 'end':
+        if (value && String(value).length === 5) {
+          let hour = value.slice(0, 2);
+          let mimutes = value.slice(3, 5);
+          if (!isAN(Number(hour)) || !isAN(Number(mimutes))) {
+            Notiflix.Notify.failure('Value must be the number');
+            setStart('');
+            return;
+          }
+          if (timeFormatValidation(hour, mimutes) === 'invalid') {
+            setEnd('');
+            return;
+          }
+          const time = hour.concat(':', mimutes);
+          setEnd(time);
+        }
+        if (value && String(value).length === 4) {
+          let hour = value.slice(0, 2);
+          let mimutes = value.slice(2, 4);
+          if (!isAN(Number(hour)) || !isAN(Number(mimutes))) {
+            Notiflix.Notify.failure('Value must be the number');
+            setStart('');
+            return;
+          }
+          if (timeFormatValidation(hour, mimutes) === 'invalid') {
+            setEnd('');
+            return;
+          }
+          const time = hour.concat(':', mimutes);
+          setEnd(time);
+        }
+
         break;
       default:
         break;
     }
   };
 
+  useEffect(() => {
+    if (prioritys === 'High') {
+      setObj(
+        prevState =>
+          (prevState = [
+            { status: false, key: 'Low', color: 'blue' },
+            { status: false, key: 'Medium', color: 'orange' },
+            { status: true, key: 'High', color: 'red' },
+          ])
+      );
+    } else if (prioritys === 'Medium') {
+      setObj(
+        prevState =>
+          (prevState = [
+            { status: false, key: 'Low', color: 'blue' },
+            { status: true, key: 'Medium', color: 'orange' },
+            { status: false, key: 'High', color: 'red' },
+          ])
+      );
+    } else if (prioritys === 'Low') {
+      setObj(
+        prevState =>
+          (prevState = [
+            { status: true, key: 'Low', color: 'blue' },
+            { status: false, key: 'Medium', color: 'orange' },
+            { status: false, key: 'High', color: 'red' },
+          ])
+      );
+    }
+  }, [prioritys]);
+
+  const titleSetter = event => {
+    const { value } = event.target;
+    setEnterText(prevState => (prevState = value));
+  };
+  const startSetter = event => {
+    const { value } = event.target;
+    setStart(prevState => (prevState = value));
+  };
+  const endSetter = event => {
+    const { value } = event.target;
+    setEnd(prevState => (prevState = value));
+  };
+
   return (
     <>
       <Form
-        inputHendler={inputHendler}
+        // inputHendler={inputHendler}
+        titleSetter={titleSetter}
+        startSetter={startSetter}
+        endSetter={endSetter}
+        onBlurFu={onBlurFu}
+        onFocusFu={onFocusFu}
         enterTextTitle={enterText}
         startTitle={start}
         endTitle={end}

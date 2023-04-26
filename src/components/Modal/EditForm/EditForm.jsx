@@ -8,18 +8,11 @@ import { updateTask } from '../../../redux/tasks/tasks-operations';
 import { StyledDiv } from './EditForm.styled';
 import Notiflix from 'notiflix';
 
-export const EditForm = ({
-  taskFromCard,
-  closeModal,
-  // typeOfModal,
-  // typeOfColumn,
-}) => {
+export const EditForm = ({ taskFromCard, closeModal }) => {
   const [editText, setEditText] = useState('');
   const [startText, setStartText] = useState('');
   const [endText, setEndText] = useState('');
   const [prioritys, setPrioritys] = useState('Low');
-  // const [startHour, setStartHour] = useState(0);
-  // const [startMinutes, setStartMinuites] = useState(0);
 
   const dispatch = useDispatch();
 
@@ -31,7 +24,6 @@ export const EditForm = ({
 
   const prioritySelector = event => {
     const priorityChecked = event.target.innerText;
-    console.log(obj);
 
     setPrioritys(prevState => (prevState = priorityChecked));
   };
@@ -73,7 +65,7 @@ export const EditForm = ({
     let status = 'valid';
     let timeOfStart = startText.slice(0, 2).concat(startText.slice(3, 5));
     let timeOfEnd = endText.slice(0, 2).concat(endText.slice(3, 5));
-    console.log(timeOfStart, timeOfEnd);
+
     if (Number(timeOfStart) >= Number(timeOfEnd)) {
       // setStartText('');
       // setEndText('');
@@ -97,6 +89,12 @@ export const EditForm = ({
     }
   };
 
+  function isAN(value) {
+    return (
+      (value instanceof Number || typeof value === 'number') && !isNaN(value)
+    );
+  }
+
   const onBlurFu = event => {
     const { name, value } = event.target;
     switch (name) {
@@ -104,6 +102,11 @@ export const EditForm = ({
         if (value && String(value).length === 5) {
           let hour = value.slice(0, 2);
           let mimutes = value.slice(3, 5);
+          if (!isAN(Number(hour)) || !isAN(Number(mimutes))) {
+            Notiflix.Notify.failure('Value must be the number');
+            setStartText('');
+            return;
+          }
           if (timeFormatValidation(hour, mimutes) === 'invalid') {
             setStartText('');
             return;
@@ -114,6 +117,11 @@ export const EditForm = ({
         if (value && String(value).length === 4) {
           let hour = value.slice(0, 2);
           let mimutes = value.slice(2, 4);
+          if (!isAN(Number(hour)) || !isAN(Number(mimutes))) {
+            Notiflix.Notify.failure('Value must be the number');
+            setStartText('');
+            return;
+          }
           if (timeFormatValidation(hour, mimutes) === 'invalid') {
             setStartText('');
             return;
@@ -127,6 +135,11 @@ export const EditForm = ({
         if (value && String(value).length === 5) {
           let hour = value.slice(0, 2);
           let mimutes = value.slice(3, 5);
+          if (!isAN(Number(hour)) || !isAN(Number(mimutes))) {
+            Notiflix.Notify.failure('Value must be the number');
+            setEndText('');
+            return;
+          }
           if (timeFormatValidation(hour, mimutes) === 'invalid') {
             setEndText('');
             return;
@@ -137,6 +150,11 @@ export const EditForm = ({
         if (value && String(value).length === 4) {
           let hour = value.slice(0, 2);
           let mimutes = value.slice(2, 4);
+          if (!isAN(Number(hour)) || !isAN(Number(mimutes))) {
+            Notiflix.Notify.failure('Value must be the number');
+            setEndText('');
+            return;
+          }
           if (timeFormatValidation(hour, mimutes) === 'invalid') {
             setEndText('');
             return;
@@ -174,15 +192,15 @@ export const EditForm = ({
         priority: prioritys,
       },
     };
-    console.log('taskForUpdate>>>>', taskForUpdate);
+
     dispatch(updateTask(taskForUpdate, id));
-    // console.log(answer);
   };
 
   useEffect(() => {
     setEditText(prevState => (prevState = taskFromCard.title));
     setStartText(prevState => (prevState = taskFromCard.start));
     setEndText(prevState => (prevState = taskFromCard.end));
+    setPrioritys(prevState => (prevState = taskFromCard.priority));
   }, [taskFromCard]);
 
   useEffect(() => {
