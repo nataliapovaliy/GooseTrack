@@ -21,7 +21,7 @@ export const UserNav = () => {
           </Link>
         </Item>
         <Item onClick={closeMobileMenu}>
-          <Link to={routes.calendar + routes.month}>
+          <Link to={routes.calendar + '/' + routes.month + '/2023-04-01'}>
             <Svg>
               <use href={icon + '#icon-calendar'}></use>
             </Svg>

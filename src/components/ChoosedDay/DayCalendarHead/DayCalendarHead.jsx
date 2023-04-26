@@ -61,8 +61,8 @@ export function DayCalendarHead({ clickChooseDay }) {
   };
 
   useEffect(() => {
-setChoosedDay(dayy);
-// eslint-disable-next-line
+    setChoosedDay(dayy);
+    // eslint-disable-next-line
   }, [currentDay]);
 
   const weekInfoWrappers = useMemo(
