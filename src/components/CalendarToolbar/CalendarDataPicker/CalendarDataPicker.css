@@ -1,6 +1,6 @@
 .sdp {
   
-
+    padding: 9px 18px;
   width: 323px;
   padding: 18px;
 
@@ -16,7 +16,7 @@
   z-index: 1000;
 
   @media screen and (min-width: 768px) {
-    width: 373px; 
+    width: 393px; 
     top: 35px;
     left: -4px;
     padding: 18px;
