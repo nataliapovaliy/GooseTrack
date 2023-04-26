@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 1087px;
   padding: 15px 40px;
   background: #ffffff;
-  border: 1px solid var(--task-card-color);
+  border: 1px solid var(--task-border-color);
   border-radius: 8px;
   margin-bottom: 16px;
   background-color: var(--main-background-color);

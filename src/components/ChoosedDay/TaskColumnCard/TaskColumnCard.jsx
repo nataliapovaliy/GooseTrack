@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import {
   TaskCardWrapper,
   TaskCardDescription,
@@ -22,7 +21,7 @@ const truncateString = (str, maxLength) => {
   }
 };
 
-const choosePriorityColor = priority => {
+const choosePriorityBackgroundColor = priority => {
   if (priority === 'Low') {
     return 'var(--task-low-color)';
   }
@@ -33,26 +32,33 @@ const choosePriorityColor = priority => {
     return 'var(--task-high-color)';
   }
 };
+const choosePriorityTextColor = priority => {
+  if (priority === 'Low') {
+    return 'var(--text-priority-other-color)';
+  }
+  if (priority === 'Medium') {
+    return 'var(--text-priority-other-color)';
+  }
+  if (priority === 'High') {
+    return 'var(--text-priority-high-color)';
+  }
+};
 
 export const TaskColumnCard = ({ task, getTask }) => {
   const { title, priority } = task;
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const toggleModal = () => setIsModalOpen(prev => !prev);
 
-  // console.log('isModalOpen :>> ', isModalOpen);
-  // console.log('toggleModal :>> ', toggleModal);
   const isLoading = useSelector(selectIsLoading);
   const userSelector = useSelector(selectUser);
   const name = userSelector.user?.name || 'Name';
   const avatar = userSelector.user?.avatarURL;
   const firstLetter = name.trim().slice(0, 1).toUpperCase();
-  // const avatar = 'https://img.icons8.com/officel/32/null/avatar.png'; // временно для теста
 
   const originalString = title;
   const maxLengthString = 31;
 
   const truncatedString = truncateString(originalString, maxLengthString);
-  const priorityColor = choosePriorityColor(priority);
+  const priorityBackgroundColor = choosePriorityBackgroundColor(priority);
+  const priorityTextColor = choosePriorityTextColor(priority);
 
   return (
     <>
@@ -69,7 +75,7 @@ export const TaskColumnCard = ({ task, getTask }) => {
                 <AvatarImg src={avatar} alt="Avatar" />
               )}
             </TaskCardAvatar>
-            <TaskCardPriority style={{ backgroundColor: priorityColor }}>
+            <TaskCardPriority style={{ backgroundColor: priorityBackgroundColor, color: priorityTextColor, }}>
               {priority}
             </TaskCardPriority>
           </TaskAvatarPriorityWrapper>

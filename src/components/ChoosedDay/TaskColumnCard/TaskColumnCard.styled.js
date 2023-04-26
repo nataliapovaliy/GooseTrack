@@ -10,7 +10,7 @@ export const TaskCardWrapper = styled.div`
   height: 112px;
   padding: 14px 10px 0px 14px;
   background: var(--outlet-background-color);
-  border: 1px solid rgba(220, 227, 229, 0.8);
+  border: 1px solid var(--task-border-color);
   border-radius: 8px;
 `;
 
