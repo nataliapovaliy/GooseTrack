@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   Container,
   WeekInfoWrapper,
@@ -29,12 +30,19 @@ const chooseIndexOfCurrentDay = date => {
   }
 };
 
-export const DayCalendarHead = ({ clickChooseDay }) => {
+export function DayCalendarHead({ clickChooseDay }) {
+    const { currentDay } = useParams();
+    console.log('From params', currentDay);
+    const dayFromParams =
+      currentDay === ':currentDay'
+        ? String(new Date().getDate()).padStart(2, '0')
+        : currentDay.slice(8, 10 ); 
+ 
   const currentDate = new Date();
 
-  const [choosedDay, setChoosedDay] = useState(
-    String(currentDate.getDate()).padStart(2, '0')
-  );
+  const [choosedDay, setChoosedDay] = useState(dayFromParams);
+
+  console.log('choosedDay', choosedDay)
 
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
@@ -77,7 +85,7 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
                 key={dateKey}
                 onClick={() => {
                   handleClickDay(day, dayValue, monthValue, yearValue);
-                }}
+                } }
                 style={{
                   backgroundColor: isCurrentDay ? 'var(--accent)' : 'inherit',
                   color: isCurrentDay ? 'var(--btn-text-color)' : 'inherit',
@@ -91,4 +99,4 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
       </DateWrapper>
     </Container>
   );
-};
+}

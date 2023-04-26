@@ -16,31 +16,19 @@ import {
 import { useEffect, useState } from 'react';
 import { fetchTasks, updateTask } from 'redux/tasks/tasks-operations';
 import Notiflix from 'notiflix';
-// import { deleteTask } from '../../redux/tasks/tasks-operations';
-// import { TaskModal } from '../TaskModal/TaskModal';
-// import { TaskModalContext } from '../../context/TaskModalContext';
+
 
 export const TaskToolbar = ({ task, getTask }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const statusStates = ['To do', 'In progress', 'Done'];
   const [status, setStatus] = useState(task.status);
+
 console.log(setStatus);
+
   const toggleModal = () => {
     setIsModalOpen(prev => !prev);
-
-    console.log('toggleModal', isModalOpen);
   };
-
-  // const dispatch = useDispatch();
-  // console.log('isModalOpen :>> ', isModalOpen);
-
-  // const handleDeleteTask = () => {
-  //   console.log('delete task');
-  // dispatch(deleteTask(task.id))
-  //     .then(() => toast.success('taskDeleted'))
-  //     .catch(() => toast.error('taskDeleteError'));
-  // };
 
   const dispatch = useDispatch();
 
@@ -109,11 +97,7 @@ console.log(setStatus);
           </Svg>
         </TaskToolbarBtn>
       </TaskToolbarStyled>
-      {/* {isModalOpen && (
-                <TaskModalContext.Provider value={{ task, toggleModal }}>
-                    <TaskModal />
-                </TaskModalContext.Provider>
-            )} */}
+
     </>
   );
 };

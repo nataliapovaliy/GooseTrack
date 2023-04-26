@@ -107,7 +107,7 @@ export const LoginForm = () => {
                 </Svg>
               </LoginButton>
             </Form>
-            <AuthNavigate route={routes.login} content="Sign up" />
+            <AuthNavigate route={routes.register} content="Sign up" />
             <LoginGooseImage
               srcset={`${GooseLogIn} 1x, ${GooseLogIn2x} 2x`}
               src={`${GooseLogIn}`}

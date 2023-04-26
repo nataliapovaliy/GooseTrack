@@ -28,6 +28,8 @@ export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
       dispatch(setIsOpen(false));
     }
   };
+  
+  console.log(handleClick);
 
   return (
     <PeriodPaginatorWrapper>
