@@ -50,7 +50,7 @@ export const CalendarTable = ({ startDay, today }) => {
           >
             <RowInCell justifyContent={'flex-end'}>
               <ShowDayWrapper>
-                <DayWrapper >
+                <DayWrapper>
                   {isCurrentDay(dayItem) ? (
                     <CurrentDay>{dayItem.format('D')}</CurrentDay>
                   ) : (
