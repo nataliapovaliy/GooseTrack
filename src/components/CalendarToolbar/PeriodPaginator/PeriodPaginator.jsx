@@ -30,6 +30,7 @@ export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
   const onChange = newDate => {
     navigate(navigateToDate(newDate));
     setDate(newDate);
+    setIsOpen(!isOpen)
   };
 
   const onClose = evt => {
