@@ -36,7 +36,7 @@ const ChoosedDay = () => {
     currentDay === ':currentDay'
       ? new Date().toISOString().split('T')[0]
       : currentDay;
-  
+
   const [tasksFilter, setTasksFilter] = useState([]);
   const [choosedDay, setChoosedDay] = useState(dayFromParams);
 
@@ -80,14 +80,10 @@ const ChoosedDay = () => {
   // functions for add task =============================>
 
   useEffect(() => {
+    setChoosedDay(dayFromParams);
     setTasksFilter(dayFilter(tasksMonth, choosedDay));
-    // console.log(
-    //   'Page loaded, filter tasks for TODAY',
-    //   dayFilter(tasksMonth, choosedDay)
-    // );
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tasksMonth]);
+  }, [tasksMonth, currentDay, choosedDay]);
 
   const chooseDay = ({ day, month, year }) => {
     setChoosedDay(`${year}-${month}-${day}`);

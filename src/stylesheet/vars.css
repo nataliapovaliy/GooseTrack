@@ -56,7 +56,13 @@
 
   /* animation */
   --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+   /* backgroung button */
+    --background-button-month: #cae8ff;
+    --background-button-day: #e3f3ff;
 }
+
+
 
 [dark] {
   /* text */
@@ -91,4 +97,8 @@
   --scroll-color: #2d3037;
   --scroll-background-color: #21222c;
   --frame-border-color: #42434c;
+
+  /* backgroung button */
+  --background-button-month: #3E85F3;
+  --background-button-day: #21222C;
 }

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const PeriodPaginatorWrapper = styled.div`
+position: relative;
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;

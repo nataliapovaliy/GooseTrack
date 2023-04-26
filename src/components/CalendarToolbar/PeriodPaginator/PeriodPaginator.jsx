@@ -10,19 +10,27 @@ import {
 import Icon from '../../../images/icons.svg';
 import { useState } from 'react';
 import { CalendarDataPicker } from '../CalendarDataPicker/CalendarDataPicker';
+import { useNavigate } from 'react-router';
+import { format } from 'date-fns';
 
 export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [date, setDate] = useState(new Date());
-
+  const navigate = useNavigate();
+  
   const handleClick = e => {
     e.preventDefault();
     setIsOpen(!isOpen);
   };
 
+  const navigateToDate = newDate => {
+  return `/calendar/day/${format(newDate, 'yyyy-MM-dd')}`;
+  };
+
   const onChange = newDate => {
-    console.log(`New date selected - ${newDate.toString()}`);
+    navigate(navigateToDate(newDate));
     setDate(newDate);
+    setIsOpen(!isOpen)
   };
 
   const onClose = evt => {

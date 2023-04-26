@@ -42,9 +42,12 @@ export const ShowDayWrapper = styled.div`
 `;
 
 export const TaskListWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
   margin: 0;
   list-style-position: inside;
   padding-left: 4px;
+  gap: 2px;
 `;
 
 export const TaskItem = styled.button`
@@ -103,6 +106,7 @@ export const CurrentDay = styled.div`
   background-color: var(--accent);
   border-radius: 8px;
   color: var(--btn-text-color);
+  margin-bottom: 3px;
 `;
 
 export const ContainerCalendar = styled.div`
@@ -113,15 +117,12 @@ export const CalendarTableMoreBtn = styled.button`
   /* color: var(--btn-text-color); */
   border: none;
   border-radius: 8px;
-
+  color: var(--calendar-date-color);
   background-color: var(--main-background-color);
-  
-  /* padding: 4px 12px 4px 10px; */
-
   text-align: start;
-
   font-weight: 700;
   font-size: 12px;
-  line-height: 1.16;
   cursor: pointer;
+  margin-top: 0;
+  padding: 0;
 `;

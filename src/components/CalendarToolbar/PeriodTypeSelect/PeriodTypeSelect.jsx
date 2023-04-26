@@ -4,6 +4,9 @@ import {
   PeriodTypeSelectButtonMonth,
   PeriodTypeSelectWrap,
 } from './PeriodTypeSelect.styled';
+import moment from 'moment';
+
+
 
 export const PeriodTypeSelect = () => {
   const navigate = useNavigate();
@@ -11,13 +14,13 @@ export const PeriodTypeSelect = () => {
     <PeriodTypeSelectWrap>
       <PeriodTypeSelectButtonMonth
         type="button"
-        onClick={() => navigate("/calendar/month/:currentDate")}
+        onClick={() => navigate("/calendar/month/")}
       >
         Month
       </PeriodTypeSelectButtonMonth>
       <PeriodTypeSelectButtonDay
         type="button"
-        onClick={() => navigate("/calendar/day/:currentDay")}
+        onClick={() => navigate(`/calendar/day/${moment().format('YYYY-MM-DD')}`)}
       >
         Day
       </PeriodTypeSelectButtonDay>
