@@ -12,19 +12,22 @@ export const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  width: 335px;
-  height: 653px;
+  /* margin: 0, auto; */
+  width: 100%;
+  height: 100%;
+  /* width: 335px;
+  height: 653px; */
 
   background: var(--main-background-color);
   border-radius: 16px;
 
   @media screen and (min-width: 768px) {
-    width: 704px;
-    height: 854px;
+    /* width: 704px;
+    height: 854px; */
   }
   @media screen and (min-width: 1440px) {
-    width: 1087px;
-    height: 752px;
+    /* width: 1087px;
+    height: 752px; */
   }
 
   h2 {
