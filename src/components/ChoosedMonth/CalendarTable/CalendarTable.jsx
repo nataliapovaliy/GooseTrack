@@ -89,40 +89,12 @@ export const CalendarTable = ({ startDay, today }) => {
                   ))}
                 {tasks.filter(
                   task => task.createAt === dayItem.format('YYYY-MM-DD')
-                ).length >= 2 && (
+                ).length > 2 && (
                   <li key="more">
                     <CalendarTableMoreBtn type='button'>See all...</CalendarTableMoreBtn>
                   </li>
                 )}
-                {/* {tasks.map((task) => {
-                    if (task.createAt === dayItem.format('YYYY-MM-DD')) {
-                 
-                     
-                    }
-                    return null;
-                })} */}
-
-                {/* {tasks.map((task) => {
-                    if (task.createAt === dayItem.format('YYYY-MM-DD')) {
-                      xxx += 1;
-                      if (xxx <= 2) {
-                        return (
-                          <li key={task._id}>
-                            <CalendarTaskDay task={task} />
-                          </li>
-                        );
-                      } else if (xxx === 3) {
-                        return (
-                          <li key="more">
-                            <button>More...</button>
-                          </li>
-                        );
-                      } else if (xxx > 3) {
-                        xxx = 0;
-                      }
-                    }
-                    return null;
-                  })} */}
+                
               </TaskListWrapper>
             </RowInCell>
           </CellWrapper>
