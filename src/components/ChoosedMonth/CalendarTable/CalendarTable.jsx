@@ -21,7 +21,6 @@ export const CalendarTable = ({ startDay, today }) => {
   const isSelectedMonth = day => today.isSame(day, 'month');
   // console.log(currentDate);
 
-
   // === Змінюємо розміри календаря start ===>
   let totalDays = 35;
   const numberOfDays = day.clone().subtract(-1, 'month').daysInMonth();
@@ -39,10 +38,6 @@ export const CalendarTable = ({ startDay, today }) => {
 
   const daysArray = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
   const tasks = useSelector(selectArrTasks);
-  let xxx = 0;
-
-  
-
 
 
   return (
@@ -55,7 +50,7 @@ export const CalendarTable = ({ startDay, today }) => {
           >
             <RowInCell justifyContent={'flex-end'}>
               <ShowDayWrapper>
-                <DayWrapper >
+                <DayWrapper>
                   {isCurrentDay(dayItem) ? (
                     <CurrentDay>{dayItem.format('D')}</CurrentDay>
                   ) : (
@@ -64,27 +59,53 @@ export const CalendarTable = ({ startDay, today }) => {
                 </DayWrapper>
               </ShowDayWrapper>
               <TaskListWrapper>
-                {tasks.map(task => {
-                  if (task.createAt === dayItem.format('YYYY-MM-DD')) {
-                    xxx += 1;
-                    if (xxx <= 2) {
-                      return (
-                        <li key={task._id}>
-                          <CalendarTaskDay task={task} />
-                        </li>
-                      );
-                    } else if (xxx === 3) {
-                      return (
-                        <li key="more">
-                          <button>More...</button>
-                        </li>
-                      );
-                    } else if (xxx > 3) {
-                      xxx = 0;
+                {tasks
+                  .filter(
+                    task => task.createAt === dayItem.format('YYYY-MM-DD')
+                  )
+                  .slice(0, 2)
+                  .map(task => (
+                    <li key={task._id}>
+                      <CalendarTaskDay task={task} />
+                    </li>
+                  ))}
+                {tasks.filter(
+                  task => task.createAt === dayItem.format('YYYY-MM-DD')
+                ).length >= 2 && (
+                  <li key="more">
+                    <button>More...</button>
+                  </li>
+                )}
+                {/* {tasks.map((task) => {
+                    if (task.createAt === dayItem.format('YYYY-MM-DD')) {
+                 
+                     
                     }
-                  }
-                  return null;
-                })}
+                    return null;
+                })} */}
+
+                {/* {tasks.map((task) => {
+                    if (task.createAt === dayItem.format('YYYY-MM-DD')) {
+                      xxx += 1;
+                      if (xxx <= 2) {
+                        return (
+                          <li key={task._id}>
+                            <CalendarTaskDay task={task} />
+                          </li>
+                        );
+                      } else if (xxx === 3) {
+                        return (
+                          <li key="more">
+                            <button>More...</button>
+                          </li>
+                        );
+                      } else if (xxx > 3) {
+                        xxx = 0;
+                      }
+                    }
+                    return null;
+                  })} */}
+
               </TaskListWrapper>
             </RowInCell>
           </CellWrapper>
