@@ -18,6 +18,7 @@ export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
     e.preventDefault();
     setIsOpen(true);
   };
+  
   console.log(handleClick);
 
   return (

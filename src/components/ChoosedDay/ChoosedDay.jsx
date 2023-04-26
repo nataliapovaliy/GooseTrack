@@ -4,7 +4,7 @@ import { TasksColumnsListWrapper } from './ChoosedDay.styled';
 import { DayCalendarHead } from './DayCalendarHead/DayCalendarHead';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-
+import { useParams } from 'react-router-dom';
 import { selectArrTasks } from 'redux/tasks/tasks-selectors';
 
 import {
@@ -30,19 +30,23 @@ const dayFilter = (tasksMonth, date) => {
 };
 
 const ChoosedDay = () => {
+    const { currentDay } = useParams(); 
+  console.log('From params', currentDay);
+  const dayFromParams = currentDay === ':currentDay' ? new Date().toISOString().split('T')[0] : currentDay; 
   const [tasksFilter, setTasksFilter] = useState([]);
-  const [choosedDay, setChoosedDay] = useState(
-    new Date().toISOString().split('T')[0]
-  );
+  const [choosedDay, setChoosedDay] = useState( dayFromParams  );
+
+  console.log(new Date().toISOString().split('T')[0]);
+  console.log('choosedDay', choosedDay)
   const [typeOfColumn, setTypeOfColumn] = useState(null);
   const [taskFromCard, setTaskFromCard] = useState(null);
-  // const [taskId, setTaskId] = useState(null)
+  
 
   const tasksMonth = useSelector(selectArrTasks);
   const modalAddState = useSelector(selectAddTaskOpen);
   const modalEditState = useSelector(selectUpDateTaskModal);
   const modalConfirmationState = useSelector(selectModalConfirmation);
-  // console.log('tasksMonth', tasksMonth);
+
   const dispatch = useDispatch();
 
   const closeModal = () => {
@@ -55,7 +59,7 @@ const ChoosedDay = () => {
 
   const deleteTaskFu = () => {
     closeDeleteModal();
-    // console.log(taskFromCard);
+ 
     dispatch(deleteTask(taskFromCard._id))
       .then(() => toast.success('taskDeleted'))
       .catch(() => toast.error('taskDeleteError'));
