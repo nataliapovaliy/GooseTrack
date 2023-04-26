@@ -36,7 +36,7 @@ export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
 
   return (
     <PeriodPaginatorWrapper>
-      <PeriodPaginatorButton type="button" onClick={handleClick}>
+      <PeriodPaginatorButton variant="outlined" type="button" onClick={handleClick}>
         <PeriodPaginatorSpan>{today.format('MMMM')}</PeriodPaginatorSpan>
         <PeriodPaginatorSpan>{today.format('Y')}</PeriodPaginatorSpan>
       </PeriodPaginatorButton>
