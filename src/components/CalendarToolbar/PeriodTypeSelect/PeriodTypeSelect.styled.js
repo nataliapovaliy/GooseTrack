@@ -16,7 +16,7 @@ export const PeriodTypeSelectButtonMonth = styled.button`
   font-size: 14px;
   line-height: 1.28;
   color: var(--accent-color);
-  background-color: #cae8ff;
+  background-color: var(--background-button-month);
   text-align: center;
   cursor: pointer;
   :hover {
@@ -37,7 +37,7 @@ export const PeriodTypeSelectButtonDay = styled.button`
   font-size: 14px;
   line-height: 1.28;
   color: #3e85f3;
-  background-color: #e3f3ff;
+  background-color: var(--background-button-day);
   text-align: center;
   cursor: pointer;
   :hover {
