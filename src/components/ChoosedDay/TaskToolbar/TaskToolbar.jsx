@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import {
   TaskToolbarStyled,
   TaskToolbarBtn,
@@ -16,14 +15,14 @@ import {
 } from 'redux/modal/globalSlice';
 import { useEffect, useState } from 'react';
 import { fetchTasks, updateTask } from 'redux/tasks/tasks-operations';
+import Notiflix from 'notiflix';
 // import { deleteTask } from '../../redux/tasks/tasks-operations';
-// import { toast } from 'react-toastify';
 // import { TaskModal } from '../TaskModal/TaskModal';
 // import { TaskModalContext } from '../../context/TaskModalContext';
 
 export const TaskToolbar = ({ task, getTask }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // console.log('isModalOpen :>> ', isModalOpen);
+
   const statusStates = ['To do', 'In progress', 'Done'];
   const [status, setStatus] = useState(task.status);
 
@@ -47,7 +46,6 @@ export const TaskToolbar = ({ task, getTask }) => {
 
   const openModal = id => {
     dispatch(openModalUpDateTask());
-
     getTask(task);
   };
 
@@ -57,9 +55,19 @@ export const TaskToolbar = ({ task, getTask }) => {
   };
 
   useEffect(() => {
-    dispatch(fetchTasks())
+    dispatch(fetchTasks());
   }, [dispatch, status]);
 
+  const handleStatusChange = state => {
+    const taskForUpdate = {
+      id: task._id,
+      task: {
+        status: state,
+      },
+    };
+    dispatch(updateTask(taskForUpdate, task._id));
+    Notiflix.Notify.success(`Task status changed to ${state}`);
+  };
 
   return (
     <>
@@ -77,17 +85,7 @@ export const TaskToolbar = ({ task, getTask }) => {
                 <TaskModalChangeStatusBtn
                   key={index}
                   onClick={() => {
-                    console.log('task._id :>> ', task._id, state);
-
-                    const taskForUpdate = {
-                      id: task._id,
-                      task: {
-                        status: state,
-                      },
-                    };
-                    dispatch(updateTask(taskForUpdate, task._id));
-                    console.log('status :>> ', status);
-                    setStatus(state);
+                    handleStatusChange(state);
                   }}
                 >
                   <StateStatus>{state}</StateStatus>

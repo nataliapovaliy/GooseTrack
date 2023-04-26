@@ -8,17 +8,33 @@ import {
 } from './DayCalendarHead.styled';
 import { nanoid } from 'nanoid';
 
+const chooseIndexOfCurrentDay = date => {
+  switch (date.toString().slice(0, 3).toUpperCase()) {
+    case 'MON':
+      return 0;
+    case 'TUE':
+      return 1;
+    case 'WED':
+      return 2;
+    case 'THU':
+      return 3;
+    case 'FRI':
+      return 4;
+    case 'SAT':
+      return 5;
+    case 'SUN':
+      return 6;
+    default:
+      return 0;
+  }
+};
+
 export const DayCalendarHead = ({ clickChooseDay }) => {
   const currentDate = new Date();
-  // console.log(currentDate)
 
   const [choosedDay, setChoosedDay] = useState(
     String(currentDate.getDate()).padStart(2, '0')
   );
-  // currentDate.setDate(currentDate.getDate() - 7);
-
-  //   console.log(currentDate)
-  // console.log(choosedDay);
 
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
@@ -35,35 +51,28 @@ export const DayCalendarHead = ({ clickChooseDay }) => {
 
   return (
     <Container>
-      {/* <WeekInfoWrapper>
-        {daysOfWeek.map(day => (
-          <DayOfWeek key={day}>
-            <p>{day}</p>
-          </DayOfWeek>
-        ))}
-      </WeekInfoWrapper> */}
-
       <DateWrapper>
         {daysOfWeek.map((day, index) => {
           const date = new Date(currentDate);
 
           const currentDay = index % 7;
-          date.setDate(currentDate.getDate() + currentDay);
-          // console.log(date.toString().slice(0, 3).toUpperCase())
 
-          const dayOfW = date.toString().slice(0, 3).toUpperCase();
+          date.setDate(
+            currentDate.getDate() + currentDay - chooseIndexOfCurrentDay(date)
+          );
+
+          const dayOfWeek = date.toString().slice(0, 3).toUpperCase();
           const dayValue = String(date.getDate()).padStart(2, '0');
           const monthValue = String(date.getMonth() + 1).padStart(2, '0');
           const yearValue = String(date.getFullYear());
+
           const dateKey = `${day}-${dayValue}-${monthValue}-${yearValue}`;
 
           const isCurrentDay = date.toDateString().slice(8, 10) === choosedDay;
 
           return (
-
             <WeekInfoWrapper key={nanoid()}>
-
-              <DayOfWeek key={dayOfW}>{dayOfW}</DayOfWeek>
+              <DayOfWeek key={dayOfWeek}>{dayOfWeek}</DayOfWeek>
               <DateContainer
                 key={dateKey}
                 onClick={() => {
