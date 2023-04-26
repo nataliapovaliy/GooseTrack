@@ -14,8 +14,11 @@ import imageOne from 'images/image-one.png';
 import imgFotoFirst from 'images/foto-1.png';
 import imgFotoSecond from 'images/foto-2.png'
 import imgStars from 'images/stars.png';
+import { useMedia } from "react-use";
 
 export const StartLending = () => {
+    const isTabletOrMobile = useMedia('(max-width: 1439px)');
+
     return (
         <>
             <SectionNull>
@@ -72,31 +75,45 @@ export const StartLending = () => {
                 <H3Reviews>Reviews</H3Reviews>
 
                 <DivSectionReviews>
-                    <DivReviews>
-                        <ImgReview src={imgFotoFirst} alt="Olena"></ImgReview>
-                        <DivOneReview>
-                            <TitleReview>Olena Doe</TitleReview>
-                            <ImgStars src={imgStars} alt="stars"></ImgStars>
-                            <ParagrafReview>GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended.
-                            </ParagrafReview>
-                        </DivOneReview>
-                    </DivReviews>
-
-                    <DivReviews>
-                        <ImgReview src={imgFotoSecond} alt="Alexsnder"></ImgReview>
-                        <DivOneReview>
-                            <TitleReview>Alexander Hubbard</TitleReview>
-                            <ImgStars src={imgStars} alt="stars"></ImgStars>
-                            <ParagrafReview>GooseTrack is incredibly helpful, the sidebar with account management, calendar, and filter options make navigation seamless. Great for staying organized.
-                            </ParagrafReview>
-                        </DivOneReview>
-                    </DivReviews>
+                    {isTabletOrMobile ? (
+                        <DivReviews>
+                            <ImgReview src={imgFotoFirst} alt="Olena"></ImgReview>
+                            <DivOneReview>
+                                <TitleReview>Olena Doe</TitleReview>
+                                <ImgStars src={imgStars} alt="stars"></ImgStars>
+                                <ParagrafReview>GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended.
+                                </ParagrafReview>
+                            </DivOneReview>
+                        </DivReviews>
+                    ) : (
+                            <>
+                            <DivReviews>
+                                <ImgReview src={imgFotoFirst} alt="Olena"></ImgReview>
+                                <DivOneReview>
+                                    <TitleReview>Olena Doe</TitleReview>
+                                    <ImgStars src={imgStars} alt="stars"></ImgStars>
+                                    <ParagrafReview>GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended.
+                                    </ParagrafReview>
+                                </DivOneReview>
+                            </DivReviews>
+                            
+                            <DivReviews>
+                                <ImgReview src={imgFotoSecond} alt="Alexsnder"></ImgReview>
+                                <DivOneReview>
+                                    <TitleReview>Alexander Hubbard</TitleReview>
+                                    <ImgStars src={imgStars} alt="stars"></ImgStars>
+                                    <ParagrafReview>GooseTrack is incredibly helpful, the sidebar with account management, calendar, and filter options make navigation seamless. Great for staying organized.
+                                    </ParagrafReview>
+                                </DivOneReview>
+                            </DivReviews>
+                            </>
+                    )}
+                    
                 </DivSectionReviews>
-
-                <DivArrows>
-                    <SvgArrows><use href={icon + '#icon-arrow-left'}></use></SvgArrows>
-                    <SvgArrows><use href={icon + '#icon-arrow-right'}></use></SvgArrows>
-                </DivArrows>
+                    <DivArrows>
+                        <SvgArrows><use href={icon + '#icon-arrow-left'}></use></SvgArrows>
+                        <SvgArrows><use href={icon + '#icon-arrow-right'}></use></SvgArrows>
+                    </DivArrows>
                 
             </SectionReviews>
         </>
