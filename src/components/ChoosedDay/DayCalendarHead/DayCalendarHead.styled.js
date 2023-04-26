@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   height: 68px;
   width: 1087px;
-  padding: 10px 40px;
+  padding: 15px 40px;
   background: #ffffff;
   border: 1px solid var(--task-card-color);
   border-radius: 8px;
