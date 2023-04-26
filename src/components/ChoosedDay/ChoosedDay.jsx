@@ -36,6 +36,7 @@ const ChoosedDay = () => {
     currentDay === ':currentDay'
       ? new Date().toISOString().split('T')[0]
       : currentDay;
+  
   const [tasksFilter, setTasksFilter] = useState([]);
   const [choosedDay, setChoosedDay] = useState(dayFromParams);
 
