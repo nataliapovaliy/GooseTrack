@@ -126,7 +126,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-    background-color: white;
+    /* background-color: white; */
 
   /* background-color: rgba(0, 0, 0, 0.25); */
   z-index: 1200;

@@ -11,19 +11,26 @@ import {
 import Icon from '../../../images/icons.svg';
 import { useState } from 'react';
 import { CalendarDataPicker } from '../CalendarDataPicker/CalendarDataPicker';
-import { useDispatch } from 'react-redux';
 
 export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const dispatch = useDispatch();
+  const [date, setDate] = useState(new Date());
   const handleClick = e => {
     e.preventDefault();
     setIsOpen(!isOpen);
   };
 
+  const onChange = (newDate) => {
+    console.log(`New date selected - ${newDate.toString()}`);
+    setDate(newDate);
+    
+  };
+ 
+
+
   const onClose = evt => {
     if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
-      dispatch(setIsOpen(false));
+      setIsOpen(false);
     }
   };
 
@@ -35,7 +42,7 @@ export const PeriodPaginator = ({ today, prevHandler, nextHandler }) => {
       </PeriodPaginatorButton>
       {isOpen ? (
         <Overlay onClick={onClose}>
-          <CalendarDataPicker open={isOpen} weekStartsFrom="Monday" />
+          <CalendarDataPicker open={isOpen} onChange={onChange} value={date} />
         </Overlay>
       ) : null}
       <PeriodPaginatorInner>

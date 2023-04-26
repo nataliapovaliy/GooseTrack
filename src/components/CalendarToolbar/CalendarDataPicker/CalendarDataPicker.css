@@ -1,7 +1,7 @@
 .sdp {
-    width: 373px;
+    /* width: 373px; */
     max-width: 100%;
-    padding: 18.5px;
+    padding: 18px;
   
     align-items: center;
     padding: 9px 18px;
@@ -9,6 +9,7 @@
     border-radius: 16px;
   
     position: absolute;
+   
     top: 180px;
     left: 550px;
   }
@@ -42,7 +43,7 @@
   }
   
   .sdp--text__inactive {
-    color: var(--disabled-color);
+    color: transparent;
     pointer-events: none;
   }
   
@@ -58,11 +59,14 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
   
-    color: #ffffff;
+    /* color:#ffffff; */
   }
+
+
   
   .sdp--square-btn__outlined {
     border: var(--outline);
+    color: #ffffff;
   }
   
   .sdp--square-btn__outlined:focus:hover {
@@ -90,11 +94,18 @@
     color: var(--accent);
     box-shadow: var(--shadow);
   }
+
+  .sdp {
+    color: #8b5cf6 ; /* violet color */
+  }
   
   .sdp--date-btn__selected.sdp--square-btn:focus {
     box-shadow: var(--shadow);
   }
   
+  /* class="sdp--square-btn sdp--date-btn  sdp--text " */
+  /* sdp--square-btn sdp--date-btn sdp--date-btn__selected sdp--text  */
+
   .sdp--header {
     display: flex;
     justify-content: space-between;
@@ -220,4 +231,6 @@
     background-color: var(--theme-color);
     box-shadow: var(--shadow);
   }
+  
+
   
