@@ -25,7 +25,7 @@ export const TaskToolbar = ({ task, getTask }) => {
   const statusStates = ['To do', 'In progress', 'Done'];
   // eslint-disable-next-line no-unused-vars
   const [status, setStatus] = useState(task.status);
-
+  console.log(setStatus);
   const toggleModal = () => {
     setIsModalOpen(prev => !prev);
   };
