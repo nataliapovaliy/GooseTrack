@@ -87,7 +87,7 @@ export const CalendarPage = () => {
   const dispatch = useDispatch();
   const currentDate = new Date(today);
 
-  // console.log(currentDate);
+  console.log(today);
 
   useEffect(() => {
     const year = String(currentDate.getFullYear());
