@@ -117,7 +117,7 @@ export const CalendarTableMoreBtn = styled.button`
   /* color: var(--btn-text-color); */
   border: none;
   border-radius: 8px;
-  color: var(--calendar-date-color);
+  color: transparent;
   background-color: var(--main-background-color);
   text-align: start;
   font-weight: 700;
@@ -125,4 +125,12 @@ export const CalendarTableMoreBtn = styled.button`
   cursor: pointer;
   margin-top: 0;
   padding: 0;
+  @media screen and (min-width: 768px) {
+    color: var(--calendar-date-color);
+    background-color: var(--main-background-color);
+  }
+  @media screen and (min-width: 1440px) {
+    color: var(--calendar-date-color);
+    background-color: var(--main-background-color);
+  }
 `;
